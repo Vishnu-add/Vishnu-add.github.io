@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Projects — Vishnu Vardhan Addanki Tirumala</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="nav-name" href="index.html">A.V. TIRUMALA</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="experience.html">Experience</a></li>
+      <li><a href="projects.html" class="active">Projects</a></li>
+      <li><a href="research.html">Research</a></li>
+      <li><a href="skills.html">Skills</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-right">
+      <a class="icon-btn" href="https://scholar.google.com/scholar?q=Vishnu+Vardhan+Addanki+Tirumala" target="_blank" rel="noopener" title="Google Scholar" aria-label="Google Scholar">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9zM17 15.99l-5 2.73-5-2.73v-3.72L12 15l5-2.73v3.72z"/></svg>
+      </a>
+      <a class="icon-btn" href="https://github.com/Vishnu-add" target="_blank" rel="noopener" title="GitHub" aria-label="GitHub">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.57 2.34 1.12 2.91.85.09-.66.35-1.12.63-1.38-2.22-.26-4.56-1.14-4.56-5.06 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.31.1-2.72 0 0 .84-.28 2.75 1.05a9.3 9.3 0 0 1 2.5-.35c.85 0 1.71.12 2.5.35 1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.46.1 2.72.64.72 1.03 1.63 1.03 2.75 0 3.93-2.34 4.79-4.57 5.05.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.26 10.26 0 0 0 22 12.25C22 6.58 17.52 2 12 2z"/></svg>
+      </a>
+      <a class="btn-hire" href="contact.html#hire">Hire me</a>
+      <button class="nav-toggle" aria-label="Toggle menu">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<header class="page-head wrap">
+  <div class="eyebrow">03 · things I've built</div>
+  <h1>Projects</h1>
+  <p class="sub">Assistive hardware, GenAI pipelines, RAG systems, and computer vision — filter by category below.</p>
+</header>
+
+<section>
+  <div class="wrap reveal">
+    <div class="filter-bar">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="research">Research</button>
+      <button class="filter-btn" data-filter="genai">GenAI</button>
+      <button class="filter-btn" data-filter="rag">RAG</button>
+      <button class="filter-btn" data-filter="vision">Computer vision</button>
+      <button class="filter-btn" data-filter="hardware">Assistive tech</button>
+    </div>
+
+    <div class="proj-grid">
+
+      <div class="proj-card" data-tag="research">
+        <span class="proj-tag">Research</span>
+        <h3>VuDG video QA pipeline</h3>
+        <p>A multi-model fine-tuning and evaluation pipeline for cross-domain generalization, LoRA-tuning Qwen3VL-2B, Qwen2.5VL-3B, and SmolVLM2 on a ~15k-row video QA dataset across 3,829 videos.</p>
+      </div>
+
+      <div class="proj-card" data-tag="hardware">
+        <span class="proj-tag">Assistive tech</span>
+        <h3>Sight-Sphere Communicator</h3>
+        <p>Team-led assistive device for visually impaired individuals using ESP32-CAM, ultrasonic sensors, and a multimodal LLM on Raspberry Pi for real-time audio navigation instructions.</p>
+      </div>
+
+      <div class="proj-card" data-tag="genai">
+        <span class="proj-tag">GenAI</span>
+        <h3>AI video generator</h3>
+        <p>A text-to-video platform with narration, background music, and scene/character consistency, combining LangChain, FastAPI, TTS, and image/music generation models. Includes a story editor and content library.</p>
+      </div>
+
+      <div class="proj-card" data-tag="rag">
+        <span class="proj-tag">RAG</span>
+        <h3>EduBot — AI university assistant</h3>
+        <p>A RAG-based chatbot for document Q&amp;A and video-lecture interaction, built with LangChain, vLLM, and transformers, with multi-cloud deployment across Azure, AWS, Render, and Vercel.</p>
+      </div>
+
+      <div class="proj-card" data-tag="vision">
+        <span class="proj-tag">Computer vision</span>
+        <h3>Face recognition attendance system</h3>
+        <p>Team-led attendance system built on Django, using OpenFace for feature extraction and a custom recognition model.</p>
+      </div>
+
+      <div class="proj-card" data-tag="vision">
+        <span class="proj-tag">Remote sensing</span>
+        <h3>Wildfire &amp; smoke segmentation</h3>
+        <p>MobileNet-UNet and RepViT-UNet architectures for thermal UAV imagery segmentation, benchmarked against standard segmentation architectures in scratch and pretrained modes.</p>
+      </div>
+
+      <div class="proj-card" data-tag="rag">
+        <span class="proj-tag">Healthcare AI</span>
+        <h3>Frontline health-worker assistant</h3>
+        <p>A RAG chatbot serving 1M+ healthcare workers, with fine-tuned embeddings and adapters to reduce hallucinations in low-data clinical settings.</p>
+      </div>
+
+      <div class="proj-card" data-tag="genai">
+        <span class="proj-tag">NLP</span>
+        <h3>Twitter sentiment analysis app</h3>
+        <p>A Flask web app for real-time sentiment classification of tweets using NLP models.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer>Built &amp; maintained by Vishnu Vardhan Addanki Tirumala</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
