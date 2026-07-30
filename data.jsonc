@@ -1,0 +1,1137 @@
+{
+  "site": {
+    "name": "Vishnu Vardhan Addanki Tirumala",
+    // "navName": "Vishnu",
+    "email": "vishnuvardhanaddanki22@gmail.com",
+    "footerText": "Built &amp; maintained by Vishnu Vardhan Addanki Tirumala",
+    // Icon links shown in the nav bar. "key" selects which SVG icon render.js
+    // draws (see ICONS in render.js); add a link with an unrecognized key and
+    // it falls back to a generic external-link icon.
+    "social": [
+      { "key": "scholar", "label": "Google Scholar", "href": "https://scholar.google.com/scholar?q=Vishnu+Vardhan+Addanki+Tirumala" },
+      { "key": "github", "label": "GitHub", "href": "https://github.com/Vishnu-add" }
+    ],
+    "hireLink": "contact.html#hire",
+    // Header/nav position: "top" (default, horizontal bar) or "side" (flat
+    // left sidebar with a curved edge bulging toward the page content).
+    "navLayout": "side",
+    "nav": [
+      {
+        "key": "home",
+        "label": "Home",
+        "type": "page",
+        "file": "index.html"
+      },
+      {
+        "key": "experience",
+        "label": "Experience",
+        "type": "anchor"
+      },
+      {
+        "key": "research",
+        "label": "Research",
+        "type": "anchor"
+      },
+      {
+        "key": "skills",
+        "label": "Skills",
+        "type": "anchor"
+      },
+      {
+        "key": "projects",
+        "label": "Projects",
+        "type": "page",
+        "file": "projects.html"
+      },
+      {
+        "key": "credentials",
+        "label": "Credentials",
+        "type": "anchor"
+      },
+      {
+        "key": "contact",
+        "label": "Contact",
+        "type": "page",
+        "file": "contact.html"
+      }
+    ],
+    "quicknav": [
+      {
+        "key": "about",
+        "label": "About"
+      },
+      {
+        "key": "capabilities",
+        "label": "Capabilities"
+      },
+      {
+        "key": "experience",
+        "label": "Experience"
+      },
+      {
+        "key": "research",
+        "label": "Research"
+      },
+      {
+        "key": "skills",
+        "label": "Skills"
+      },
+      {
+        "key": "projects-preview",
+        "label": "Projects"
+      },
+      {
+        "key": "credentials",
+        "label": "Credentials"
+      }
+    ]
+  },
+  "hero": {
+    "eyebrow": "AI engineer & researcher",
+    "name": "Vishnu Vardhan Addanki Tirumala",
+    "typePrefix": "I build systems around",
+    "typeWords": [
+      "neural networks",
+      "RAG pipelines",
+      "voice agents",
+      "AI",
+      "production ML"
+    ],
+    "sub": "Designing and shipping intelligent systems end-to-end , from applied research and neural network training to production-grade RAG pipelines and voice AI agents.",
+    "cta": [
+      {
+        "label": "Hire me →",
+        "href": "contact.html#hire",
+        "style": "btn-primary"
+      },
+      {
+        "label": "View projects",
+        "href": "projects.html",
+        "style": "btn-ghost"
+      },
+      {
+        "label": "Research &amp; publications",
+        "href": "#research",
+        "style": "btn-ghost"
+      }
+    ],
+    "stats": [
+      {
+        "value": 3,
+        "suffix": "",
+        "label": "Papers submitted"
+      },
+      {
+        "value": 6,
+        "suffix": "",
+        "label": "Roles &amp; internships"
+      }
+    ]
+  },
+  "capabilities": {
+    "sectionNum": "02",
+    "eyebrow": "core capabilities",
+    "items": [
+      {
+        "scene": "engineering",
+        "title": "AI Engineering",
+        "desc": "Designing, deploying, and operating production ML systems end-to-end."
+      },
+      {
+        "scene": "neural",
+        "title": "Neural Networks",
+        "desc": "Training and fine-tuning deep learning models across vision, language, and multimodal domains."
+      },
+      {
+        "scene": "rag",
+        "title": "RAG",
+        "desc": "Building retrieval-augmented pipelines that ground LLM responses in real, trusted data."
+      },
+      {
+        "scene": "voice",
+        "title": "Voice Agents",
+        "desc": "Shipping speech-driven agents , ASR, TTS, and real-time conversational logic."
+      }
+    ]
+  },
+  "about": {
+    "sectionNum": "01",
+    "paragraphs": [
+      "An AI &amp; ML engineer drawn equally to product development and research , I like taking an idea from a rough hypothesis all the way to a system people actually use, and I like sitting with the harder, slower questions underneath it.",
+      "On the product side, that means designing intelligent agents, shipping end-to-end GenAI workflows, and building the backend systems and APIs that hold them together in production. On the research side, it means digging into why models generalize (or don't) across domains, and how interpretable a learned model can really be made.",
+      "That mix , building fast and questioning deeply , is what I look for in any project, and what led me from a diploma in embedded systems, through a B.E. in Computer Science (AI &amp; ML), to an MTech in Artificial Intelligence &amp; Data Science, a joint programme between IIITDM and the University of Agder in Grimstad, Norway."
+    ]
+  },
+  "research": {
+    "sectionNum": "03",
+    "intro": "Two active tracks: vision-language models, and Tsetlin Machines , three papers currently in submission.",
+    "scholarUrl": "https://scholar.google.com/scholar?q=Vishnu+Vardhan+Addanki+Tirumala"
+    ,"tracks": [
+      {
+        "title": "Vision-language models",
+        "desc": "Fine-tuning vision-language models with LoRA and evaluating how well they generalize across different data domains."
+      },
+      {
+        "title": "Tsetlin Machine interpretability",
+        "desc": "Studying the interpretability of Tsetlin Machines by analyzing their learned clauses and exploring ways to make the models more compact and explainable."
+      }
+    ],
+    "publications": [
+    //   {
+    //     "title": "Tsetlin Machine clause-sanitation: quantifying the impact of non-contributing clauses",
+    //     "status": "Submitted · ISTM 2026",
+    //     "desc": "A rule-based and firing-rate filtering pipeline that reconstructs trained Tsetlin Machine clause sets from stored weights, isolates clauses that contribute little to classification decisions, and measures the resulting change in accuracy when they're removed , a step toward more interpretable, compact TM models."
+    //   },
+    //   {
+    //     "title": "Composite clause weighting for split Tsetlin Machines across datasets",
+    //     "status": "Submitted · ISTM 2026",
+    //     "desc": "A split Tsetlin Machine pipeline that combines top and bottom clause pairs via a Cartesian product across five weighting strategies, with composite accuracy experiments and Spearman correlation analysis across MNIST, Fashion-MNIST, and synthetic shape datasets."
+    //   },
+    //   {
+    //     "title": "Deep segmentation architectures for remote sensing applications",
+    //     "status": "Submitted · IEEE Transactions on Geoscience and Remote Sensing",
+    //     "desc": "A comparative study of segmentation architectures , including MobileNet-UNet and RepViT-UNet , applied to thermal UAV imagery, benchmarked against standard segmentation models in scratch and pretrained configurations."
+    //   }
+    ]
+  },
+  "experience": {
+    "sectionNum": "04",
+    "intro": "",
+    // "intro": "Roles spanning applied research, product ML, and NLP engineering , from voice AI agents to clinical decision support systems.",
+    "items": [
+      {
+        "date": "MAY 2026 , PRESENT",
+        "role": "University Research Assistant",
+        "org": "University of Agder, Norway",
+        "logo": "UA",
+        "bullets": [
+          "Authored two papers submitted to ISTM 2026 on Tsetlin Machine interpretability.",
+          "Built a clause-sanitation pipeline to quantify the accuracy impact of removing non-contributing clauses."
+        ]
+      },
+      {
+        "date": "JUN 2024 , JUL 2025",
+        "role": "Product Development Engineer, Machine Learning",
+        "org": "Phenom People Pvt Ltd, Hyderabad",
+        "logo": "PP",
+        "bullets": [
+          "Led development, deployment, and SRE responsibilities for AI scheduling microservices.",
+          "Maintained and optimized a multi-label classification pipeline for multi-agent emails using ML automation and human-in-the-loop review.",
+          "Improved automation accuracy to 95%, lifting candidate email automation from 30% to 48% and recruiter/interviewer automation from 0% to 60%.",
+          "Deployed BERT-based classifiers and built an auditing system to capture intents, sub-intents, and entities, backed by performance dashboards.",
+          "Built core logic for a voice-based screening agent handling 1,000+ calls monthly, with a 99.9%-accurate voicemail detection system.",
+          "Developed a questionnaire-builder agent enabling the product team to generate job-specific questionnaires from job descriptions."
+        ]
+      },
+      {
+        "date": "JUL 2023 , JUN 2024",
+        "role": "Machine Learning Intern",
+        "org": "Wadhwani AI, Delhi",
+        "logo": "WA",
+        "bullets": [
+          "Built clinical NER models to extract medical entities from free-text data for a Clinical Decision Support System.",
+          "Designed UIs for knowledge-base validation, integrating ASR and TTS.",
+          "Co-developed a RAG-based chatbot for 1M+ frontline healthcare workers to answer domain-specific queries.",
+          "Fine-tuned embedding models and linear adapters to reduce hallucinations in low-data settings, and built synthetic data pipelines for evaluation."
+        ]
+      },
+      {
+        "date": "MAY 2023 , JUN 2024",
+        "role": "Junior Machine Learning Engineer",
+        "org": "Omdena AI · Remote",
+        "logo": "OM",
+        "bullets": [
+          "Selected as one of 90 contributors across two global AI projects.",
+          "Montreal chapter: worked on speech-to-text and text-to-speech modules for an AI-powered dubbing app.",
+          "Toronto chapter: built and tested chatbot flows using the Rasa framework, Flask, and FastAPI."
+        ]
+      },
+      // {
+      //   "date": "NOV 2023 , DEC 2023",
+      //   "role": "Machine Learning Intern",
+      //   "org": "Coding Raja Technologies · Remote",
+      //   "logo": "CR",
+      //   "bullets": [
+      //     "Built a Twitter sentiment analysis web app using Flask and NLP models.",
+      //     "Fine-tuned a Vision Transformer for Indian food image classification at 94% accuracy using Hugging Face transformers."
+      //   ]
+      // },
+      {
+        "date": "JUN 2023 , JUL 2023",
+        "role": "AI Intern",
+        "org": "AICTE · Remote",
+        "logo": "AI",
+        "bullets": [
+          "Developed a mental fitness tracker to monitor a country's mental-disorder trends using 12 regression and ML models.",
+          "Performed data cleaning, preprocessing, and feature engineering to improve model performance."
+        ]
+      },
+      {
+        "date": "NOV 2020 , MAY 2021",
+        "role": "Apprentice , Embedded Systems",
+        "org": "Electronics Corporation of India Ltd (ECIL), Hyderabad",
+        "logo": "EC",
+        "bullets": [
+          "Six-month sandwich apprenticeship under the Apprentices Act with ECIL's Radar &amp; Power Devices division, a Govt. of India (Dept. of Atomic Energy) enterprise.",
+          "Managed assigned projects to schedule and contributed to raising both module production output and module accuracy."
+        ]
+      }
+    ]
+  },
+  "skills": {
+    "sectionNum": "05",
+    "intro": "",
+    // "intro": "The languages, frameworks, and infrastructure behind the research and products on this page.",
+    "groups": [
+      {
+        "category": "Languages",
+        "items": [
+          "Python",
+          "SQL",
+          "C++",
+          "Java"
+        ]
+      },
+      {
+        "category": "Machine learning &amp; deep learning",
+        "items": [
+          "PyTorch",
+          "Transformers",
+          "TensorFlow",
+          "Keras",
+          "scikit-learn"
+        ]
+      },
+      {
+        "category": "NLP &amp; GenAI",
+        "items": [
+          "LLMs",
+          "LangChain",
+          "LangGraph",
+          "RAG",
+          "spaCy",
+          "NLTK",
+          "Prompt engineering"
+        ]
+      },
+      {
+        "category": "Frameworks",
+        "items": [
+          "FastAPI",
+          "Flask",
+          "Django",
+          "Streamlit",
+          "Gradio",
+          "Rasa",
+          "Chainlit",
+          "React"
+        ]
+      },
+      {
+        "category": "Databases &amp; vector stores",
+        "items": [
+          "PostgreSQL",
+          "MongoDB",
+          "Redis",
+          "Elasticsearch",
+          "Weaviate",
+          "MySQL"
+        ]
+      },
+      {
+        "category": "DevOps &amp; infra",
+        "items": [
+          "Docker",
+          "Kubernetes",
+          "Jenkins",
+          "ArgoCD",
+          "Kafka",
+          "RabbitMQ",
+          "Git",
+          "Linux"
+        ]
+      }
+    ]
+  },
+  "projects": {
+    "sectionNum": "06",
+    "pageEyebrow": "05 · things I've built",
+    "pageSub": "",
+    // "pageSub": "Assistive hardware, GenAI pipelines, RAG systems, knowledge graphs, and computer vision , filter by category below.",
+    "previewIntro": "",
+    // "previewIntro": "Three of twelve builds spanning assistive hardware, full-stack RAG, and GenAI pipelines. The rest , knowledge graphs, healthcare AI, and computer vision , live on the projects page.",
+    "previewIds": [
+      "sight-sphere",
+      "edubot",
+      "ai-video-generator"
+    ],
+    "filters": [
+      {
+        "key": "all",
+        "label": "All"
+      },
+      {
+        "key": "genai",
+        "label": "GenAI"
+      },
+      {
+        "key": "rag",
+        "label": "RAG"
+      },
+      {
+        "key": "nlp",
+        "label": "NLP"
+      },
+      {
+        "key": "vision",
+        "label": "Computer vision"
+      },
+      {
+        "key": "hardware",
+        "label": "Assistive tech"
+      }
+    ],
+    "items": [
+      // {
+      //   "id": "wildfire-segmentation",
+      //   "tag": "vision",
+      //   "tagLabel": "Remote sensing",
+      //   "title": "🔥 Wildfire &amp; smoke segmentation",
+      //   "desc": "MobileNet-UNet and RepViT-UNet architectures for thermal UAV imagery segmentation, benchmarked against standard segmentation architectures in scratch and pretrained modes.",
+      //   "detail": [
+      //     "A comparative study of segmentation architectures for detecting wildfire and smoke in thermal UAV (drone) imagery , work that also underpins one of my submitted research papers on remote-sensing segmentation.",
+      //     "MobileNet-UNet and RepViT-UNet variants were benchmarked against standard segmentation architectures in both from-scratch and pretrained configurations, comparing accuracy and efficiency trade-offs for a task where lightweight, fast inference matters as much as raw accuracy."
+      //   ],
+      //   "images": []
+      // },  
+      {
+        "id": "deep-research-agent",
+        "tag": "genai",
+        "tagLabel": "GenAI",
+        "title": "🔬 Deep Research Agent",
+        "desc": "A LangGraph-based multi-agent research system that plans, decomposes, searches the web/arXiv/Wikipedia in parallel, validates claims, and self-reflects before synthesizing a cited answer , paired with a Vue/Nitro chat UI that streams its reasoning live.",
+        "detail": [
+          "A Deep Neural Networks course project built with Rémi Wysocka and Mary Asha Reddy Boreddy: a research agent that behaves like a careful human researcher rather than a single LLM call , it decides whether research is even needed, plans a strategy, decomposes the question into per-tool sub-queries, searches multiple source types in parallel, extracts and scores evidence claim-by-claim, reflects on whether that evidence is sufficient (looping back to search or re-validate if not), and only then writes a final, cited answer. {{img:agent}}",
+          "<strong>🏗️ Two independently deployable services:</strong> a Python/FastAPI backend running the actual LangGraph agent, and a Vue 3 + Nitro frontend providing a persistent, multi-session chat UI that streams the agent's reasoning live as it works.",
+          "<strong>🧰 Backend stack:</strong> FastAPI + Uvicorn for the ASGI app and streaming responses; LangGraph (<code>StateGraph</code>, <code>InMemorySaver</code> checkpointing, custom stream writer) for orchestration; LangChain for prompt templates and tool binding; Ollama running <code>qwen3:8b</code> locally as the default LLM (OpenAI supported via config); <code>ddgs</code> for DuckDuckGo web search, the official <code>arxiv</code> client for scientific search, and the <code>wikipedia</code> package for encyclopedic search; Langfuse for full per-node tracing; <code>pydantic-settings</code> for `.env`-driven config; and Poetry for dependency management (Python 3.11–3.12).",
+          "<strong>🧰 Frontend stack:</strong> Vue 3.5 + Vite 7 with TypeScript; Nitro as a backend-for-frontend server layer (no full Nuxt app); the Vercel AI SDK (<code>ai</code> + <code>@ai-sdk/vue</code>) for the streaming chat protocol (<code>useChat</code>, <code>reasoning-*</code>/<code>text-*</code> UIMessage stream parts); Drizzle ORM over SQLite/libSQL for persistence; GitHub OAuth for auth; <code>@comark/vue</code> + Shiki for markdown/code rendering; Tailwind CSS v4 for styling; and GitHub Actions CI (lint → build → typecheck).",
+          "<strong>🧠 The graph, node by node:</strong> a <em>pre-planner node</em> forces a tool call deciding whether research is required at all, plus a reasoning depth and which tools are relevant , trivial questions skip straight to synthesis, saving latency and search cost. A <em>planner node</em> writes a free-text multi-step research plan. A <em>decomposer node</em> turns that plan into concrete per-tool sub-queries (max 4 each), dynamically filtered to only the tools the pre-planner selected, and switches prompts on loop-back iterations to avoid repeating searches. Three <em>parallel tool nodes</em> then run web, arXiv, and Wikipedia search, each persisting raw results to disk for auditability and skipping cleanly if they have no sub-queries.",
+          "<strong>✅ Validation, reflection & self-correction:</strong> a <em>validation node</em> extracts a list of claims from each source , each with a confidence score (1–10), a source ID, and a justification , discarding anything scoring below a relevance threshold of 8. A <em>reflection node</em> is the self-correction gate: it can route back to the decomposer (need different/more search results) or back to validation (re-extract claims from sources already retrieved, with new instructions), capped at a max-loop count so it always terminates. Only once reflection is satisfied does a <em>synthesis node</em> write the final, citation-heavy markdown answer, using conversation history and every validated source.",
+          "<strong>📡 Streaming protocol:</strong> every node emits a custom <code>{\"status\": ...}</code> event via LangGraph's stream writer, drawing from a rotating set of human-friendly status phrases so the UI never looks static during multi-second LLM calls. The FastAPI <code>/get_stream</code> endpoint re-emits two event shapes over the wire , <code>{\"type\": \"thinking\", ...}</code> for per-node status updates and <code>{\"type\": \"final_answer\", ...}</code> for the token-by-token synthesis output , which is exactly what lets the frontend render a collapsible reasoning trace separately from the streaming final answer. {{img:reasoning}}",
+          "<strong>🔌 Frontend↔backend integration:</strong> the core connecting file is a Nitro route that validates chat ownership, kicks off async chat-title generation via a local Ollama call, POSTs the question to the backend's <code>/get_stream</code> with a 20-minute abort timeout, and runs a hand-written brace-depth JSON extractor over the raw byte stream (needed because the backend doesn't guarantee clean line-delimited JSON). Each extracted event is mapped into the Vercel AI SDK's UIMessage stream-part protocol , <code>thinking</code> becomes <code>reasoning-start/delta/end</code> parts, <code>final_answer</code> becomes <code>text-start/delta/end</code> parts , before the finished message is persisted to the database. {{img:final}}",
+          "<strong>🎛️ Model flexibility & persistence:</strong> the base model is <code>ChatOllama(model=\"qwen3:8b\", temperature=0, reasoning=False)</code>, with reasoning mode explicitly disabled for speed and deterministic forced-tool-call outputs; every node resolves its LLM through a small helper that checks the request's chosen model first, so users can pick any locally-pulled Ollama model per chat session from the UI. The graph is compiled with LangGraph's <code>InMemorySaver</code> keyed by session ID for multi-turn conversations, and every node additionally writes plain JSON snapshots (plan, sub-queries, raw sources, validated claims, reflection) to disk for debugging, plus a saved markdown copy of every final answer.",
+          "<strong>📊 Evaluation & benchmarking:</strong> to prove the multi-node design actually helps rather than just adding latency, the project includes an LLM-as-judge evaluation harness scoring completed runs on up to 5 dimensions (context relevance, answer relevance, faithfulness/groundedness, decomposition quality, reflection quality) via forced tool calls, plus four deliberately-limited ablation baseline architectures , a single LLM call with no retrieval, a single search + LLM with no decomposition or reflection, an iterative search + LLM with a reflection loop but no decomposition, and a decomposer + search + synthesis pipeline with no reflection or validation. A <code>/benchmark_agents</code> endpoint runs all four baselines plus the full agent on the same question and evaluates each, forming the empirical backbone of the course report.",
+          "<strong>🧬 How the architecture evolved:</strong> across roughly 55 commits and six phases , a first working v1 agent (single-pass search → validate → answer, no pre-planning or reflection) with streaming and Langfuse observability added early; a frontend chat UI scaffold built in parallel on a separate branch; a V2 rewrite that introduced the pre-planner gate, switched the decomposer to per-tool queries, and added the parallel multi-tool search nodes; a phase adding the LLM-judge evaluation harness and upgrading validation/reflection to structured, per-claim scoring with the ability to loop back to either the decomposer or validation; a phase adding the four ablation baselines, the benchmark endpoint, and per-request Ollama model selection; and a final phase of documentation and the academic report/slides.",
+          "<strong>⚠️ Both services are run natively against a local Ollama instance."
+        ],
+        "images": [
+          { "id": "agent", "src": "media/images/deep_research_agent_pics/Agent_pic.png", "caption": "Deep Research Agent , LangGraph workflow" },
+          { "id": "reasoning", "src": "media/images/deep_research_agent_pics/reasoning_steps.png", "caption": "Streamed reasoning steps in the chat UI" },
+          { "id": "final", "src": "media/images/deep_research_agent_pics/final_response.png", "caption": "Final synthesized, cited answer" },
+          { "id": "uml", "src": "media/images/deep_research_agent_pics/uml.png", "caption": "System UML diagram" }
+        ],
+        "link": [
+            {
+              "label": "View on GitHub →",
+              "href": "https://github.com/Vishnu-add/Deep_Research_Agent/"
+            }
+        ]
+      },
+      // {
+      //   "id": "ai-film-making-assistant",
+      //   "tag": "genai",
+      //   "tagLabel": "GenAI",
+      //   "title": "🎬 AI film-making assistant",
+      //   "desc": "",
+      //   "detail": [],
+      //   "images": [],
+      //   "link": [
+      //       {
+      //         "label": "View product →",
+      //         "href": "https://ai-filmmaking-assistant.vercel.app/"
+      //       },
+      //       {
+      //         "label": "View landing page →",
+      //         "href": "https://vishnu-add.github.io/AI-Filmmaking-Assistant-Landing-Page/"
+      //       }
+      //   ]
+      // },
+      {
+        "id": "ai-video-generator",
+        "tag": "genai",
+        "tagLabel": "GenAI",
+        "title": "🎬 AI video generator",
+        "desc": "An end-to-end AI filmmaking pipeline that turns a topic or script into a fully-produced short video , AI-written story, consistent characters, narration, generated visuals, TTS voiceover, background music, and a rendered MP4, with a Streamlit UI and a Supabase-backed FastAPI service.",
+        "detail": [
+          "An end-to-end AI Filmmaking Assistant that turns a topic, a description, or a raw script into a fully-produced short video , an AI-written story, consistent characters, scene-by-scene narration, AI-generated visuals, AI voiceover, background music, and a rendered MP4 , with a Streamlit UI for authoring and a Supabase-backed FastAPI service for project/scene persistence and editing. {{img:architecture}}",
+          "<strong>🏗️ Architecture:</strong> three cooperating parts , a FastAPI backend (<code>ai_video_generator/</code>) owning all AI generation logic (story, characters, narration, images, TTS, music, captions, rendering) and persisting projects/scenes to Supabase; a Streamlit multi-page frontend (<code>ai_video_gen_ui/</code>) for authoring, scene-by-scene editing, and a video gallery; and a root orchestrator (<code>main.py</code>) hosting both a newer Supabase-integrated pipeline and the legacy file-based pipeline that predates the Supabase migration. Deployed on Render as a Poetry-managed Python 3.11 service.",
+          "<strong>✍️ Two story-creation flows:</strong> an <em>AI Filmmaker</em> flow (<code>/generateVisualScenes</code>) where the user supplies just a story description and the AI writes the full story, invents consistent characters, writes narration + image prompts per scene, sources images, generates TTS narration, and persists everything to Supabase; and a <em>Filmmaker</em> flow (<code>/generateVisualsFromScenes</code>) where the user supplies their own scene breakdown and the AI composes a cohesive story around it while preserving the exact scene count and descriptions. {{img:home}}",
+          "<strong>📖 Story &amp; character generation:</strong> uses Google Gemini (<code>gemini-2.0-flash</code>) with a system prompt enforcing a hook, integrated visual description, and a clear beginning/middle/end arc driven by user-supplied tone/theme/age settings. Prompts are pulled live from Langfuse's prompt registry at runtime (with local fallback) so they can be iterated without a redeploy. Characters are generated as structured JSON (Pydantic schema , species, name, age, gender, outfit, hair) to keep every character's appearance consistent across every scene image. {{img:story-gen}}",
+          "<strong>🎥 Narration, visuals, voice &amp; music:</strong> a structured-output narration/image-prompt generator writes a strict cinematic Image Prompt Framework (subject, action, expression, outfit, background, style, lighting, camera angle) per scene; images are sourced by building Pollinations.ai URLs at a fixed seed/model for style consistency and uploaded to Supabase Storage; narration audio comes from Pollinations' TTS with an automatic fallback to <code>edge-tts</code> if the primary call fails; background music is mixed under narration via MoviePy with fade in/out and volume ducking; and <code>whisper-timestamped</code> produces word-level timing for burning subtitles onto the final render. {{img:script-gen}}",
+          "<strong>🎬 Rendering &amp; recovery:</strong> MoviePy sequences per-scene image + narration clips (narration-driven pacing, cross-fades), composites video and audio, and encodes with GPU-accelerated <code>h264_nvenc</code>. Dedicated recovery endpoints let a user re-download failed images, re-run just the render step, or patch a single scene's image/prompt without regenerating the whole project , backing a Streamlit <strong>Video Editor</strong> page for scene-by-scene review and regeneration. {{img:editor}}",
+          "<strong>🗄️ Persistence &amp; observability:</strong> Supabase (Postgres + Storage) holds <code>projects</code> and <code>scenes</code> tables plus a <code>scenes-media</code> bucket for generated images/audio, accessed through a FastAPI project/scene CRUD API. Every generation stage is traced end-to-end with Langfuse (<code>@observe</code> spans for story → characters → narration → images → audio → video), giving full request/prompt visibility across the pipeline.",
+          "<strong>🖥️ Streamlit frontend:</strong> a multi-page authoring app , a generation form (video/story/character settings), a story-only generator, a script-driven generator, a gallery of rendered videos, a scene-by-scene Video Editor (edit an image prompt, regenerate a preview, then commit it back into the project), and resume/error-recovery pages for continuing an interrupted run. {{img:gallery}} {{img:all-stories}}",
+          "<strong>🛠️ Stack:</strong> FastAPI, Google Gemini (structured outputs via Pydantic), Pollinations.ai (image + audio), <code>edge-tts</code>, <code>whisper-timestamped</code>, MoviePy 2.x with NVENC encoding, NLTK, Supabase (Postgres + Storage), Langfuse (tracing + prompt registry), Streamlit, Poetry, and Render for deployment.",
+          "<strong>🎞️ Sample output:</strong> a fully rendered sample story video (\"Blue Panther\") generated end-to-end by the pipeline , AI-written story, generated visuals, narration, and background music. {{vid:blue-panther}}",
+          "<strong>📺 App walkthrough:</strong> a screen recording of the Streamlit UI , generation form, scene-by-scene editing, and the video gallery. {{vid:app-walkthrough}}"
+          // ,"I later tried to build an actual product around this pipeline , see <a href=\"project.html?id=ai-film-making-assistant\">🎬 AI film-making assistant →</a>."
+        ],
+        "images": [
+          { "id": "architecture", "src": "media/images/ai_video_generator_ui_images/architecture.png", "caption": "System architecture" },
+          { "id": "home", "src": "media/images/ai_video_generator_ui_images/app_page-0001.jpg", "caption": "Home , video generation form" },
+          { "id": "story-gen", "src": "media/images/ai_video_generator_ui_images/Story Generator_page-0001.jpg", "caption": "Story Generator page" },
+          { "id": "script-gen", "src": "media/images/ai_video_generator_ui_images/Generator From Script_page-0001.jpg", "caption": "Generator From Script page" },
+          { "id": "editor", "src": "media/images/ai_video_generator_ui_images/Video Editor_page-0001.jpg", "caption": "Video Editor , scene-by-scene editing" },
+          { "id": "gallery", "src": "media/images/ai_video_generator_ui_images/All Videos_page-0001.jpg", "caption": "All Videos gallery" },
+          { "id": "all-stories", "src": "media/images/ai_video_generator_ui_images/All Stories_page-0001.jpg", "caption": "All Stories page" }
+        ],
+        "videos": [
+          { "id": "blue-panther", "src": "media/images/ai_video_generator_ui_images/blue_panther_story.mp4", "caption": "\"Blue Panther\" , sample rendered story video" },
+          { "id": "app-walkthrough", "src": "media/images/ai_video_generator_ui_images/streamlit-app-2026-07-28-23-07-01.mp4", "caption": "Streamlit app walkthrough" }
+          // ,"media/images/ai_video_generator_ui_images/streamlit-app-2026-07-28-23-07-78.mp4"
+        ]
+      },
+      {
+        "id": "sight-sphere",
+        "tag": "hardware",
+        "tagLabel": "Assistive tech",
+        "title": "🦯 Sight-Sphere Communicator",
+        "desc": "Team-led assistive device for visually impaired individuals using ESP32-CAM, ultrasonic sensors, and a multimodal LLM on Raspberry Pi for real-time audio navigation instructions.",
+        "detail": [
+          "My bachelor's thesis (B.E. , CSE, AI &amp; ML, Neil Gogte Institute of Technology, Osmania University, 2023–2024): an AI-powered wearable assistive navigation device for the visually impaired. Sight-Sphere Communicator fuses a wireless camera feed, an ultrasonic distance sensor, and Google's Gemini Pro Vision multimodal model to give users real-time, spoken descriptions of their surroundings and navigation guidance , hands-free, through a simple set of physical buttons. I led a two-person team, owning the end-to-end integration between the sensor hardware and the on-device inference pipeline. {{img:device}}",
+          "<strong>💡 Motivation:</strong> existing aids each solve only a narrow slice of the problem , a white cane only detects ground-level obstacles directly ahead, a guide dog is expensive and needs long training, GPS apps give directions but no real-time hazard awareness, and basic obstacle-detection gadgets sense nearby objects with no broader scene understanding. Sight-Sphere closes these gaps by combining AI-based scene understanding with real-time distance sensing and spoken audio feedback, so the user gets both a description of what's around them and actionable navigation guidance.",
+          "<strong>🏗️ System architecture:</strong> a wearable ESP32-CAM module (paired with an HC-SR04 ultrasonic sensor) hosts a lightweight async web server over Wi-Fi exposing three endpoints , <code>/capture</code> for a single JPEG frame, <code>/stream</code> for an MJPEG feed, and <code>/distance</code> for the live obstacle distance in cm. A Raspberry Pi 4 polls these endpoints, buffers the last ~5 seconds of frames, reads GPIO push-buttons for mode/control input, builds a multimodal prompt for Gemini Pro Vision, and turns the model's text response into speech via gTTS and pygame. {{img:build}}",
+          "<strong>🔌 Hardware:</strong> Raspberry Pi 4 Model B as the central processor; an ESP32-CAM module for video capture and the onboard web server; an HC-SR04 ultrasonic sensor (Trigger/Echo wired to the ESP32-CAM's GPIO) for distance sensing; six GPIO push-buttons on the Pi , dedicated start and stop buttons, plus four mode buttons (Manual, Continuous, Distance, and a manual-trigger button); a speaker or earbuds for private audio playback; and a battery pack powering the camera/sensor rig independently of the Pi. {{img:wiring}}",
+          "<strong>🕹️ Three operating modes, selected entirely by button press (no screen, fully accessible):</strong><ul style=\"margin:8px 0 0 20px; padding:0;\"><li><strong>Continuous Mode</strong> , auto-generates a spoken description every 20 seconds using the rolling 5-frame buffer plus the live distance reading, ideal for a running commentary while walking.</li><li><strong>Distance Mode</strong> , only triggers a description when the path ahead reads more than 200 cm clear (and at least 20s have passed), avoiding unnecessary audio chatter when the user is already close enough to an obstacle to rely on cane/tactile feedback instead.</li><li><strong>Manual Mode</strong> , stays silent until the user presses a dedicated trigger button (rate-limited to once per 10s), using a prompt variant that only mentions navigation directions if a walkable path actually exists, otherwise just describing the scene.</li></ul>",
+          "<strong>🧠 Software pipeline:</strong> built in Python with <code>google-generativeai</code> (Gemini Pro Vision for image+text → text inference), <code>opencv-python</code> for frame capture/decoding and BGR→RGB conversion, <code>gTTS</code> for text-to-speech rendered to an in-memory MP3, <code>pydub</code> (+ its <code>speedup</code> effect) for adjustable playback speed, <code>pygame</code> for audio playback, <code>numpy</code>/<code>Pillow</code> to bridge OpenCV frames and Gemini's expected image format, <code>requests</code> to poll the ESP32-CAM's distance endpoint, and <code>gpiozero</code> to read the Pi's GPIO buttons. The ESP32-CAM firmware itself is C++/Arduino, using <code>esp_camera.h</code> for JPEG capture, <code>ESPAsyncWebServer</code> + <code>WiFi.h</code> for the non-blocking HTTP server, and <code>pulseIn()</code>-based pulse-duration math to convert the ultrasonic echo into a distance in cm. {{img:testing}}",
+          "<strong>🎯 Prompt design:</strong> three distinct prompt variants tailor Gemini's response style per mode , a pure object/description enumeration prompt, a description-plus-explicit-navigation-directions prompt (used in Continuous and Distance modes), and a description-first prompt that only adds navigation guidance when a viable path is actually detected (used in Manual mode). Each mode enforces its own cooldown to avoid overlapping or excessive API calls, and every image sent to the model is accompanied by the current distance reading as text context.",
+          "<strong>💻 Desktop fallback prototype:</strong> Initially I built a simplified desktop/laptop version that reads from a local webcam via OpenCV instead of the wireless camera and sensor hardware , useful for development and demoing the Gemini + TTS pipeline without the full hardware harness. It was later packaged into a standalone Windows executable with PyInstaller (<code>--onefile --noconsole</code>) for hardware-free demos.",
+          "<strong>🧪 Testing:</strong> 12 structured test cases were performed across the full system , ESP32-CAM Wi-Fi initialization, ultrasonic sensor accuracy, GPIO button detection, video stream access, distance-data access, Continuous/Distance/Manual mode behavior, system startup and mode-switching, service stop, and audio-output clarity.",
+          "<strong>📈 Non-functional targets (from the SRS):</strong> sub-1-second average response time from capture to audio output, ≥12 hours of continuous battery life, recovery within 30 seconds of failure, startup within 30 seconds and safe shutdown within 10, IP65-level water/dust resistance, and encrypted handling of any stored user data. {{img:team}}",
+          "<strong>🔭 Future scope:</strong> lower-latency real-time processing, additional sensing modalities (thermal, LiDAR), smarter pathfinding/obstacle-avoidance algorithms, haptic feedback as a complementary channel to audio, and integration with smart-home/IoT systems for broader voice-driven environmental control."
+        ],
+        "images": [
+          { "id": "device", "src": "media/images/SightSphere/IMG-20240601-WA0002.jpg", "caption": "The assembled Sight-Sphere device" },
+          { "id": "build", "src": "media/images/SightSphere/IMG-20240601-WA0001.jpg", "caption": "Hardware build , ESP32-CAM, ultrasonic sensors, and Raspberry Pi" },
+          { "id": "wiring", "src": "media/images/SightSphere/IMG-20240601-WA0004.jpg ", "caption": "Sensor wiring and integration" },
+          { "id": "testing", "src": "media/images/SightSphere/IMG-20240601-WA0003.jpg", "caption": "Field-testing the navigation aid" },
+          { "id": "team", "src": "media/images/SightSphere/IMG_9800.jpg", "caption": "" }
+        ]
+      },
+      {
+        "id": "edubot",
+        "tag": "rag",
+        "tagLabel": "RAG",
+        "title": "🎓 EduBot , AI university assistant",
+        "desc": "A RAG-based chatbot for document Q&amp;A and video-lecture interaction, built with LangChain, vLLM, and transformers, with multi-cloud deployment across Azure, AWS, Render, and Vercel.",
+        "detail": [
+          "EduBot is a retrieval-augmented chatbot that helps students interact with university resources , answering questions grounded in uploaded documents and letting them query video lectures directly.",
+          "The retrieval and generation pipeline runs on LangChain and vLLM with Hugging Face transformers for the underlying models. I led full-cycle development, building both the front-end and backend APIs, and explored multi-cloud deployment across Azure, AWS, Render, and Vercel to compare cost and latency trade-offs."
+        ],
+        "images": [],
+        "link": [
+          {
+            "label": "View project",
+            "href": "https://kefy-bot.vercel.app/"
+          }
+        ]
+      },
+      {
+        "id": "polydub",
+        "tag": "genai",
+        "tagLabel": "GenAI",
+        "title": "🎙️ PolyDub , AI-powered multilingual video dubbing app",
+        "desc": "🎞️ Takes a YouTube URL and produces a dubbed version of the video in a selected target language and voice gender, using Whisper transcription, translation, and gender-specific TTS synced back onto the video.",
+        "detail": [
+          "PolyDub is an AI-powered application that takes a YouTube URL as input and produces a dubbed version of the video in a selected target language and voice gender. It streamlines video localization using cutting-edge speech recognition, translation, and voice synthesis technologies.",
+          "<strong>🚀 Features:</strong><ul style=\"margin:8px 0 0 20px; padding:0;\"><li>🎞️ Download YouTube videos using PyTube</li><li>🧠 Transcribe speech using OpenAI Whisper</li><li>🌐 Translate text into multiple languages with Translator</li><li>🗣️ Generate natural, gender-specific voiceovers using TTS models</li><li>🎬 Sync dubbed audio with video via MoviePy</li><li>🔊 Supports single-speaker videos (multi-speaker support in roadmap)</li></ul>",
+          "<strong>🛠️ Tech Stack:</strong><ul style=\"margin:8px 0 0 20px; padding:0;\"><li>Python</li><li>PyTube – Video downloading</li><li>Pydub – Audio processing</li><li>OpenAI Whisper – Speech-to-text transcription</li><li>Google Translate / DeepL / other Translator – Language translation</li><li>TTS Models – Text-to-speech synthesis (e.g., Bark, Coqui, ElevenLabs, etc.)</li><li>MoviePy – Audio-video editing and synchronization</li></ul>",
+          "<strong>📌 Limitations:</strong><ul style=\"margin:8px 0 0 20px; padding:0;\"><li>Designed for single-speaker videos</li><li>Performance may vary depending on video quality and background noise</li><li>Multi-speaker handling and speaker diarization coming soon</li></ul>"
+        ],
+        "images": ["media/images/poly_dub.png"],
+        "link": [
+          { "label": "View on GitHub →", "href": "https://github.com/Vishnu-add/PolyDub" }
+        ]
+      },
+      {
+        "id": "face-recognition",
+        "tag": "vision",
+        "tagLabel": "Computer vision",
+        "title": "🪪 Face recognition attendance system",
+        "desc": "Bachelor's mini project: a Django attendance system that recognizes students live from webcam feeds, using OpenCV DNN face detection, OpenFace embeddings, and a custom-trained classifier , I led the team building it end-to-end.",
+        "detail": [
+          "My bachelor's mini project: an end-to-end Face Recognition Attendance System (FRAS) that automates classroom/faculty attendance using a computer-vision pipeline (face detection → face embedding → face classification) integrated into a full Django web application. I led the team building this end-to-end, from dataset creation and model training to the Django backend and live recognition pipeline. {{img:login}}",
+          "<strong>🧠 System architecture:</strong> the system works in three stages.<ol style=\"margin:8px 0 0 20px; padding:0;\"><li>Dataset creation , capture and augment face images of each student, organized by Branch → Year → Section</li><li>Model training , detect faces, extract deep-learning face embeddings, and train a classifier to recognize each student</li><li>Live recognition & attendance marking , a faculty member opens a webcam feed in the Django app, the trained pipeline recognizes students in real time, marks them Present/Absent, saves the result as a CSV, and emails it to the faculty</li></ol>Pipeline: Webcam Frame → Face Detection (OpenCV DNN / SSD) → Face Embedding (OpenFace) → Classification (scikit-learn) → Attendance Record. {{img:activity-diagram}}",
+          "<strong>📦 Dataset creation & augmentation:</strong> for each student, I captured a batch of face images directly from a live webcam feed and stored them in a dedicated per-student folder so the raw dataset stayed organized by identity from the start. Since a handful of webcam shots per person isn't enough to train a reliable classifier, I augmented that raw set , varying brightness, flipping images horizontally, and applying small rotations , to multiply the number of usable training samples per student and make the model more robust to real-world lighting and pose differences. The augmented images were then run through the face detector to crop and align just the face region, and each cropped face was passed through the embedding model to build the final feature dataset used for training. {{img:capturing}}",
+          "<strong>🎯 Face recognition engine:</strong><ul style=\"margin:8px 0 0 20px; padding:0;\"><li>Face detection using OpenCV's deep-learning DNN face detector (Caffe SSD model: deploy.prototxt.txt + res10_300x300_ssd_iter_140000.caffemodel)</li><li>Face embedding extraction using the pretrained OpenFace Torch model (openface.nn4.small2.v1.t7), producing a 128-d feature vector per face</li><li>Face classification using a scikit-learn model trained on the extracted embeddings and serialized as machinelearning_face_person_identity.pkl</li><li>A unified pipeline_model() function chaining detection → embedding → classification, returning the annotated frame plus recognized identities</li><li>Real-time webcam recognition loop that aggregates recognized student IDs across frames until the operator presses Esc</li></ul> {{img:training}}",
+          "<strong>🖥️ Django web application:</strong><ul style=\"margin:8px 0 0 20px; padding:0;\"><li>User authentication with login/logout, django-allauth integration, and a full password-reset flow</li><li>Student registration ('Add Student') , faculty register a new student with name, registration ID, branch (CSE/IT/CSM), year (1–4), section (A/B/C), and a profile picture used as face-training data</li><li>Faculty profile management with name, phone, email, and profile picture</li><li>Live attendance capture , opens the webcam, runs the ML recognition pipeline against the enrolled class, and automatically marks each student Present or Absent</li><li>Automatic CSV export of every attendance session, organized by date, branch, year, section, and period</li><li>Automatic email delivery of the generated CSV to the taking faculty via SMTP</li><li>Attendance search & filtering by branch/year/section/period/date using django-filter</li><li>Student record lookup and update pages</li></ul> {{img:take-attendance}}",
+          "<strong>🗄️ Database design:</strong> three core models , Faculty (one-to-one with Django's User; name, phone, email, profile picture), Student (name, registration ID, branch, year, section, profile picture stored per branch/year/section), and Attendence (faculty name, student ID, auto date/time, branch, year, section, period, status defaulting to 'Absent'). {{img:class-diagram}}",
+          "<strong>🛠️ Tech stack:</strong><ul style=\"margin:8px 0 0 20px; padding:0;\"><li>Django 3.0.5 for the web framework</li><li>django-allauth and Django's built-in auth for authentication</li><li>django-filter for attendance search/filtering</li><li>OpenCV (cv2) and its DNN module for face detection</li><li>OpenFace (Torch model via OpenCV DNN) for face embeddings</li><li>Caffe SSD (via OpenCV DNN) for the detector backbone</li><li>scikit-learn for the face classifier</li><li>NumPy for numerical computing</li><li>Gradio for a standalone demo UI</li><li>SQLite3 as the database</li></ul>"
+        ],
+        "images": [
+          { "id": "login", "src": "media/images/Face_attendance_system/Login Page.png", "caption": "Login page" },
+          { "id": "home", "src": "media/images/Face_attendance_system/Home Page.png", "caption": "Home page" },
+          { "id": "add-student", "src": "media/images/Face_attendance_system/Add Student.png", "caption": "Add student form" },
+          { "id": "student-added", "src": "media/images/Face_attendance_system/Student added Successful.png", "caption": "Student added successfully" },
+          { "id": "capturing", "src": "media/images/Face_attendance_system/Capturing images.png", "caption": "Capturing face images for training" },
+          { "id": "training", "src": "media/images/Face_attendance_system/Training the ML model.png", "caption": "Training the ML model" },
+          { "id": "take-attendance", "src": "media/images/Face_attendance_system/Take Attendance.png", "caption": "Take attendance , live recognition" },
+          { "id": "take-attendance-temp", "src": "media/images/Face_attendance_system/Take attendance temp.png", "caption": "Live recognition in progress" },
+          { "id": "attendance-success", "src": "media/images/Face_attendance_system/Attendance Success.png", "caption": "Attendance marked successfully" },
+          { "id": "search-attendance", "src": "media/images/Face_attendance_system/Search Attendance.png", "caption": "Search attendance" },
+          { "id": "search-attendance-result", "src": "media/images/Face_attendance_system/Search Attendance result.png", "caption": "Search attendance results" },
+          { "id": "update-student", "src": "media/images/Face_attendance_system/Update Student details.png", "caption": "Update student details" },
+          { "id": "account-details", "src": "media/images/Face_attendance_system/User account details.png", "caption": "Faculty account details" },
+          { "id": "class-diagram", "src": "media/images/Face_attendance_system/Class Diagram.jpg", "caption": "Class diagram (UML)" },
+          { "id": "activity-diagram", "src": "media/images/Face_attendance_system/Activity Diagram.jpg", "caption": "Activity diagram (UML)" },
+          { "id": "usecase-admin", "src": "media/images/Face_attendance_system/use case Diagram for admin.jpg", "caption": "Use case diagram , admin" },
+          { "id": "usecase-user", "src": "media/images/Face_attendance_system/use case Diagram for user.jpg", "caption": "Use case diagram , user" }
+        ]
+        // "link": [
+        //   { "label": "View on GitHub →", "href": "https://github.com/Vishnu-add/face_recognition_attendance_system" }
+        // ]
+      },
+      {
+        "id": "medintelbot",
+        "tag": "rag",
+        "tagLabel": "Healthcare AI",
+        "title": "🩺 MedIntelBot , A Local RAG-Powered Medical Assistant",
+        "desc": "💡 A locally hosted RAG application delivering medical insights from real medical PDFs , no cloud-based LLM APIs. 🔧 Built with LangChain, FAISS, CTransformers, and Chainlit for speed, privacy, and precise document retrieval.",
+        "detail": [
+          "This project is a locally hosted RAG (Retrieval-Augmented Generation) application designed to provide medical insights using real medical PDFs – all without relying on cloud-based LLM APIs. {{img:hero}}",
+          "💡 MedIntelBot leverages a custom fine-tuned stack to deliver document-grounded answers in real-time via a locally run LLM interface.",
+          "🔧 Built using LangChain, FAISS, CTransformers, and Chainlit, this project is optimized for speed, local resource efficiency, and precise document retrieval.",
+          "<strong>Key Highlights:</strong><ul style=\"margin:8px 0 0 20px; padding:0;\"><li>1️⃣ Local LLM Integration: 💠 Utilizes the LLaMA 2 7B model, running locally via CTransformers with quantized binaries, enabling full privacy and offline access. 💠 Avoids the need for any OpenAI or HuggingFace API calls , perfect for secure and local deployments.</li><li>2️⃣ Efficient Document Ingestion &amp; Chunking: 💠 Medical PDFs are automatically loaded and chunked. 💠 All documents are vectorized using all-MiniLM-L6-v2 embeddings and stored in-memory via FAISS, making retrieval fast and efficient.</li><li>3️⃣ Custom Retrieval Chain with Prompt Engineering: 💠 A tailored RetrievalQA chain is built with a zero-hallucination prompt that discourages guesses and restricts the answer to only retrieved context chunks.</li><li>4️⃣ Interactive Frontend via Chainlit: 💠 Seamless chat interface designed using Chainlit, offering a minimalistic but robust user experience for real-time question answering. 💠 Backend dynamically loads the LLM, embedding model, and vector store, wrapping everything into a session-persistent chatbot.</li></ul>",
+          "This solution is highly adaptable for any domain where confidential document querying is required, and serves as a blueprint for local, privacy-first RAG systems.",
+          "#GenerativeAI #LangChain #FAISS #LLama2 #Chainlit #AIApplications #RAG #Python #LLM"
+        ],
+        "images": [
+          { "id": "hero", "src": "media/images/med_intel_bot.png", "caption": "MedIntelBot chat interface" }
+        ],
+        "link": [
+          { "label": "View on GitHub →", "href": "https://github.com/Vishnu-add/MedIntelBot" }
+        ]
+      },
+      {
+        "id": "embedding-finetune",
+        "tag": "rag",
+        "tagLabel": "Retrieval",
+        "title": "🧠 Fine-tuning Embedding Models for Domain-Specific Semantic Search",
+        "desc": "💡 Working with general-purpose embedding models is great , until you hit the wall with domain-specific information retrieval. Fine-tuned BAAI/bge-small-en on a public-health knowledge base to push semantic search beyond generic understanding.",
+        "detail": [
+          "I tackled the challenge of enhancing semantic understanding when working on a specialized knowledge base (KB) for public health. Here's what made this journey technically exciting:",
+          "🔗 <strong>Ensured Document-Query Consistency with Metadata Mapping:</strong> 💠 Before training anything, I built a strict document-page integrity checker across ~700+ KB entries and mapped them to 2500+ metadata-tagged FAQ queries. This validation loop avoided the classic trap of training on mismatched or noisy labels.",
+          "🧱 <strong>Generated a Three-Part Training Architecture:</strong> 💠 A complete pipeline was constructed with: <code>queries</code> , unique, UUID-tagged questions; <code>relevant_docs</code> , precise mappings to document-page identifiers; <code>corpus</code> , cleaned and indexed knowledge base text.",
+          "🧪 <strong>Smart Splitting with Custom Index Alignment:</strong> 💠 Custom <code>train_test_split</code> logic was applied, with index resetting to maintain referential integrity between all components , something often overlooked when using pandas with relational text data.",
+          "🔧 <strong>Finetuning Using LlamaIndex + SentenceTransformers:</strong> 💠 Used <code>EmbeddingQAFinetuneDataset</code> from LlamaIndex after encountering structure-loading issues , solved by serializing and reloading from JSON. Fine-tuned a <strong>BAAI/bge-small-en</strong> model using <code>SentenceTransformersFinetuneEngine</code>, validating against unseen query-doc pairs.",
+          "📊 <strong>Evaluation at Two Levels:</strong> 1️⃣ LlamaIndex-style top-K retrieval with hit rate scoring. 2️⃣ Deep metric evaluation with MAP and NDCG using <code>InformationRetrievalEvaluator</code> from <code>sentence_transformers</code>.",
+          "🧠 <strong>Results:</strong> The fine-tuned model showed significantly improved semantic hit rates, especially on edge-case FAQs referencing multi-page documents or specialized acronyms. This wasn't just a tuning task , it was about pushing pre-trained embeddings to understand context within structured domains.",
+          "#AI #LLM #NLP #EmbeddingModels #InformationRetrieval #LlamaIndex #SentenceTransformers #SemanticSearch #KnowledgeGraph #Finetuning #OpenSourceAI #Python"
+        ],
+        "images": [],
+        "link": [
+          { "label": "View on GitHub →", "href": "https://github.com/Vishnu-add/Finetuning-Embedding-Models" }
+        ]
+      },
+      {
+        "id": "knowledge-graph",
+        "tag": "genai",
+        "tagLabel": "Knowledge graphs",
+        "title": "🕸️ Contextual Knowledge Graph Extraction &amp; Visualization",
+        "desc": "💡 Transforms unstructured text into meaningful, interactive knowledge graphs using LLMs, identifying domain-relevant concepts and revealing relationships to bring structure and insight to raw textual data.",
+        "detail": [
+          "This project transforms unstructured text into meaningful, interactive knowledge graphs using LLMs.",
+          "💡 It identifies domain-relevant concepts and reveals relationships, helping bring structure and insight to raw textual data. {{img:hero}}",
+          "🔧 Built with Python, it leverages a powerful stack: Pandas , for structured data handling and preprocessing. 💠 LangChain , to split and manage unstructured text into manageable chunks for LLM processing. 💠 Ollama + LLaMA 3 , a local LLM setup for extracting terms and relationships with privacy and control. 💠 NetworkX , for building and analyzing the underlying graph structure. 💠 PyVis , for rendering interactive, browser-based graph visualizations.",
+          "<strong>Key Highlights:</strong><ul style=\"margin:8px 0 0 20px; padding:0;\"><li>1️⃣ LLM-Powered Ontology Extraction: 💠 A custom graphPrompt pipeline processes text chunk by chunk, extracting key terms and their relationships using a language model flexible across domains like research, law, healthcare, etc.</li><li>2️⃣ Contextual Proximity Mapping: 💠 Goes beyond obvious term links. It maps how contextually close terms are, combining LLM-extracted relationships with proximity-based semantic neighborhoods to uncover deeper insights.</li><li>3️⃣ Graph Construction with Community Detection: 💠 NetworkX is used to structure the relationships as an undirected graph, followed by community detection and dynamic color encoding, helping uncover clusters of related concepts in the knowledge space.</li><li>4️⃣ Interactive HTML Visualization: 💠 The final graph is rendered using PyVis, delivering an intuitive, browser-based visualization where nodes can be explored interactively with hover-based tooltips and clustering behavior.</li><li>5️⃣ Modular &amp; Scalable Architecture: 💠 Built to be easily extended , models, parsing logic, relationship scoring, or visual styles can be swapped in and out for experimentation or domain-specific needs.</li><li>6️⃣ Multi-Layered Output Generation: 💠 Outputs include: a CSV of extracted concepts and relationships, chunk-wise insight summaries, and a full interactive HTML graph for deep exploration.</li></ul>",
+          "#KnowledgeGraph #LLM #GraphVisualization #AIApplications #OpenAI #NetworkScience #DataExploration #Python #NLP #ProjectShowcase"
+        ],
+        "images": [
+          { "id": "hero", "src": "media/images/knowledge_GRAPH.png", "caption": "Interactive knowledge graph visualization" }
+        ],
+        "link": [
+          { "label": "View on GitHub →", "href": "https://github.com/Vishnu-add/Knowledge_graph_using_llms" }
+        ]
+      },
+      {
+        "id": "medextract",
+        "tag": "nlp",
+        "tagLabel": "NLP",
+        "title": "🩺 MedExtract – Training a Medical NER Model with spaCy",
+        "desc": "💡 MedExtract is a project to train a custom Named Entity Recognition (NER) model for medical text using spaCy and transformer models. It focuses on identifying terms like diseases in clinical data.",
+        "detail": [
+          "MedExtract is a project to train a custom Named Entity Recognition (NER) model for medical text using spaCy and transformer models. It focuses on identifying terms like diseases in clinical data.",
+          "<strong>Key Highlights:</strong><ul style=\"margin:8px 0 0 20px; padding:0;\"><li>1️⃣ Data Preparation: 💠 Processed .tsv files with BIO tags and converted them into entity spans using character offsets. 💠 Mapped labels like B_Disease and I_Disease to help the model recognize medical terms.</li><li>2️⃣ spaCy Format Conversion: 💠 Converted the data into spaCy's DocBin format using char_span() with proper alignment to avoid span errors.</li><li>3️⃣ Model Training: 💠 Used roberta-base with spacy-transformers for training. 💠 Defined the pipeline in config.cfg with transformer and ner components. 💠 Trained the model on GPU with over 20,000 steps.</li><li>4️⃣ Evaluation: 💠 Evaluated the model on a validation set and real medical abstracts. 💠 Visualized predictions using displacy.</li><li>5️⃣ Model Output and Usage: 💠 The trained model is saved in the model-best folder and can be used in other spaCy pipelines. 💠 The project is modular, so components like the model or tokenizer can be easily replaced.</li></ul> {{img:hero}}",
+          "#NER #spaCy #Transformers #MedicalAI #NLP"
+        ],
+        "images": [
+          { "id": "hero", "src": "media/images/med_ner.png", "caption": "Model predictions on medical text" }
+        ]
+      },
+      {
+        "id": "docuchat",
+        "tag": "rag",
+        "tagLabel": "RAG",
+        "title": "📄 DocuChat AI , RAG",
+        "desc": "💡 A lightweight, responsive Retrieval-Augmented Generation (RAG) app built using open-source LLMs and efficient vector retrieval for real-time document interaction.",
+        "detail": [
+          "This project delivers a lightweight, responsive Retrieval-Augmented Generation (RAG) application built using open-source LLMs and efficient vector retrieval for real-time document interaction. {{img:hero}}",
+          "🔧 Built With: LLM , LaMini-T5 (738M) from MBZUAI via HuggingFace Pipelines. 💠 Embeddings , all-MiniLM-L6-v2 from SentenceTransformers. 💠 Vector Store , ChromaDB. 💠 Frontend , Streamlit for PDF preview and chat interface.",
+          "<strong>Key Highlights:</strong><ul style=\"margin:8px 0 0 20px; padding:0;\"><li>1️⃣ RAG Pipeline Integration: 💠 Integrated LangChain's RetrievalQA chain with a HuggingFacePipeline-backed LLM. Uses a retriever over ChromaDB to fetch semantically relevant chunks from the uploaded PDF, enabling grounded responses.</li><li>2️⃣ Efficient Document Processing: 💠 Uses PDFMinerLoader to load documents and RecursiveCharacterTextSplitter to chunk them. Embeddings are generated on the fly and stored in Chroma for fast vector search.</li><li>3️⃣ HuggingFacePipeline for LLM Invocation: 💠 A pre-loaded pipeline using LaMini-T5 is wrapped into a LangChain-compatible LLM using HuggingFacePipeline. This avoids custom tokenizer and generation logic, keeping the implementation clean and efficient.</li><li>4️⃣ CPU-Optimized Deployment: 💠 Despite using a 738M parameter model, the system runs smoothly on CPU by leveraging efficient caching and memory use , no GPU dependency.</li><li>5️⃣ Interactive PDF Preview &amp; Chat: 💠 Built-in PDF preview alongside the chat window. Once the document is embedded, users can ask questions in real time.</li><li>6️⃣ Session-Based Chat History: 💠 Maintains chat history, allowing multi-turn conversation with contextual memory. Includes an option to clear chat for new interactions.</li><li>7️⃣ Persistent Vector Storage: 💠 Embeddings are stored in a persisted ChromaDB directory to avoid recomputation on repeated document interactions.</li></ul>",
+          "#RAG #LangChain #HuggingFace #LLMs #Embeddings #ChromaDB #Streamlit #Python #DocumentAI #OpenSource #GenerativeAI #PDFChatbot #ProjectShowcase"
+        ],
+        "images": [
+          { "id": "hero", "src": "media/images/docu_chat.png", "caption": "DocuChat AI , PDF chat interface" }
+        ],
+        "link": [
+          { "label": "View on GitHub →", "href": "https://github.com/Vishnu-add/Chat_with_your_pdf" }
+        ]
+      },
+      {
+        "id": "indian-food-classification-showcase",
+        "tag": "vision",
+        "tagLabel": "Computer vision",
+        "title": "🍛 Image Classification for Indian Food Recognition",
+        "desc": "💡 Identifies various types of Indian food from images using a fine-tuned Vision Transformer (ViT), built with Python, Hugging Face Transformers, PyTorch, and torchvision, from data preprocessing through model training and deployment.",
+        "detail": [
+          "This project aims to accurately identify various types of Indian food from images using deep learning techniques, specifically leveraging the Vision Transformer (ViT) model.",
+          "💡 Image Classification for Indian Food Recognition helps users automatically categorize Indian food items by analyzing their images. This project utilizes the power of computer vision and deep learning to deliver precise food identification. {{img:sample}}",
+          "🔧 Built with Python and utilizing libraries such as Hugging Face Transformers, PyTorch, and torchvision, this project involves several key steps from data preprocessing to model training and deployment.",
+          "<strong>Key Highlights:</strong><ul style=\"margin:8px 0 0 20px; padding:0;\"><li>1️⃣ Data Collection: 💠 Utilized a custom dataset of Indian food images, containing multiple classes representing different types of Indian dishes. The dataset was uploaded to Hugging Face's dataset hub for easy access and management.</li><li>2️⃣ Data Preprocessing: 💠 Image Augmentation , applied transformations such as random resizing, horizontal flipping, resizing, and normalization to enhance the dataset and ensure images are in the correct format for the model. 💠 Feature Extraction , used ViTFeatureExtractor to preprocess the images, making them compatible with the Vision Transformer model.</li><li>3️⃣ Exploratory Data Analysis (EDA): 💠 Analyzed the distribution of images across different food categories to ensure a balanced dataset. 💠 Visualized sample images from each category to understand the variations within the data.</li><li>4️⃣ Model Training: 💠 Fine-Tuned Vision Transformer (ViT) , adapted the ViT model to classify Indian food images by adjusting it to the specific dataset. 💠 Training Configuration , set parameters such as batch size, learning rate, and number of epochs to optimize model performance. 💠 Utilized Hugging Face's Trainer API , managed the training and evaluation process efficiently, incorporating features like mixed precision training (fp16) and evaluation metrics tracking.</li><li>5️⃣ Model Evaluation: 💠 Evaluated the model using metrics such as accuracy to measure its performance on the validation set. 💠 Monitored training and validation losses to ensure the model is learning effectively without overfitting. {{img:scores}}</li><li>6️⃣ Model Deployment: 💠 Saved the trained model for future inference tasks. 💠 Integrated the model into a user-friendly interface where users can upload images and receive food classification results in real-time.</li></ul>",
+          "#ImageClassification #DeepLearning #ComputerVision #Python #HuggingFace #ViT #FoodRecognition #MachineLearning #ProjectShowcase"
+        ],
+        "images": [
+          { "id": "sample", "src": "media/images/Indian_food_classification/Fried Rice.png", "caption": "Sample prediction , Fried Rice" },
+          { "id": "scores", "src": "media/images/Indian_food_classification/scores.png", "caption": "Model evaluation scores" }
+        ],
+        "link": [
+          { "label": "View on GitHub →", "href": "https://github.com/Vishnu-add/Image-Classification-for-Food-Recognition" }
+        ]
+      },
+      {
+        "id": "face-mask-detector-showcase",
+        "tag": "vision",
+        "tagLabel": "Computer vision",
+        "title": "😷 Real-Time Face Mask Detector",
+        "desc": "💡 Classifies whether individuals in a live video stream are wearing face masks, combining TensorFlow, OpenCV, and Gradio to deliver accurate and efficient mask detection.",
+        "detail": [
+          "💡 Real-Time Face Mask Detector enables users to classify whether individuals in a live video stream are wearing face masks. This project combines TensorFlow, OpenCV, and Gradio to deliver accurate and efficient mask detection.",
+          "🔧 Built with Python and utilizing TensorFlow, OpenCV, and Gradio, this project involves several key steps from data preprocessing to deployment as a web application.",
+          "<strong>Key Highlights:</strong><ul style=\"margin:8px 0 0 20px; padding:0;\"><li>1️⃣ Face Detection: 💠 Leveraged a pre-trained MobileNetV2 model for accurate and efficient face detection in real-time.</li><li>2️⃣ Mask Detection: 💠 Trained a custom model to classify faces as either wearing a mask or not wearing a mask, ensuring high accuracy in various scenarios.</li><li>3️⃣ Integration with Gradio: 💠 Developed a seamless interface using Gradio for webcam-based deployment, allowing users to monitor and detect mask usage through their browser.</li><li>4️⃣ Live Video Stream Processing: 💠 Employed OpenCV for handling real-time video streams, enabling the system to process and classify faces continuously.</li><li>5️⃣ Model Inference: 💠 Batched predictions for multiple faces detected in a frame, enhancing the efficiency of mask detection.</li><li>6️⃣ User-Friendly Interface: 💠 Created an interactive Gradio interface where users can see real-time results of mask detection on their webcam feed.</li></ul>",
+          "#MachineLearning #ComputerVision #Python #TensorFlow #OpenCV #Gradio #FaceMaskDetection #ProjectShowcase"
+        ],
+        "images": [],
+        "videos": ["media/images/Mask_detector.mp4"],
+        "link": [
+          { "label": "View on GitHub →", "href": "https://github.com/Vishnu-add/Real_TimeFace_Mask_Detector" }
+        ]
+      },
+      {
+        "id": "sentiment-analysis-showcase",
+        "tag": "nlp",
+        "tagLabel": "NLP",
+        "title": "🐦 Sentiment Analysis of Twitter Data",
+        "desc": "💡 A sentiment classification project combining NLP and Machine Learning to predict whether tweets are positive or negative, built with Python, NLTK, scikit-learn, and Flask, from data preprocessing through model training and deployment.",
+        "detail": [
+          "This particular project was developed to analyze and understand the sentiment behind tweets.",
+          "💡 Sentiment Analysis of Twitter Data allows users to classify the sentiment of tweets as either positive or negative. This project combines the power of Natural Language Processing (NLP) and Machine Learning to deliver accurate sentiment predictions.",
+          "🔧 Built with Python and leveraging libraries such as NLTK, scikit-learn, and Flask, this project involves several key steps from data preprocessing to model training and deployment as a web application.",
+          "<strong>Key Highlights:</strong><ul style=\"margin:8px 0 0 20px; padding:0;\"><li>1️⃣ Data Collection: 💠 Utilized the Sentiment140 dataset from Kaggle, which contains 1.6 million tweets labeled as positive or negative. This large dataset provides a robust foundation for training an effective sentiment analysis model.</li><li>2️⃣ Text Preprocessing: 💠 Cleaning , removed Twitter handles, URLs, special characters, and numbers from the tweets to reduce noise. 💠 Lowercasing , converted all text to lowercase to ensure uniformity. 💠 Tokenization , split the text into individual words (tokens). 💠 Stemming , applied Porter Stemmer to reduce words to their root form, e.g., \"running\" to \"run.\" 💠 Stopwords Removal , removed common words that do not contribute to sentiment, such as \"and,\" \"the,\" etc.</li><li>3️⃣ Exploratory Data Analysis (EDA): 💠 Generated word clouds to visualize the most frequent words in positive and negative tweets, helping to understand the data distribution and key terms associated with each sentiment. {{img:wordcloud}}</li><li>4️⃣ Feature Extraction: 💠 Used TfidfVectorizer to convert the cleaned text into numerical vectors. TF-IDF (Term Frequency-Inverse Document Frequency) is a statistical measure used to evaluate the importance of a word in a document relative to a collection of documents.</li><li>5️⃣ Model Training: 💠 Split the data into training and testing sets (80% training, 20% testing). 💠 Trained a Logistic Regression model to predict the sentiment of tweets. 💠 The model was evaluated using metrics such as accuracy, F1 score, and recall, achieving impressive performance on both the training and testing datasets.</li><li>6️⃣ Model Evaluation: 💠 Training Data , achieved an accuracy of 99.68%, indicating the model's effectiveness in learning from the training data. 💠 Testing Data , achieved an accuracy of 75.63%, demonstrating the model's generalization ability to unseen data. 💠 Saved the trained model using pickle for future use in the web application. {{img:results}}</li><li>7️⃣ Flask Web Application: 💠 Developed a web interface where users can input a tweet and receive a sentiment prediction. 💠 The web application, built using Flask, integrates the trained model for real-time sentiment analysis, offering a user-friendly experience.</li></ul>",
+          "#SentimentAnalysis #MachineLearning #NLP #Python #Flask #DataScience #TwitterData #ProjectShowcase"
+        ],
+        "images": [
+          { "id": "wordcloud", "src": "media/images/Sentiment_analysis/image.png", "caption": "Word cloud of frequent tweet terms" },
+          { "id": "results", "src": "media/images/Sentiment_analysis/image-1.png", "caption": "Model training vs. testing accuracy" }
+        ],
+        "link": [
+          { "label": "View on GitHub →", "href": "https://github.com/Vishnu-add/Sentiment-Analysis-of-Social-Media-Data" }
+        ]
+      },
+      {
+        "id": "textreaderaudiobook",
+        "tag": "python",
+        "tagLabel": "Python",
+        "title": "🎧 Text_reader_and_Audio_Book",
+        "desc": "A comprehensive text-to-audio conversion project! Developed early in my learning journey, this Python command-line app converts PDF, TXT, and DOCX files into speech or MP3 format. Its functionality has since been replaced by browser updates, but it remains a milestone in my growth as a programmer.",
+        "detail": [
+          "🎧 Developed long back to assist in my learning journey, Text_reader_and_Audio_Book is a Python project designed to facilitate the conversion of text content from PDF, TXT, and DOCX files into speech or MP3 format. This project was instrumental in my growth and exploration in the field of programming, and although browser updates have replaced its functionality, I am sharing it to showcase the project.",
+          "🛠️ This command-line application leverages powerful libraries like Pyttsx3, PyPDF2, and docx2txt for efficient file handling and text-to-speech conversion.",
+          "<strong>Key highlights:</strong><ul style=\"margin:8px 0 0 20px; padding:0;\"><li>1️⃣ Multi-format support , convert PDF, TXT, and DOCX files into speech or MP3 format effortlessly.</li><li>2️⃣ Text-to-speech conversion , access text content in an auditory format, catering to visually impaired individuals and auditory learners.</li><li>3️⃣ Selective conversion , choose to convert the entire document or specific pages according to your preferences.</li><li>4️⃣ Voice selection , customize your listening experience by selecting from a variety of voices for text narration.</li><li>5️⃣ Customization options , adjust reading speed to your liking for a comfortable listening experience.</li></ul>",
+          "🚀 Text_reader_and_Audio_Book remains a valuable project, especially for those seeking auditory access to textual content. It serves as a foundation for future innovations in assistive technology and personal productivity tools.",
+          "#TextToAudio #Python #Accessibility #Productivity #Text_reader_and_Audio_Book"
+        ],
+        "images": [],
+        "videos": ["media/images/Text_reader_and_audio_book.mp4"],
+        "link": [
+          { "label": "View on GitHub →", "href": "https://github.com/Vishnu-add/Text_reader_and_Audio_Book" }
+        ]
+      },
+      {
+        "id": "virtualmouse",
+        "tag": "vision",
+        "tagLabel": "Vision",
+        "title": "🖱️ Virtual Mouse",
+        "desc": "The first project I ever built, and the one that got me hooked on this field. Controls the computer cursor through hand gestures, using MediaPipe hand tracking over a live webcam feed to let you operate your machine from across the room.",
+        "detail": [
+          "This was my first project, built a while back, and it's the one that sparked my interest in this whole field. I used it to operate my computer from a distance within my room, just by moving my hand in front of the webcam.",
+          "💡 Virtual Mouse lets you control your computer cursor through hand gestures.",
+          "🔧 Built with Python and OpenCV, it's a real-time computer vision application that leverages MediaPipe's Hand Tracking solution to detect hand landmarks from the webcam feed. By analyzing the movement of specific landmarks like the index finger and thumb, users can effortlessly maneuver the cursor and perform actions like clicking.",
+          "<strong>Key highlights:</strong><ul style=\"margin:8px 0 0 20px; padding:0;\"><li>1️⃣ Hand gesture detection , real-time hand movement tracking using the MediaPipe library.</li><li>2️⃣ Cursor movement , mapping hand landmarks to screen coordinates for seamless cursor control.</li><li>3️⃣ Click actions , recognizing gestures for mouse click simulation, enhancing interaction efficiency.</li><li>4️⃣ Responsive interface , smooth and intuitive cursor control for enhanced productivity and comfort.</li></ul>"
+        ],
+        "images": [],
+        "videos": ["media/images/Virtual Mouse Project.mp4"],
+        "link": [
+          { "label": "View on GitHub →", "href": "https://github.com/Vishnu-add/VirtualMouse" }
+        ]
+      }
+    ]
+  },
+  "credentials": {
+    "sectionNum": "07",
+    "intro": "Degrees, certifications, hackathons, awards, and volunteering , the paper trail behind the work.",
+    "education": [
+      {
+        "date": "AUG 2025 , PRESENT",
+        "role": "MTech in Artificial Intelligence &amp; Data Science",
+        "org": "IIITDM &amp; University of Agder · Grimstad, Norway",
+        "logo": "IU",
+        "bullets": [
+          "Joint programme between the Indian Institute of Information Technology, Design and Manufacturing and the University of Agder."
+        ]
+      },
+      {
+        "date": "JUL 2021 , JUN 2024",
+        "role": "B.E. in Computer Science (AI &amp; ML)",
+        "org": "Neil Gogte Institute of Technology · Hyderabad, India",
+        "logo": "NG",
+        "bullets": [
+          "EQF level 6."
+        ]
+      },
+      {
+        "date": "JUL 2017 , MAY 2021",
+        "role": "Diploma in Embedded Systems",
+        "org": "Government Institute of Electronics · Hyderabad, India",
+        "logo": "GE",
+        "bullets": [
+          "EQF level 5."
+        ]
+      },
+      {
+        "date": "APR 2017",
+        "role": "Secondary School Certificate (SSC)",
+        "org": "St. Anthony's High School · Hyderabad, India",
+        "logo": "SA",
+        "bullets": [
+          "EQF level 4."
+        ]
+      }
+    ],
+    "events": [
+      {
+        "title": "NMAI Hackathon , Norwegian AI Hackathon",
+        "meta": "Norway",
+        "desc": "Participated in the Norwegian AI hackathon."
+      },
+      {
+        "title": "Sweden Hackathon",
+        "meta": "Sweden",
+        "desc": "Participated in an international hackathon in Sweden, prototyping applied AI systems for sustainability under time constraints with a cross-disciplinary international team."
+      },
+      {
+        "title": "ROBOVEDA '22 , Annual Technical Fest",
+        "meta": "Sreenidhi Institute of Science and Technology · 1–4 Dec 2022",
+        "desc": "Competed in the <em>Lakshmanarekha</em> event at Sreenidhi's annual technical fest."
+      }
+    ],
+    "certifications": [
+      {
+        "issuer": "Internships &amp; industry programmes",
+        "logo": null,
+        "items": [
+          {
+            "title": "Frontend Technologies , UpSkill programme",
+            "meta": "EPAM Systems · Feb 2024"
+          },
+          {
+            "title": "Generative AI",
+            "meta": "TechSaksham · Feb 2024"
+          },
+          {
+            "title": "Machine Learning Internship",
+            "meta": "Coding Raja Technologies · Dec 2023"
+          },
+          {
+            "title": "AI Internship , completion certificate",
+            "meta": "AICTE · Oct 2023"
+          },
+          {
+            "title": "Apprenticeship Certificate (Embedded Systems)",
+            "meta": "ECIL · May 2021"
+          }
+        ]
+      },
+      {
+        "issuer": "Omdena",
+        "logo": "OM",
+        "items": [
+          {
+            "title": "SmartGuide , Toronto, Canada chapter",
+            "meta": "Nov 2023"
+          },
+          {
+            "title": "Data Exploration &amp; Preprocessing with Python and SQL",
+            "meta": "Nov 2023"
+          },
+          {
+            "title": "AI-Powered Dubbing , Montreal chapter",
+            "meta": "Sep 2023"
+          },
+          {
+            "title": "Natural Language Processing",
+            "meta": "Sep 2023"
+          }
+        ]
+      },
+      {
+        "issuer": "IBM SkillsBuild",
+        "logo": "IB",
+        "items": [
+          {
+            "title": "Artificial Intelligence &amp; Machine Learning",
+            "meta": "May 2023"
+          },
+          {
+            "title": "What is AI?",
+            "meta": "May 2023"
+          },
+          {
+            "title": "AI in 5 Minutes",
+            "meta": "May 2023"
+          },
+          {
+            "title": "AI in Practice",
+            "meta": "May 2023"
+          },
+          {
+            "title": "Enterprise Design Thinking",
+            "meta": "May 2023"
+          },
+          {
+            "title": "Communicating with Impact",
+            "meta": "May 2023"
+          },
+          {
+            "title": "Soft Skills for Project Managers",
+            "meta": "May 2023"
+          }
+        ]
+      },
+      {
+        "issuer": "NPTEL · IIT",
+        "logo": "NP",
+        "items": [
+          {
+            "title": "Introduction to Practical Entrepreneurship , Establishing (NPTEL+ workshop, IIT Madras)",
+            "meta": "Nov 2023"
+          },
+          {
+            "title": "Python for Data Science",
+            "meta": "Oct 2023"
+          },
+          {
+            "title": "Introduction to Internet of Things",
+            "meta": "May 2023"
+          },
+          {
+            "title": "Database Management System",
+            "meta": "Apr 2023"
+          }
+        ]
+      },
+      {
+        "issuer": "Simplilearn",
+        "logo": "SL",
+        "items": [
+          {
+            "title": "AI &amp; ML , full course",
+            "meta": "May 2023"
+          },
+          {
+            "title": "Introduction to Artificial Intelligence",
+            "meta": "Mar 2023"
+          },
+          {
+            "title": "Natural Language Processing",
+            "meta": "Jan 2023"
+          },
+          {
+            "title": "Machine Learning",
+            "meta": "Aug 2022"
+          }
+        ]
+      },
+      {
+        "issuer": "Udemy",
+        "logo": "UD",
+        "items": [
+          {
+            "title": "Natural Language Processing",
+            "meta": "Mar 2023"
+          },
+          {
+            "title": "Machine Learning",
+            "meta": "Mar 2023"
+          },
+          {
+            "title": "Internet and Web Development Fundamentals",
+            "meta": "Feb 2023"
+          },
+          {
+            "title": "Face Recognition",
+            "meta": "Dec 2022"
+          },
+          {
+            "title": "JavaScript",
+            "meta": "Dec 2022"
+          },
+          {
+            "title": "CSS &amp; JavaScript Crash Course",
+            "meta": "Nov 2022"
+          }
+        ]
+      },
+      {
+        "issuer": "ExcelR · TASK",
+        "logo": "EX",
+        "items": [
+          {
+            "title": "Core Python , task certification",
+            "meta": "Aug 2022"
+          },
+          {
+            "title": "Deep Learning , task certification",
+            "meta": "Aug 2022"
+          },
+          {
+            "title": "Master Data Science in 11 Hrs",
+            "meta": "Sep 2020"
+          }
+        ]
+      },
+      {
+        "issuer": "Other platforms",
+        "logo": null,
+        "items": [
+          {
+            "title": "OpenCV Bootcamp",
+            "meta": "OpenCV · Apr 2024"
+          },
+          {
+            "title": "Pandas",
+            "meta": "Kaggle · Jan 2025"
+          },
+          {
+            "title": "Data Cleaning",
+            "meta": "Kaggle · Jan 2025"
+          },
+          {
+            "title": "Data Analysis with Python",
+            "meta": "freeCodeCamp · Feb 2023"
+          }
+        ]
+      }
+    ],
+    "awards": [
+      {
+        "title": "NFS winner , Neil Gogte Institute of Technology",
+        "desc": "Placed repeatedly in NGIT's weekly NFS coding contest: 3rd in week 2, 4th in week 7, and 5th in week 4."
+      },
+      {
+        "title": "Flash mob , runner-up &amp; special dance prize",
+        "desc": "Runner-up in an inter-college flash mob competition, and awarded a special prize for dance."
+      }
+    ],
+    "volunteering": [
+      {
+        "date": "OCT 2021 , APR 2024",
+        "role": "Co-Head, Dance Club",
+        "org": "Neil Gogte Institute of Technology · Hyderabad, India",
+        "logo": "NG",
+        "bullets": [
+          "Organised dance sessions and flash mobs for the department."
+        ]
+      },
+      // {
+      //   "date": "2021 , 2024",
+      //   "role": "Delegate, Model United Nations (MUN)",
+      //   "org": "India",
+      //   "logo": null,
+      //   "bullets": []
+      // },
+      {
+        "date": "AUG 2015 , MAY 2020",
+        "role": "Cadet, National Cadet Corps (NCC)",
+        "org": "India",
+        "logo": null,
+        "bullets": [
+          "Certified NCC A, B, and C."
+        ]
+      }
+    ],
+    "languages": {
+      "mother": [
+        "Telugu",
+        "Hindi"
+      ],
+      "other": [
+        "English"
+      ]
+    }
+  },
+  "hireTeaser": {
+    "heading": "Open to opportunities",
+    "text": "Looking for internships and research collaborations in applied AI, vision-language modeling, and ML engineering , open to opportunities anywhere in the world.",
+    "cta": {
+      "label": "Get in touch →",
+      "href": "contact.html#hire"
+    }
+  },
+  "contact": {
+    "pageEyebrow": "07 · let's talk",
+    "pageSub": "Open to internships, research collaborations, and freelance ML/AI engineering work.",
+    "heading": "Open to opportunities",
+    "text": "Currently looking for internships and research collaborations in applied AI, vision-language modeling, and ML engineering , open to opportunities, remote or on-site.",
+    "emailCta": {
+      "label": "Email me →",
+      "href": "mailto:vishnuvardhanaddanki22@gmail.com?subject=Let%27s%20talk%20about%20an%20opportunity"
+    },
+    "links": [
+      {
+        "label": "Email",
+        "href": "mailto:vishnuvardhanaddanki22@gmail.com",
+        "external": false
+      },
+      {
+        "label": "LinkedIn",
+        "href": "https://linkedin.com/in/a-vishnu-vardhan",
+        "external": true
+      },
+      {
+        "label": "Twitter",
+        "href": "https://twitter.com/Vishnu_Addanki_",
+        "external": true
+      },
+      {
+        "label": "GitHub",
+        "href": "https://github.com/Vishnu-add",
+        "external": true
+      },
+      {
+        "label": "Google Scholar",
+        "href": "https://scholar.google.com/scholar?q=Vishnu+Vardhan+Addanki+Tirumala",
+        "external": true
+      }
+    ]
+  }
+}
