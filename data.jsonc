@@ -117,9 +117,14 @@
     ],
     "stats": [
       {
-        "value": 3,
+        "value": 1,
         "suffix": "",
-        "label": "Papers submitted"
+        "label": "Paper communicated to IEEE Sensors"
+      },
+      {
+        "value": 1,
+        "suffix": "",
+        "label": "Paper accepted"
       },
       {
         "value": 6,
@@ -177,21 +182,21 @@
       }
     ],
     "publications": [
-    //   {
-    //     "title": "Tsetlin Machine clause-sanitation: quantifying the impact of non-contributing clauses",
-    //     "status": "Submitted · ISTM 2026",
-    //     "desc": "A rule-based and firing-rate filtering pipeline that reconstructs trained Tsetlin Machine clause sets from stored weights, isolates clauses that contribute little to classification decisions, and measures the resulting change in accuracy when they're removed , a step toward more interpretable, compact TM models."
-    //   },
+      {
+        "title": "Clause Sanitization for Compact and Interpretable Tsetlin Machines",
+        "status": "Accepted · ISTM 2026"
+        // "desc": "A rule-based and firing-rate filtering pipeline that reconstructs trained Tsetlin Machine clause sets from stored weights, isolates clauses that contribute little to classification decisions, and measures the resulting change in accuracy when they're removed , a step toward more interpretable, compact TM models."
+      },
     //   {
     //     "title": "Composite clause weighting for split Tsetlin Machines across datasets",
     //     "status": "Submitted · ISTM 2026",
     //     "desc": "A split Tsetlin Machine pipeline that combines top and bottom clause pairs via a Cartesian product across five weighting strategies, with composite accuracy experiments and Spearman correlation analysis across MNIST, Fashion-MNIST, and synthetic shape datasets."
     //   },
-    //   {
-    //     "title": "Deep segmentation architectures for remote sensing applications",
-    //     "status": "Submitted · IEEE Transactions on Geoscience and Remote Sensing",
-    //     "desc": "A comparative study of segmentation architectures , including MobileNet-UNet and RepViT-UNet , applied to thermal UAV imagery, benchmarked against standard segmentation models in scratch and pretrained configurations."
-    //   }
+      {
+        "title": "Edge-WildSeg-Net: A Lightweight Edge based Wildfire Segmentation Network",
+        "status": "Submitted · IEEE Sensors"
+        // "desc": "A comparative study of segmentation architectures , including MobileNet-UNet and RepViT-UNet , applied to thermal UAV imagery, benchmarked against standard segmentation models in scratch and pretrained configurations."
+      }
     ]
   },
   "experience": {
@@ -200,13 +205,13 @@
     // "intro": "Roles spanning applied research, product ML, and NLP engineering , from voice AI agents to clinical decision support systems.",
     "items": [
       {
-        "date": "MAY 2026 , PRESENT",
+        "date": "JAN 2026 , PRESENT",
         "role": "University Research Assistant",
         "org": "University of Agder, Norway",
-        "logo": "UA",
+        "logo": "UiA",
         "bullets": [
-          "Authored two papers submitted to ISTM 2026 on Tsetlin Machine interpretability.",
-          "Built a clause-sanitation pipeline to quantify the accuracy impact of removing non-contributing clauses."
+          "Authored two papers and co-authored one paper submitted to International Symposium on the Tsetlin Machine(ISTM) 2026 conference on Tsetlin Machine interpretability.",
+          "One paper, titled 'Clause Sanitization for Compact and Interpretable Tsetlin Machines' was accepted for publication."
         ]
       },
       {
@@ -270,7 +275,7 @@
         "date": "NOV 2020 , MAY 2021",
         "role": "Apprentice , Embedded Systems",
         "org": "Electronics Corporation of India Ltd (ECIL), Hyderabad",
-        "logo": "EC",
+        "logo": "ECIL",
         "bullets": [
           "Six-month sandwich apprenticeship under the Apprentices Act with ECIL's Radar &amp; Power Devices division, a Govt. of India (Dept. of Atomic Energy) enterprise.",
           "Managed assigned projects to schedule and contributed to raising both module production output and module accuracy."
