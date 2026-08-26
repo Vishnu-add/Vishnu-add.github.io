@@ -8,7 +8,8 @@
     // draws (see ICONS in render.js); add a link with an unrecognized key and
     // it falls back to a generic external-link icon.
     "social": [
-      { "key": "scholar", "label": "Google Scholar", "href": "https://scholar.google.com/scholar?q=Vishnu+Vardhan+Addanki+Tirumala" },
+      // { "key": "scholar", "label": "Google Scholar", "href": "https://scholar.google.com/scholar?q=Vishnu+Vardhan+Addanki+Tirumala" },
+      { "key": "orcid", "label": "ORCID", "href": "https://orcid.org/0009-0003-4496-0054" },
       { "key": "github", "label": "GitHub", "href": "https://github.com/Vishnu-add" }
     ],
     "hireLink": "contact.html#hire",
@@ -170,7 +171,8 @@
   "research": {
     "sectionNum": "03",
     "intro": "Two active tracks: vision-language models, and Tsetlin Machines , three papers currently in submission.",
-    "scholarUrl": "https://scholar.google.com/scholar?q=Vishnu+Vardhan+Addanki+Tirumala"
+    // "scholarUrl": "https://scholar.google.com/scholar?q=Vishnu+Vardhan+Addanki+Tirumala",
+    "orcidUrl": "https://orcid.org/0009-0003-4496-0054"
     ,"tracks": [
       {
         "title": "Vision-language models",
@@ -1132,9 +1134,14 @@
         "href": "https://github.com/Vishnu-add",
         "external": true
       },
+      // {
+      //   "label": "Google Scholar",
+      //   "href": "https://scholar.google.com/scholar?q=Vishnu+Vardhan+Addanki+Tirumala",
+      //   "external": true
+      // },
       {
-        "label": "Google Scholar",
-        "href": "https://scholar.google.com/scholar?q=Vishnu+Vardhan+Addanki+Tirumala",
+        "label": "ORCID",
+        "href": "https://orcid.org/0009-0003-4496-0054",
         "external": true
       }
     ]
