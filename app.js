@@ -214,6 +214,217 @@
       return s;
     }
   };
+  /* ---------- project thumbnails: one small animated illustration per project ---------- */
+  var PV = 'viewBox="0 0 320 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true"';
+  var win = function (x, y, w, h, t) {
+    return '<rect x="' + x + '" y="' + y + '" width="' + w + '" height="' + h + '" rx="6" fill="' + C2 + '" stroke="' + L + '"/><path d="M' + x + ' ' + (y + 12) + ' H' + (x + w) + '" stroke="' + L + '"/>' +
+      '<circle cx="' + (x + 8) + '" cy="' + (y + 6) + '" r="1.8" fill="' + P + '"/><circle cx="' + (x + 15) + '" cy="' + (y + 6) + '" r="1.8" fill="' + W + '"/><circle cx="' + (x + 22) + '" cy="' + (y + 6) + '" r="1.8" fill="' + A + '"/>' +
+      (t ? tx(x + w - 6, y + 8.5, t, { a: 'end', s: 5.5 }) : '');
+  };
+  var bars = function (x, y, ws, gap, col) { return ws.map(function (w, i) { return '<rect x="' + x + '" y="' + (y + i * gap) + '" width="' + w + '" height="3" rx="1.5" fill="' + (col || F) + '" opacity=".85"/>'; }).join(''); };
+  var pill = function (x, y, w, t, col, o) { return '<rect x="' + x + '" y="' + y + '" width="' + w + '" height="14" rx="7" fill="' + BG + '" stroke="' + col + '"/>' + tx(x + w / 2, y + 9.8, t, { s: 6.8, f: col, x: (o || '') }); };
+  var face = function (cx, cy, k, mouth) {
+    return '<ellipse cx="' + cx + '" cy="' + cy + '" rx="' + 26 * k + '" ry="' + 32 * k + '" fill="' + C2 + '" stroke="' + F + '" stroke-width="1.4"/><circle cx="' + (cx - 9 * k) + '" cy="' + (cy - 7 * k) + '" r="' + 2.4 * k + '" fill="' + F + '"/><circle cx="' + (cx + 9 * k) + '" cy="' + (cy - 7 * k) + '" r="' + 2.4 * k + '" fill="' + F + '"/><path d="M' + cx + ' ' + (cy - 3 * k) + ' v' + 8 * k + '" stroke="' + F + '"/>' +
+      (mouth ? '<path d="M' + (cx - 8 * k) + ' ' + (cy + 15 * k) + ' Q' + cx + ' ' + (cy + 20 * k) + ' ' + (cx + 8 * k) + ' ' + (cy + 15 * k) + '" fill="none" stroke="' + F + '"/>' : '');
+  };
+  var smiley = function (cx, cy, r, mood, col) {
+    return '<circle cx="' + cx + '" cy="' + cy + '" r="' + r + '" fill="' + BG + '" stroke="' + col + '" stroke-width="1.4"/><circle cx="' + (cx - r / 3) + '" cy="' + (cy - r / 4) + '" r="1.4" fill="' + col + '"/><circle cx="' + (cx + r / 3) + '" cy="' + (cy - r / 4) + '" r="1.4" fill="' + col + '"/>' +
+      '<path d="M' + (cx - r / 2.5) + ' ' + (cy + r / 3) + ' Q' + cx + ' ' + (cy + r / 3 + mood * r / 2.5) + ' ' + (cx + r / 2.5) + ' ' + (cy + r / 3) + '" fill="none" stroke="' + col + '" stroke-width="1.4"/>';
+  };
+  var cap = function (t) { return tx(160, 192, t, { s: 7, f: F }); };
+
+  var PT = {
+    'agentic-codesign': function () {
+      var s = '<svg ' + PV + '>' + win(14, 22, 196, 128, 'CAD · bracket.prt');
+      s += '<g class="spin" style="transform-origin:74px 92px"><circle cx="74" cy="92" r="26" fill="none" stroke="' + S + '" stroke-width="8" stroke-dasharray="6 5.1"/><circle cx="74" cy="92" r="14" fill="' + BG + '" stroke="' + L + '"/><circle cx="74" cy="92" r="4" fill="' + S + '"/></g>';
+      s += '<rect x="124" y="60" width="72" height="58" rx="5" fill="none" stroke="' + A + '" stroke-dasharray="4 3"/><circle cx="138" cy="74" r="4" fill="none" stroke="' + A + '"/><circle cx="182" cy="74" r="4" fill="none" stroke="' + A + '"/><circle cx="138" cy="104" r="4" fill="none" stroke="' + A + '"/><circle cx="182" cy="104" r="4" fill="none" stroke="' + A + '"/>';
+      s += '<path d="M124 128 H196 M124 124 V132 M196 124 V132" stroke="' + F + '"/>' + tx(160, 140, '42 mm', { s: 6.5 });
+      s += '<path d="M0 0 L0 12 L4 9 L7 15 L9 14 L6 8 L11 8Z" fill="' + P + '" stroke="' + BG + '" stroke-width=".6"><animateMotion dur="6s" repeatCount="indefinite" path="M150 50 L 100 96 L 176 112 L 138 74 L 150 50"/></path>';
+      s += win(218, 22, 88, 62, 'agent') + bars(226, 42, [52, 38, 60, 30], 9, A) + '<rect class="blink" x="226" y="76" width="6" height="3" fill="' + A + '"/>';
+      s += '<rect x="218" y="96" width="88" height="54" rx="8" fill="none" stroke="' + P + '"/>' + tx(262, 114, 'human review', { s: 7.5, f: P }) + tx(262, 133, '✓ approved', { s: 9, f: A, x: ' class="blink"' });
+      s += pill(14, 160, 46, 'plan', S) + pill(66, 160, 46, 'CAD', A) + pill(118, 160, 58, 'firmware', W) + pill(182, 160, 46, 'review', P) + '<path class="fl" d="M60 167 H66 M112 167 H118 M176 167 H182" stroke="' + F + '"/>' + cap('LLM agents operating real design software') + '</svg>';
+      return s;
+    },
+    'deep-research-agent': function () {
+      var s = '<svg ' + PV + '>';
+      [[34, 'web', S], [100, 'arXiv', W], [166, 'wiki', A]].forEach(function (n, i) {
+        s += '<circle cx="34" cy="' + (n[0] - 12 + 14) + '" r="17" fill="' + C2 + '" stroke="' + n[2] + '" stroke-width="1.4"/>' + tx(34, n[0] + 4, n[1], { s: 7, f: n[2] });
+        s += '<path class="fl" d="M51 ' + (n[0] + 2) + ' C 84 ' + (n[0] + 2) + ' 84 100 108 100" fill="none" stroke="' + n[2] + '" stroke-width="1.3" style="animation-duration:' + (1 + i * .25) + 's"/>';
+      });
+      s += '<polygon points="130,82 146,91 146,109 130,118 114,109 114,91" fill="' + C2 + '" stroke="' + A + '" stroke-width="1.5"/><circle class="spin" cx="130" cy="100" r="25" fill="none" stroke="' + A + '" stroke-dasharray="3 5"/>' + tx(130, 103, 'plan', { s: 7.5, f: A });
+      [[56, 40], [76, 28], [96, 46], [116, 18], [136, 34]].forEach(function (b, i) {
+        s += '<rect x="176" y="' + (60 + i * 18) + '" width="50" height="8" rx="4" fill="' + BG + '"/><rect x="176" y="' + (60 + i * 18) + '" width="' + b[1] + '" height="8" rx="4" fill="' + (b[1] > 30 ? A : W) + '" opacity=".9"/>';
+      });
+      s += tx(201, 52, 'evidence scores', { s: 6.5 }) + '<path class="fl" d="M146 100 C 156 100 164 96 174 90" fill="none" stroke="' + A + '" stroke-width="1.3"/>';
+      s += '<path class="fl" d="M200 156 C 170 176 130 176 124 126" fill="none" stroke="' + S + '" stroke-width="1.3"/>' + tx(160, 176, 'reflect: enough evidence?', { s: 6.5, f: S });
+      s += '<path class="fl" d="M228 100 H 244" stroke="' + A + '" stroke-width="1.6"/><rect x="244" y="46" width="64" height="108" rx="6" fill="' + C2 + '" stroke="' + A + '"/>' + tx(276, 60, 'cited answer', { s: 6.5, f: A }) + bars(252, 70, [46, 40, 48, 34, 44, 30], 9, F);
+      s += '<rect x="252" y="130" width="14" height="10" rx="3" fill="none" stroke="' + S + '"/>' + tx(259, 137.5, '[1]', { s: 5.5, f: S }) + '<rect x="270" y="130" width="14" height="10" rx="3" fill="none" stroke="' + W + '"/>' + tx(277, 137.5, '[2]', { s: 5.5, f: W }) + cap('plan → search in parallel → validate → reflect → cite') + '</svg>';
+      return s;
+    },
+    'ai-video-generator': function () {
+      var s = '<svg ' + PV + '><defs><linearGradient id="pv1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="' + S + '" stop-opacity=".55"/><stop offset="1" stop-color="' + A + '" stop-opacity=".25"/></linearGradient></defs>';
+      s += '<rect x="14" y="18" width="190" height="102" rx="6" fill="url(#pv1)" stroke="' + L + '"/><circle class="blink" cx="168" cy="44" r="11" fill="' + W + '"/><path d="M14 120 L60 74 L96 104 L132 66 L176 106 L204 90 V120Z" fill="' + BG + '" opacity=".85"/>';
+      s += '<g class="bob"><circle cx="82" cy="84" r="8" fill="' + A + '"/><path d="M72 112 Q82 90 92 112Z" fill="' + A + '"/></g><rect x="30" y="102" width="158" height="13" rx="4" fill="' + BG + '" opacity=".8"/>' + tx(109, 111, 'Once upon a time, a blue panther…', { s: 6.2, f: 'var(--text)' });
+      s += '<rect x="214" y="18" width="92" height="22" rx="3" fill="' + C2 + '" stroke="' + L + '"/><path d="M222 18 l10 22 M240 18 l10 22 M258 18 l10 22 M276 18 l10 22" stroke="' + F + '" stroke-width="3"/>';
+      [['story', S], ['scenes', A], ['voice', W], ['music', P]].forEach(function (p, i) { s += pill(214 + (i % 2) * 48, 50 + Math.floor(i / 2) * 20, 44, p[0], p[1]); });
+      s += tx(260, 108, 'LangChain · FastAPI', { s: 6.2 });
+      var tr = [['video', S], ['voice', W], ['music', P]];
+      tr.forEach(function (t, i) { var y = 130 + i * 20; s += tx(14, y + 10, t[0], { a: 'start', s: 6 }) + '<rect x="40" y="' + y + '" width="266" height="14" rx="3" fill="' + C2 + '" stroke="' + L + '"/>';
+        if (i === 0) [0, 1, 2, 3].forEach(function (k) { s += '<rect x="' + (43 + k * 66) + '" y="' + (y + 2) + '" width="60" height="10" rx="2" fill="' + S + '" opacity="' + (.35 + k * .15) + '"/>'; });
+        if (i === 1) { var d = 'M42 ' + (y + 7); for (var x = 42; x < 304; x += 4) d += ' L' + x + ' ' + (y + 7 + Math.sin(x * 1.3) * (3 + (x % 11) / 4)); s += '<path d="' + d + '" fill="none" stroke="' + W + '"/>'; }
+        if (i === 2) for (var m = 0; m < 44; m++) s += '<rect x="' + (44 + m * 6) + '" y="' + (y + 12 - (2 + (m * 7) % 10)) + '" width="3" height="' + (2 + (m * 7) % 10) + '" fill="' + P + '" opacity=".8"/>'; });
+      s += '<rect class="scan" x="40" y="126" width="2" height="62" fill="' + A + '" style="animation-name:scan3;transform:none"/></svg>';
+      return s;
+    },
+    'sight-sphere': function () {
+      var s = '<svg ' + PV + '><path d="M10 152 H310" stroke="' + L + '"/>';
+      s += '<circle cx="52" cy="74" r="11" fill="' + C2 + '" stroke="' + F + '" stroke-width="1.4"/><rect x="40" y="88" width="24" height="46" rx="9" fill="' + C2 + '" stroke="' + F + '" stroke-width="1.4"/><path d="M46 134 V152 M58 134 V152" stroke="' + F + '" stroke-width="3" stroke-linecap="round"/>';
+      s += '<rect x="56" y="68" width="22" height="9" rx="3" fill="' + BG + '" stroke="' + A + '"/><circle cx="73" cy="72.5" r="2.4" fill="' + A + '"/><circle cx="62" cy="72.5" r="1.8" fill="' + S + '"/>';
+      [0, 1, 2].forEach(function (i) { s += '<path class="blink" d="M' + (84 + i * 16) + ' ' + (60 - i * 5) + ' A' + (14 + i * 6) + ' ' + (14 + i * 6) + ' 0 0 1 ' + (84 + i * 16) + ' ' + (84 + i * 5) + '" fill="none" stroke="' + S + '" stroke-width="1.6" style="animation-delay:-' + i * .5 + 's"/>'; });
+      s += '<rect x="196" y="98" width="42" height="54" rx="4" fill="' + C2 + '" stroke="' + W + '" stroke-width="1.4"/><path d="M196 112 H238" stroke="' + W + '"/><path d="M118 126 H190 M118 122 V130 M190 122 V130" stroke="' + A + '" stroke-dasharray="3 3"/>' + tx(154, 120, '2 m', { s: 8, f: A });
+      s += '<rect x="86" y="14" width="150" height="34" rx="12" fill="' + C2 + '" stroke="' + A + '"/><path d="M110 48 l-6 10 l14 -10" fill="' + C2 + '" stroke="' + A + '"/>' + tx(168, 28, 'Chair ahead,', { s: 8.5, f: 'var(--text)' }) + tx(168, 40, 'two metres, move left', { s: 7.5, f: A });
+      [0, 1, 2, 3].forEach(function (i) { s += '<rect class="blink" x="' + (248 + i * 6) + '" y="' + (24 - (i % 2) * 4) + '" width="3" height="' + (10 + (i % 2) * 8) + '" rx="1.5" fill="' + A + '" style="animation-delay:-' + i * .3 + 's"/>'; });
+      s += '<rect x="248" y="112" width="64" height="38" rx="5" fill="' + C2 + '" stroke="' + L + '"/><rect x="256" y="120" width="18" height="12" rx="2" fill="' + BG + '" stroke="' + S + '"/><circle cx="293" cy="126" r="5" fill="none" stroke="' + A + '"/><path d="M256 142 H306" stroke="' + F + '"/>' + tx(280, 160, 'ESP32-CAM · Pi', { s: 6.2 }) + cap('assistive navigation: camera + ultrasonic + multimodal LLM → audio') + '</svg>';
+      return s;
+    },
+    'edubot': function () {
+      var s = '<svg ' + PV + '>' + win(14, 24, 92, 62, 'lecture.mp4') + '<path d="M52 44 L68 54 L52 64Z" fill="' + A + '"/><rect x="22" y="76" width="76" height="3" rx="1.5" fill="' + L + '"/><rect x="22" y="76" width="40" height="3" rx="1.5" fill="' + A + '"/>';
+      [2, 1, 0].forEach(function (i) { s += '<rect x="' + (18 + i * 6) + '" y="' + (98 + i * 6) + '" width="72" height="58" rx="4" fill="' + C2 + '" stroke="' + L + '"/>'; });
+      s += bars(30, 112, [48, 36, 52, 30], 9, F) + '<rect x="30" y="121" width="48" height="3" rx="1.5" fill="' + A + '"/>';
+      var pts = [[132, 60], [150, 82], [172, 56], [190, 92], [144, 112], [168, 128], [196, 130], [128, 140], [210, 62], [182, 108], [156, 98], [206, 110]];
+      pts.forEach(function (p, i) { var hot = i === 5 || i === 10 || i === 9; s += '<circle ' + (hot ? 'class="blink" ' : '') + 'cx="' + p[0] + '" cy="' + p[1] + '" r="' + (hot ? 5 : 3) + '" fill="' + (hot ? A : F) + '" opacity="' + (hot ? 1 : .6) + '"/>'; });
+      s += '<circle class="spin" cx="170" cy="100" r="42" fill="none" stroke="' + A + '" stroke-dasharray="2 6"/>' + tx(170, 176, 'top-k chunks', { s: 6.5, f: A });
+      s += '<path class="fl" d="M112 56 C 120 56 124 60 128 60 M112 124 C 124 124 130 120 140 114" fill="none" stroke="' + S + '" stroke-width="1.2"/><path class="fl" d="M214 100 H 226" stroke="' + A + '" stroke-width="1.6"/>';
+      s += '<rect x="228" y="34" width="80" height="26" rx="10" fill="' + C2 + '" stroke="' + S + '"/>' + tx(268, 51, 'When is the exam?', { s: 6.6, f: 'var(--text)' });
+      s += '<rect x="228" y="72" width="80" height="52" rx="10" fill="' + C2 + '" stroke="' + A + '"/>' + tx(268, 90, 'Dec 12, Hall B.', { s: 7.2, f: 'var(--text)' }) + tx(268, 102, 'See syllabus p.4', { s: 6.6, f: A }) + '<rect x="238" y="110" width="30" height="9" rx="4" fill="none" stroke="' + S + '"/>' + tx(253, 117, 'source', { s: 5.2, f: S });
+      s += [0, 1, 2].map(function (i) { return '<circle class="blink" cx="' + (236 + i * 8) + '" cy="142" r="2.4" fill="' + A + '" style="animation-delay:-' + i * .3 + 's"/>'; }).join('') + cap('RAG over lecture videos and documents') + '</svg>';
+      return s;
+    },
+    'polydub': function () {
+      var s = '<svg ' + PV + '><rect x="14" y="22" width="120" height="70" rx="6" fill="' + C2 + '" stroke="' + L + '"/><circle cx="74" cy="52" r="14" fill="' + P + '"/><path d="M70 45 L84 52 L70 59Z" fill="' + BG + '"/>' + tx(74, 84, 'youtu.be/…', { s: 6.2 });
+      var wave = function (x0, y0, col, amp, ph) { var d = 'M' + x0 + ' ' + y0; for (var x = 0; x <= 110; x += 3) d += ' L' + (x0 + x) + ' ' + (y0 + Math.sin(x / 5 + ph) * amp * (0.5 + Math.abs(Math.sin(x / 17)))); return '<path d="' + d + '" fill="none" stroke="' + col + '" stroke-width="1.6"/>'; };
+      s += wave(18, 118, S, 12, 0) + tx(72, 144, 'original voice', { s: 6.5, f: S });
+      s += '<path class="fl" d="M136 56 H 168" stroke="' + A + '" stroke-width="1.6"/><path class="fl" d="M72 130 C 72 150 150 150 176 150" fill="none" stroke="' + A + '" stroke-width="1.3"/>';
+      [['ES', 'Hola', S], ['FR', 'Bonjour', W], ['HI', 'Namaste', A]].forEach(function (l, i) { var y = 28 + i * 34; s += '<rect x="170" y="' + y + '" width="136" height="26" rx="10" fill="' + C2 + '" stroke="' + l[2] + '"/>' + tx(186, y + 16.5, l[0], { s: 7.5, f: l[2] }) + tx(240, y + 16.5, l[1] + '!', { s: 9, f: 'var(--text)' });
+        for (var k = 0; k < 5; k++) s += '<rect class="blink" x="' + (276 + k * 5) + '" y="' + (y + 13 - (3 + (k * 3 + i) % 6)) + '" width="2.4" height="' + (6 + (k * 3 + i) % 6 * 2) + '" rx="1" fill="' + l[2] + '" style="animation-delay:-' + (k * .25 + i * .2) + 's"/>'; });
+      s += wave(176, 150, A, 12, 1.5) + tx(231, 176, 'dubbed voice · target language', { s: 6.5, f: A }) + '<circle cx="30" cy="150" r="0" fill="none"/>' + cap('YouTube URL → transcribe → translate → synthesize') + '</svg>';
+      return s;
+    },
+    'face-recognition': function () {
+      var s = '<svg ' + PV + '><rect x="14" y="22" width="176" height="124" rx="6" fill="' + BG + '" stroke="' + L + '"/>' + face(102, 84, 1.15, true);
+      [[-14, -12], [14, -12], [0, 6], [-10, 20], [10, 20], [-24, 0], [24, 0]].forEach(function (p, i) { s += '<circle class="blink" cx="' + (102 + p[0] * 1.15) + '" cy="' + (84 + p[1] * 1.15) + '" r="1.8" fill="' + A + '" style="animation-delay:-' + i * .2 + 's"/>'; });
+      s += '<path d="M64 46 v-10 h12 M128 36 h12 v10 M64 124 v10 h12 M128 134 h12 v-10" fill="none" stroke="' + A + '" stroke-width="2"/>' + pill(66, 24, 72, 'Vishnu · 98%', A);
+      s += '<rect class="scan" x="14" y="22" width="176" height="2" fill="' + A + '" opacity=".7" style="animation-name:scanv"/><circle class="blink" cx="24" cy="32" r="3" fill="' + P + '"/>' + tx(34, 35, 'LIVE', { a: 'start', s: 6, f: P });
+      s += win(202, 22, 106, 124, 'attendance');
+      [['Vishnu', 1], ['Asha', 1], ['Ravi', 1], ['Meena', 0], ['Karan', 0]].forEach(function (r, i) { var y = 44 + i * 20; s += '<rect x="210" y="' + y + '" width="90" height="15" rx="4" fill="' + BG + '" stroke="' + L + '"/>' + tx(218, y + 10.5, r[0], { a: 'start', s: 7, f: 'var(--text)' }) + (r[1] ? '<path ' + (i === 0 ? 'class="blink" ' : '') + 'd="M280 ' + (y + 8) + ' l4 4 l8 -9" fill="none" stroke="' + A + '" stroke-width="1.8"/>' : tx(288, y + 10.5, '–', { s: 8 })); });
+      s += cap('face recognition attendance · Django + OpenFace') + '</svg>';
+      return s;
+    },
+    'medintelbot': function () {
+      var s = '<svg ' + PV + '>';
+      [2, 1, 0].forEach(function (i) { s += '<rect x="' + (16 + i * 7) + '" y="' + (28 + i * 6) + '" width="62" height="78" rx="4" fill="' + C2 + '" stroke="' + L + '"/>'; });
+      s += '<rect x="16" y="28" width="62" height="78" rx="4" fill="' + C2 + '" stroke="' + P + '"/><path d="M47 33 v22 M36 44 h22" stroke="' + P + '" stroke-width="5" stroke-linecap="round"/>' + bars(26, 64, [42, 34, 44, 28], 9, F) + '<rect class="blink" x="26" y="73" width="34" height="3" rx="1.5" fill="' + A + '"/>' + tx(47, 120, 'medical PDFs', { s: 6.5 });
+      s += '<path class="fl" d="M82 70 H 116" stroke="' + A + '" stroke-width="1.6"/>';
+      s += '<rect x="116" y="48" width="64" height="48" rx="8" fill="' + C2 + '" stroke="' + A + '" stroke-width="1.5"/>';
+      for (var i = 0; i < 4; i++) s += '<path d="M' + (128 + i * 14) + ' 48 v-8 M' + (128 + i * 14) + ' 96 v8 M116 ' + (58 + i * 10) + ' h-8 M180 ' + (58 + i * 10) + ' h8" stroke="' + F + '"/>';
+      s += tx(148, 76, 'LLM', { s: 9, f: A }) + tx(148, 88, 'local', { s: 6.5 });
+      s += '<g opacity=".9"><path d="M222 38 a8 8 0 0 1 4 -14 a11 11 0 0 1 21 2 a8 8 0 0 1 1 12z" fill="none" stroke="' + F + '" stroke-width="1.5"/><path d="M216 44 L254 18" stroke="' + P + '" stroke-width="2.4"/></g>' + tx(236, 58, 'no cloud API', { s: 6.5, f: P });
+      s += '<path class="fl" d="M184 72 H 214" stroke="' + A + '" stroke-width="1.6"/><rect x="214" y="68" width="94" height="52" rx="10" fill="' + C2 + '" stroke="' + A + '"/>' + tx(261, 84, 'Likely causes:', { s: 7.4, f: 'var(--text)' }) + bars(224, 92, [66, 52, 60], 8, A);
+      s += '<path class="ecg" d="M10 160 H70 L78 140 L88 176 L98 150 L104 160 H170 L178 142 L188 178 L198 152 L204 160 H310" fill="none" stroke="' + P + '" stroke-width="1.8" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/>' + cap('local RAG medical assistant · private by design') + '</svg>';
+      return s;
+    },
+    'embedding-finetune': function () {
+      var s = '<svg ' + PV + '><path d="M30 24 V150 H300" stroke="' + L + '" fill="none"/>' + tx(165, 164, 'embedding space  ·  before ⇄ after fine-tuning', { s: 7 });
+      var cl = [[90, 90, S], [170, 66, W], [236, 112, A]];
+      var seeds = [[-14, -8], [8, -14], [14, 6], [-6, 14], [-18, 8], [4, 2], [18, -10]];
+      var jit = [[60, 40], [-70, 30], [40, -60], [-50, -50], [90, 20], [-30, 60], [70, -30]];
+      cl.forEach(function (c, ci) {
+        s += '<circle cx="' + c[0] + '" cy="' + c[1] + '" r="30" fill="' + c[2] + '" opacity=".08"/>';
+        seeds.forEach(function (d, i) { var j = jit[(i + ci * 2) % 7]; s += '<circle class="settle" cx="' + (c[0] + d[0]) + '" cy="' + (c[1] + d[1]) + '" r="4.2" fill="' + c[2] + '" style="--x:' + j[0] + 'px;--y:' + j[1] + 'px"/>'; });
+      });
+      s += '<g class="bob"><path d="M160 112 l3 7 l7 .6 l-5.4 4.6 l1.8 7 l-6.4 -4 l-6.4 4 l1.8 -7 l-5.4 -4.6 l7 -.6z" fill="' + P + '"/></g>' + tx(160, 150, 'query', { s: 6.5, f: P }) + tx(90, 40, 'cardiology', { s: 6.8, f: S }) + tx(170, 30, 'oncology', { s: 6.8, f: W }) + tx(236, 70, 'radiology', { s: 6.8, f: A }) + '</svg>';
+      return s;
+    },
+    'knowledge-graph': function () {
+      var s = '<svg ' + PV + '>' + win(10, 24, 82, 64) + bars(18, 44, [56, 62, 48, 58, 40], 9, F) + '<path class="fl" d="M96 56 H 124" stroke="' + A + '" stroke-width="1.6"/>';
+      var N = [[216, 100, 15, A, 'LLM'], [160, 52, 9, S, ''], [270, 52, 9, W, ''], [286, 124, 9, P, ''], [236, 160, 9, S, ''], [166, 142, 9, W, ''], [140, 98, 9, P, ''], [200, 44, 6, F, ''], [258, 150, 6, F, '']];
+      var E = [[0, 1, 'causes'], [0, 2, 'treats'], [0, 3, 'part of'], [0, 4, 'uses'], [0, 5, 'linked'], [0, 6, 'is a'], [1, 7, ''], [3, 8, '']];
+      E.forEach(function (e, i) { var a = N[e[0]], b = N[e[1]]; s += '<path class="fl" d="M' + a[0] + ' ' + a[1] + ' L' + b[0] + ' ' + b[1] + '" stroke="' + F + '" stroke-width="1" style="animation-duration:' + (1.2 + i * .15) + 's"/>'; if (e[2]) s += tx((a[0] + b[0]) / 2, (a[1] + b[1]) / 2 - 3, e[2], { s: 5.8 }); });
+      N.forEach(function (n, i) { s += '<circle cx="' + n[0] + '" cy="' + n[1] + '" r="' + n[2] + '" fill="' + C2 + '" stroke="' + n[3] + '" stroke-width="1.6"' + (i === 0 ? ' class="blink"' : '') + '/>' + (n[4] ? tx(n[0], n[1] + 3, n[4], { s: 7, f: n[3] }) : ''); });
+      s += cap('unstructured text → entities + relations → interactive graph') + '</svg>';
+      return s;
+    },
+    'medextract': function () {
+      var W5 = 5.2;
+      var s = '<svg ' + PV + '>' + win(10, 26, 300, 112, 'spaCy · custom NER');
+      s += '<text x="22" y="82" font-family="monospace" font-size="8.6" fill="var(--text)" textLength="' + (31 * W5) + '" lengthAdjust="spacing">Patient with type 2 diabetes was</text>';
+      s += '<text x="22" y="112" font-family="monospace" font-size="8.6" fill="var(--text)" textLength="' + (34 * W5) + '" lengthAdjust="spacing">prescribed metformin 500 mg daily.</text>';
+      var hl = function (x, y, w, lab, col, d) { return '<rect class="blink" x="' + x + '" y="' + (y - 9) + '" width="' + w + '" height="13" rx="3" fill="' + col + '" opacity=".25" style="animation-delay:-' + d + 's"/><path d="M' + x + ' ' + (y + 5) + ' H' + (x + w) + '" stroke="' + col + '" stroke-width="1.6"/>' + tx(x + w / 2, y - 14, lab, { s: 6.2, f: col }); };
+      s += hl(22 + 13 * W5, 82, 15 * W5, 'DISEASE', P, 0) + hl(22 + 11 * W5, 112, 9 * W5, 'DRUG', A, .6) + hl(22 + 21 * W5, 112, 6 * W5, 'DOSE', W, 1.2);
+      s += pill(14, 152, 60, 'tokenize', S) + pill(80, 152, 60, 'embed', A) + pill(146, 152, 60, 'tag spans', W) + pill(212, 152, 98, 'train on clinical text', P) + cap('training a medical NER model') + '</svg>';
+      return s;
+    },
+    'docuchat': function () {
+      var s = '<svg ' + PV + '><rect x="16" y="20" width="118" height="146" rx="5" fill="' + C2 + '" stroke="' + L + '"/>' + tx(75, 34, 'report.pdf', { s: 6.5 });
+      for (var i = 0; i < 10; i++) s += '<rect x="26" y="' + (44 + i * 11) + '" width="' + (80 + (i * 17) % 24) + '" height="3.4" rx="1.7" fill="' + F + '" opacity=".7"/>';
+      s += '<rect class="scan" x="22" y="42" width="106" height="14" rx="3" fill="' + A + '" opacity=".28" style="animation-name:scanv2"/><path class="fl" d="M136 90 H 166" stroke="' + A + '" stroke-width="1.6"/>';
+      s += '<circle cx="190" cy="90" r="22" fill="' + C2 + '" stroke="' + S + '"/>';
+      [[180, 82], [196, 80], [186, 96], [200, 98], [190, 88]].forEach(function (p, i) { s += '<circle class="blink" cx="' + p[0] + '" cy="' + p[1] + '" r="2.6" fill="' + (i == 4 ? A : S) + '" style="animation-delay:-' + i * .3 + 's"/>'; });
+      s += tx(190, 128, 'vector search', { s: 6.5, f: S }) + '<path class="fl" d="M214 90 H 232" stroke="' + A + '" stroke-width="1.6"/>';
+      s += win(232, 22, 78, 140, 'chat') + '<rect x="250" y="42" width="52" height="20" rx="8" fill="' + BG + '" stroke="' + S + '"/>' + tx(276, 55, 'Summarize p.3', { s: 5.6 }) + '<rect x="240" y="70" width="60" height="44" rx="8" fill="' + BG + '" stroke="' + A + '"/>' + bars(247, 80, [44, 36, 42, 26], 8, A);
+      s += [0, 1, 2].map(function (i) { return '<circle class="blink" cx="' + (248 + i * 8) + '" cy="132" r="2.4" fill="' + A + '" style="animation-delay:-' + i * .3 + 's"/>'; }).join('') + cap('chat with your PDF · open-source LLM + vector search') + '</svg>';
+      return s;
+    },
+    'indian-food-classification-showcase': function () {
+      var s = '<svg ' + PV + '><circle cx="92" cy="96" r="62" fill="' + C2 + '" stroke="' + L + '" stroke-width="1.6"/><circle cx="92" cy="96" r="50" fill="none" stroke="' + L + '"/>';
+      s += '<ellipse cx="76" cy="100" rx="26" ry="20" fill="#f3e3b0"/><g fill="#d9a441">' + [0, 1, 2, 3, 4, 5, 6, 7, 8].map(function (i) { return '<circle cx="' + (62 + (i * 13) % 30) + '" cy="' + (92 + (i * 7) % 20) + '" r="2.4"/>'; }).join('') + '</g><circle cx="118" cy="82" r="16" fill="#c4521b"/><circle cx="118" cy="82" r="11" fill="#e07a2d"/>';
+      for (var i = 1; i < 4; i++) s += '<path d="M' + (30 + i * 31) + ' 34 V158 M30 ' + (34 + i * 31) + ' H154" stroke="' + A + '" stroke-width=".7" opacity=".55"/>';
+      s += '<rect class="blink" x="61" y="65" width="31" height="31" fill="' + A + '" opacity=".25"/><rect class="blink" x="92" y="96" width="31" height="31" fill="' + A + '" opacity=".25" style="animation-delay:-1s"/><path class="fl" d="M156 96 H 176" stroke="' + A + '" stroke-width="1.6"/>';
+      s += '<rect x="176" y="40" width="134" height="112" rx="8" fill="' + C2 + '" stroke="' + A + '"/>' + tx(243, 56, 'Vision Transformer · top-3', { s: 6.8 });
+      [['Fried rice', 94, A], ['Biryani', 4, S], ['Pulao', 2, W]].forEach(function (r, i) { var y = 70 + i * 26; s += tx(184, y + 4, r[0], { a: 'start', s: 7.5, f: 'var(--text)' }) + '<rect x="184" y="' + (y + 8) + '" width="118" height="6" rx="3" fill="' + BG + '"/><rect x="184" y="' + (y + 8) + '" width="' + (r[1] * 1.18) + '" height="6" rx="3" fill="' + r[2] + '"/>' + tx(302, y + 4, r[1] + '%', { a: 'end', s: 7.5, f: r[2] }); });
+      s += cap('fine-tuned ViT · 94% on Indian food images') + '</svg>';
+      return s;
+    },
+    'face-mask-detector-showcase': function () {
+      var s = '<svg ' + PV + '><rect x="10" y="20" width="300" height="144" rx="6" fill="' + BG + '" stroke="' + L + '"/>' + face(86, 90, 1.1, false);
+      s += '<path d="M64 98 Q86 90 108 98 L106 116 Q86 126 66 116Z" fill="' + S + '" opacity=".9"/><path d="M64 100 H52 M108 100 H120" stroke="' + S + '"/>';
+      s += '<rect class="blink" x="52" y="48" width="68" height="84" fill="none" stroke="' + A + '" stroke-width="2"/>' + pill(52, 32, 68, 'mask 0.98', A);
+      s += face(224, 90, 1.1, true) + '<rect class="blink" x="190" y="48" width="68" height="84" fill="none" stroke="' + P + '" stroke-width="2" style="animation-delay:-.7s"/>' + pill(184, 32, 80, 'no mask 0.91', P);
+      s += '<rect class="scan" x="10" y="20" width="2" height="144" fill="' + A + '" style="animation-name:scan5"/><circle class="blink" cx="26" cy="32" r="3" fill="' + P + '"/>' + tx(36, 35, 'REC', { a: 'start', s: 6, f: P }) + tx(302, 156, 'OpenCV · TF', { a: 'end', s: 6 }) + cap('real-time face-mask detection from a webcam stream') + '</svg>';
+      return s;
+    },
+    'sentiment-analysis-showcase': function () {
+      var s = '<svg ' + PV + '>';
+      [[18, 'love this phone!', A, 1], [58, 'it is okay i guess', W, 0], [98, 'worst service ever', P, -1]].forEach(function (t, i) {
+        s += '<rect x="' + (14 + (i % 2) * 8) + '" y="' + t[0] + '" width="130" height="34" rx="9" fill="' + C2 + '" stroke="' + t[2] + '"/>' + smiley(34 + (i % 2) * 8, t[0] + 17, 9, t[3], t[2]) + tx(52 + (i % 2) * 8, t[0] + 20, t[1], { a: 'start', s: 7.4, f: 'var(--text)' });
+      });
+      s += '<defs><linearGradient id="pg1" x1="0" x2="1"><stop offset="0" stop-color="' + P + '"/><stop offset=".5" stop-color="' + W + '"/><stop offset="1" stop-color="' + A + '"/></linearGradient></defs>';
+      s += '<path d="M180 128 A56 56 0 0 1 292 128" fill="none" stroke="url(#pg1)" stroke-width="10" stroke-linecap="round"/><g class="needle"><path d="M236 128 L236 82" stroke="var(--text)" stroke-width="2.4" stroke-linecap="round"/><circle cx="236" cy="128" r="5" fill="var(--text)"/></g>';
+      s += tx(176, 144, 'negative', { s: 6.5, f: P, a: 'start' }) + tx(296, 144, 'positive', { s: 6.5, f: A, a: 'end' }) + tx(236, 160, 'sentiment', { s: 7 });
+      s += tx(236, 36, 'NLP + ML classifier', { s: 7, f: S }) + '<path class="fl" d="M146 76 C 164 76 168 60 180 56" fill="none" stroke="' + A + '" stroke-width="1.3"/>' + cap('classifying tweets as positive, neutral or negative') + '</svg>';
+      return s;
+    },
+    'textreaderaudiobook': function () {
+      var s = '<svg ' + PV + '><path d="M20 40 Q80 28 140 44 V150 Q80 134 20 148Z" fill="' + C2 + '" stroke="' + L + '"/><path d="M140 44 Q200 28 260 40 V148 Q200 134 140 150Z" fill="' + C2 + '" stroke="' + L + '"/>';
+      for (var i = 0; i < 7; i++) s += '<rect x="34" y="' + (58 + i * 12) + '" width="' + (84 - (i % 3) * 10) + '" height="3.4" rx="1.7" fill="' + F + '" opacity=".7"/><rect x="156" y="' + (58 + i * 12) + '" width="' + (84 - (i % 2) * 14) + '" height="3.4" rx="1.7" fill="' + F + '" opacity=".7"/>';
+      s += '<rect class="scan" x="30" y="55" width="92" height="9" rx="3" fill="' + A + '" opacity=".35" style="animation-name:scanv3"/>';
+      s += '<path d="M276 90 a26 26 0 0 1 36 0" fill="none" stroke="' + S + '" stroke-width="5" stroke-linecap="round" transform="translate(-26 -8)"/><rect x="250" y="82" width="10" height="20" rx="5" fill="' + S + '"/><rect x="288" y="82" width="10" height="20" rx="5" fill="' + S + '"/>';
+      [0, 1, 2].forEach(function (i) { s += '<path class="blink" d="M' + (270 + i * 6) + ' ' + (118 + i * 3) + ' q8 -8 0 -16" fill="none" stroke="' + A + '" stroke-width="1.6" style="animation-delay:-' + i * .4 + 's" transform="translate(' + (4 + i * 4) + ' 18)"/>'; });
+      s += tx(274, 160, 'text → speech', { s: 6.8, f: A }) + cap('Python app that reads any text aloud and builds audiobooks') + '</svg>';
+      return s;
+    },
+    'virtualmouse': function () {
+      var s = '<svg ' + PV + '>' + win(176, 24, 134, 92, 'screen') + '<rect x="186" y="44" width="42" height="26" rx="3" fill="' + BG + '" stroke="' + L + '"/><rect x="236" y="44" width="64" height="8" rx="3" fill="' + BG + '" stroke="' + L + '"/><rect x="236" y="60" width="50" height="8" rx="3" fill="' + BG + '" stroke="' + L + '"/><rect x="186" y="82" width="114" height="24" rx="3" fill="' + BG + '" stroke="' + L + '"/>';
+      s += '<path d="M0 0 L0 13 L4 10 L7 16 L10 15 L7 9 L12 9Z" fill="' + A + '" stroke="' + BG + '" stroke-width=".7"><animateMotion dur="5s" repeatCount="indefinite" path="M200 56 L 250 56 L 262 88 L 214 94 L 200 56"/></path>';
+      s += '<circle class="blink" cx="250" cy="56" r="8" fill="none" stroke="' + A + '"/>';
+      var P5 = { palm: [[70, 150], [58, 126], [72, 112], [88, 108], [100, 116], [102, 136], [96, 152]], idx: [[72, 112], [74, 90], [76, 70], [78, 54]], mid: [[88, 108], [92, 84], [94, 62]], rng: [[100, 116], [106, 96], [108, 78]], pnk: [[102, 136], [114, 120], [120, 106]], thm: [[58, 126], [44, 112], [38, 96]] };
+      s += '<path d="' + P5.palm.map(function (p, i) { return (i ? 'L' : 'M') + p[0] + ' ' + p[1]; }).join(' ') + 'Z" fill="' + C2 + '" stroke="' + F + '"/>';
+      Object.keys(P5).forEach(function (k) { if (k === 'palm') return; var pts = P5[k]; s += '<polyline points="' + pts.map(function (p) { return p.join(','); }).join(' ') + '" fill="none" stroke="' + S + '" stroke-width="1.6"/>'; pts.forEach(function (p, i) { s += '<circle cx="' + p[0] + '" cy="' + p[1] + '" r="' + (i === pts.length - 1 ? 3.2 : 2) + '" fill="' + (k === 'idx' && i === 3 ? A : S) + '"' + (k === 'idx' && i === 3 ? ' class="blink"' : '') + '/>'; }); });
+      s += '<path class="fl" d="M80 54 C 120 30 160 40 196 54" fill="none" stroke="' + A + '" stroke-width="1.4"/>' + tx(120, 28, 'fingertip → cursor', { s: 6.6, f: A }) + tx(70, 168, 'hand landmarks', { s: 6.6, f: S }) + cap('control the cursor with hand gestures · OpenCV + MediaPipe') + '</svg>';
+      return s;
+    }
+  };
+
   // extra keyframes for thumbs that scan at different widths
   (function () {
     var st = document.createElement('style');
@@ -226,6 +437,65 @@
     var words = ['Vision-language models', 'LoRA', 'Interpretable ML', 'Tsetlin Machines', 'Edge AI', 'Multimodal learning', 'Agentic systems', 'RAG', 'Segmentation', 'Humanoid robotics', 'Distributed learning', 'Production ML'];
     var line = words.map(function (w) { return '<span>' + w + '</span>'; }).join('');
     return '<div class="marquee" aria-hidden="true"><div class="track">' + line + line + '</div></div>';
+  }
+
+
+  /* research.py panel: real code about my research, syntax-highlighted and revealed line by line */
+  var RESEARCH_PY = [
+    '"""research.py: the questions behind my work.',
+    'Does it generalize? Can I explain it? Does it fit on the edge?"""',
+    'import torch, torch.nn as nn',
+    'from collections import Counter',
+    '',
+    'class LoRA(nn.Module):  # MSc thesis -> CVPR 2027',
+    '    """Frozen W plus a trainable low-rank update B @ A."""',
+    '    def __init__(self, W: nn.Linear, r=8):',
+    '        super().__init__()',
+    '        self.W = W.requires_grad_(False)',
+    '        self.A = nn.Parameter(torch.randn(r, W.in_features) * 0.01)',
+    '        self.B = nn.Parameter(torch.zeros(W.out_features, r))',
+    '',
+    '    def forward(self, x):',
+    '        return self.W(x) + x @ self.A.T @ self.B.T',
+    '',
+    'def where_does_it_move(lora, video, text):',
+    '    """Which modality does the adapter really change?"""',
+    '    shift = lambda t: (lora(t) - lora.W(t)).norm(dim=-1).mean()',
+    '    return {"video": shift(video), "text": shift(text)}',
+    '',
+    'def sanitize(clauses, votes, eps=1e-3):  # ISTM 2026 (accepted)',
+    '    return [c for c, v in zip(clauses, votes) if abs(v) > eps]',
+    '',
+    'def decide(learners, x):  # IEEE TAI',
+    '    ballot = Counter(m.predict(x) for m in learners)',
+    '    return ballot.most_common(1)[0][0]',
+    '',
+    'def segment(net, frame, sensor):  # JAG: RGB | thermal | NIR',
+    '    return net(frame[sensor]).argmax(1)  # background, fire, smoke',
+    '',
+    'def terrain(model, imu):  # IEEE IoT (planned)',
+    '    return ["tile", "gravel", "grass"][model(imu).argmax()]',
+    '',
+    'def build(agent, task, human):  # agentic mechatronics',
+    '    return human.approve(agent.act(agent.plan(task)))'
+  ].join('\n');
+
+  function researchCode() {
+    var esc = RESEARCH_PY.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    var re = /(#.*$)|("""[\s\S]*?"""|"[^"\n]*")|\b(def|class)(\s+)(\w+)|\b(import|from|return|for|in|if|lambda|self)\b|\b(\d+(?:\.\d+)?(?:e-?\d+)?)\b/gm;
+    var out = esc.replace(re, function (m, cm, st, kw0, sp, nm, kw, num) {
+      if (cm) return '<span class="c">' + cm + '</span>';
+      if (st) return '<span class="n">' + st + '</span>';
+      if (kw0) return '<span class="k">' + kw0 + '</span>' + sp + '<span class="s">' + nm + '</span>';
+      if (kw) return '<span class="k">' + kw + '</span>';
+      if (num) return '<span class="n">' + num + '</span>';
+      return m;
+    });
+    // docstring that spans two lines: keep colour per line
+    out = out.replace(/<span class="n">("""[\s\S]*?""")<\/span>/g, function (m, body) {
+      return body.split('\n').map(function (l) { return '<span class="n">' + l + '</span>'; }).join('\n');
+    });
+    return out.split('\n').map(function (l, i) { return '<span class="ln" style="--i:' + i + '">' + (l || ' ') + '</span>'; }).join('\n') + '<span class="cur"></span>';
   }
 
   function renderHome() {
@@ -271,17 +541,7 @@
 
     var about = '<section id="about"><div class="wrap about-grid"><div class="rv">' +
       D.about.paragraphs.map(function (p) { return '<p>' + p + '</p>'; }).join('') + '</div>' +
-      '<div class="term rv"><div class="term-bar"><i></i><i></i><i></i><span>research_status.py</span></div><pre>' +
-      '<span class="k">from</span> dataclasses <span class="k">import</span> dataclass\n\n' +
-      '@dataclass\n<span class="k">class</span> <span class="s">Paper</span>:\n    venue: str\n    status: str\n    topic: str\n\n' +
-      'papers = [\n' +
-      '    Paper(<span class="n">"ISTM 2026"</span>,  <span class="n">"accepted"</span>,     <span class="n">"Tsetlin clauses"</span>),\n' +
-      '    Paper(<span class="n">"CVPR 2027"</span>,  <span class="n">"communicated"</span>, <span class="n">"LoRA x VLMs (thesis)"</span>),\n' +
-      '    Paper(<span class="n">"IEEE TAI"</span>,   <span class="n">"communicated"</span>, <span class="n">"distributed ML"</span>),\n' +
-      '    Paper(<span class="n">"JAG"</span>,        <span class="n">"communicated"</span>, <span class="n">"edge segmentation"</span>),\n' +
-      '    Paper(<span class="n">"IEEE IoT"</span>,   <span class="n">"planned"</span>,      <span class="n">"humanoid terrain"</span>),\n' +
-      ']\n\n' +
-      '<span class="k">for</span> p <span class="k">in</span> papers:\n    print(<span class="n">f"{p.venue:&lt;10} {p.status}"</span>)</pre></div></div></section>';
+      '<div class="term rv"><div class="term-bar"><i></i><i></i><i></i><span>research.py</span></div><pre>' + researchCode() + '</pre></div></div></section>';
 
     var research = '<section id="research"><div class="wrap">' +
       '<div class="sec-head rv"><span class="idx">01</span><div class="eyebrow">research</div></div><h2 class="rv">What I\'m working on</h2><p class="lede rv" style="margin-top:14px">' + r.intro + '</p>' +
@@ -336,19 +596,14 @@
   function splitTitle(t) { var m = t.match(EMOJI_RE); return { emoji: m ? m[1] : '', name: clean(m ? t.slice(m[0].length) : t) }; }
 
   function projectCard(p) {
-    var t = splitTitle(p.title);
-    var imgs = (p.images || []).map(function (i) { return typeof i === 'string' ? i : i.src; });
-    var vids = (p.videos || []).map(function (v) { return typeof v === 'string' ? v : v.src; });
-    var thumb;
-    if (imgs.length) thumb = '<div class="p-thumb"><img src="' + enc(imgs[0]) + '" alt="" loading="lazy"></div>';
-    else if (vids.length) thumb = '<div class="p-thumb"><video src="' + enc(vids[0]) + '#t=1.2" muted playsinline preload="metadata"></video><span class="p-play">▶ demo</span></div>';
+    var t = splitTitle(p.title), art = PT[p.id], thumb;
+    if (art) thumb = '<div class="p-thumb art">' + art() + '</div>';
     else {
       var h = hue(p.id);
       thumb = '<div class="p-thumb gen" style="--g:linear-gradient(135deg,hsl(' + h + ',55%,32%),hsl(' + ((h + 60) % 360) + ',60%,18%))"><span class="em">' + (t.emoji || '✦') + '</span></div>';
     }
-    return '<a class="p-card tilt rv" data-tag="' + p.tag + '" href="project.html?id=' + encodeURIComponent(p.id) + '">' +
-      thumb.replace('<div class="p-thumb', '<div class="p-thumb').replace('</div>', '<span class="p-tag">' + p.tagLabel + '</span></div>') +
-      '<div class="p-body"><h3>' + t.name + '</h3><p>' + clean(p.desc.replace(/^[^\w<]+/u, '')) + '</p><span class="p-more">Read more</span></div></a>';
+    return '<a class="p-card tilt rv" data-tag="' + p.tag + '" href="project.html?id=' + encodeURIComponent(p.id) + '">' + thumb +
+      '<div class="p-body"><span class="p-tag">' + p.tagLabel + '</span><h3>' + t.name + '</h3><p>' + clean(p.desc.replace(/^[^\w<]+/u, '')) + '</p><span class="p-more">Read more</span></div></a>';
   }
 
   function wireFilters() {

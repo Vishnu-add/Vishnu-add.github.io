@@ -372,3 +372,31 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 @media (max-width:760px){.bcard{grid-template-columns:1fr;gap:26px}.bc-qr{order:-1}.qr-tile img{width:170px;height:170px}.bc-id{flex-direction:column;align-items:flex-start}}
 
 .card-page .chips{display:flex;flex-wrap:wrap;gap:8px}
+
+/* research.py panel */
+.term pre{font-size:12px;line-height:1.7;overflow-x:auto}
+.term .ln{display:inline-block;opacity:0}
+.term.in .ln{animation:lnin .4s ease forwards;animation-delay:calc(var(--i) * 70ms)}
+@keyframes lnin{from{opacity:0;transform:translateX(-6px)}to{opacity:1;transform:none}}
+.term .cur{display:inline-block;width:7px;height:14px;background:#c8ff3d;vertical-align:-2px;margin-left:2px;animation:caret .9s steps(1) infinite}
+:root[data-theme="light"] .term .cur{background:#8fb0ff}
+
+.term pre{white-space:pre;overflow-x:auto}
+
+/* project art thumbnails */
+.p-thumb.art{background:radial-gradient(120% 120% at 20% 0%,var(--card2),var(--bg2))}
+.p-thumb.art svg{width:100%;height:100%;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+.p-card:hover .p-thumb.art svg{transform:scale(1.05)}
+.p-body .p-tag{position:static;align-self:flex-start;background:var(--bg2);color:var(--acc);margin-bottom:2px;display:inline-block}
+@keyframes settle{0%,12%{transform:translate(var(--x),var(--y))}50%,84%{transform:none}100%{transform:translate(var(--x),var(--y))}}
+.settle{animation:settle 7s ease-in-out infinite}
+@keyframes scanv{0%,100%{transform:translateY(0)}50%{transform:translateY(120px)}}
+@keyframes scanv2{0%,100%{transform:translateY(0)}50%{transform:translateY(100px)}}
+@keyframes scanv3{0%,100%{transform:translateY(0)}50%{transform:translateY(74px)}}
+@keyframes scan5{0%,100%{transform:translateX(0)}50%{transform:translateX(296px)}}
+@keyframes needle{0%,100%{transform:rotate(-62deg)}50%{transform:rotate(62deg)}}
+.needle{transform-origin:236px 128px;transform-box:view-box;animation:needle 3.4s ease-in-out infinite}
+@keyframes ecg{to{stroke-dashoffset:0}}
+.ecg{animation:ecg 2.4s linear infinite}
+
+@keyframes ecg{to{stroke-dashoffset:0}}
