@@ -36,7 +36,7 @@
     var links = SECTIONS.map(function (s) { return '<li><a href="' + base + '#' + s[0] + '" data-s="' + s[0] + '">' + s[1] + '</a></li>'; }).join('');
     $('#nav').innerHTML =
       '<div class="wrap">' +
-      '<a class="brand" href="' + (PAGE === 'home' ? '#top' : 'index.html') + '"><i></i><span>vishnu@agder:~$</span></a>' +
+      '<a class="brand" href="' + (PAGE === 'home' ? '#top' : 'index.html') + '"><i></i><span>vishnu@latent-space:~$</span></a>' +
       '<ul class="links" id="links">' + links + '<li><a href="card.html"' + (PAGE === 'card' ? ' class="active"' : '') + '>Profile</a></li></ul>' +
       '<div class="nav-right">' +
       '<a class="btn-nav ghost" href="' + docs.resume + '" target="_blank" rel="noopener" title="Open resume (PDF)">' + svgInline('doc') + '<span>Resume</span></a>' +
@@ -316,7 +316,7 @@
       s += '<path d="M64 46 v-10 h12 M128 36 h12 v10 M64 124 v10 h12 M128 134 h12 v-10" fill="none" stroke="' + A + '" stroke-width="2"/>' + pill(66, 24, 72, 'Vishnu · 98%', A);
       s += '<rect class="scan" x="14" y="22" width="176" height="2" fill="' + A + '" opacity=".7" style="animation-name:scanv"/><circle class="blink" cx="24" cy="32" r="3" fill="' + P + '"/>' + tx(34, 35, 'LIVE', { a: 'start', s: 6, f: P });
       s += win(202, 22, 106, 124, 'attendance');
-      [['Vishnu', 1], ['Asha', 1], ['Ravi', 1], ['Meena', 0], ['Karan', 0]].forEach(function (r, i) { var y = 44 + i * 20; s += '<rect x="210" y="' + y + '" width="90" height="15" rx="4" fill="' + BG + '" stroke="' + L + '"/>' + tx(218, y + 10.5, r[0], { a: 'start', s: 7, f: 'var(--text)' }) + (r[1] ? '<path ' + (i === 0 ? 'class="blink" ' : '') + 'd="M280 ' + (y + 8) + ' l4 4 l8 -9" fill="none" stroke="' + A + '" stroke-width="1.8"/>' : tx(288, y + 10.5, '–', { s: 8 })); });
+      [['Vishnu', 1], ['Student 02', 1], ['Student 03', 1], ['Student 04', 0], ['Student 05', 0]].forEach(function (r, i) { var y = 44 + i * 20; s += '<rect x="210" y="' + y + '" width="90" height="15" rx="4" fill="' + BG + '" stroke="' + L + '"/>' + tx(218, y + 10.5, r[0], { a: 'start', s: 7, f: 'var(--text)' }) + (r[1] ? '<path ' + (i === 0 ? 'class="blink" ' : '') + 'd="M280 ' + (y + 8) + ' l4 4 l8 -9" fill="none" stroke="' + A + '" stroke-width="1.8"/>' : tx(288, y + 10.5, '–', { s: 8 })); });
       s += cap('face recognition attendance · Django + OpenFace') + '</svg>';
       return s;
     },
@@ -727,7 +727,7 @@
       return '<div class="bc-row">' + svgIcon(x[0]).replace('<svg', '<svg fill="currentColor"') + '<span>' + x[1] + '</span></div>';
     }).join('');
     var card = '<div class="bcard tilt"><div class="bc-glow"></div>' +
-      '<div class="bc-main"><div class="bc-id"><img src="assets/vishnu.jpg" alt="" width="84" height="84"><div><div class="eyebrow">Profile card</div><h1>Vishnu Vardhan Addanki&nbsp;Tirumala</h1></div></div>' +
+      '<div class="bc-main"><div class="bc-id"><img src="assets/vishnu-face.jpg" alt="" width="84" height="84"><div><div class="eyebrow">Profile card</div><h1>Vishnu Vardhan Addanki&nbsp;Tirumala</h1></div></div>' +
       '<p class="bc-role">AI researcher &amp; engineer<br><span>MSc AI &amp; Data Science · University Research Assistant<br>University of Agder · Grimstad, Norway</span></p>' +
       '<div class="chips bc-chips">' + chips + '</div><div class="bc-rows">' + rows + '</div></div>' +
       '<a class="bc-qr" href="' + LI + '" target="_blank" rel="noopener" aria-label="Open LinkedIn profile"><div class="qr-tile"><img src="assets/linkedin-qr.svg" alt="QR code for linkedin.com/in/a-vishnu-vardhan" width="190" height="190"><i class="c1"></i><i class="c2"></i><i class="c3"></i><i class="c4"></i><b class="qr-scan"></b></div>' +
