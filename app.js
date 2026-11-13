@@ -727,7 +727,8 @@
       return '<div class="bc-row">' + svgIcon(x[0]).replace('<svg', '<svg fill="currentColor"') + '<span>' + x[1] + '</span></div>';
     }).join('');
     var card = '<div class="bcard tilt"><div class="bc-glow"></div>' +
-      '<div class="bc-main"><div class="bc-id"><img src="assets/vishnu-face.jpg" alt="" width="84" height="84"><div><div class="eyebrow">Profile card</div><h1>Vishnu Vardhan Addanki&nbsp;Tirumala</h1></div></div>' +
+      '<div class="bc-photo"><img src="assets/vishnu.jpg" alt="Portrait of Vishnu Vardhan Addanki Tirumala" width="640" height="640"></div>' +
+      '<div class="bc-main"><div class="bc-id"><div><div class="eyebrow">Profile card</div><h1>Vishnu Vardhan Addanki&nbsp;Tirumala</h1></div></div>' +
       '<p class="bc-role">AI researcher &amp; engineer<br><span>MSc AI &amp; Data Science · University Research Assistant<br>University of Agder · Grimstad, Norway</span></p>' +
       '<div class="chips bc-chips">' + chips + '</div><div class="bc-rows">' + rows + '</div></div>' +
       '<a class="bc-qr" href="' + LI + '" target="_blank" rel="noopener" aria-label="Open LinkedIn profile"><div class="qr-tile"><img src="assets/linkedin-qr.svg" alt="QR code for linkedin.com/in/a-vishnu-vardhan" width="190" height="190"><i class="c1"></i><i class="c2"></i><i class="c3"></i><i class="c4"></i><b class="qr-scan"></b></div>' +
