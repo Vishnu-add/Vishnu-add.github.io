@@ -38,13 +38,8 @@
       '<a class="brand" href="' + (PAGE === 'home' ? '#top' : 'index.html') + '"><i></i><span>vishnu@agder:~$</span></a>' +
       '<ul class="links" id="links">' + links + '</ul>' +
       '<div class="nav-right">' +
-      '<div class="docs" id="docs">' +
-      '<button class="btn-docs" id="docsBtn" aria-haspopup="true" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg><span class="lbl">Resume / CV</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M6 9l6 6 6-6"/></svg></button>' +
-      '<div class="docs-menu" role="menu">' +
-      '<a href="' + docs.resume + '" target="_blank" rel="noopener" role="menuitem"><div class="dm-ic">PDF</div><div><b>Resume</b><span>1-page-style industry resume (PDF)</span></div></a>' +
-      '<a href="' + docs.cv + '" role="menuitem"><div class="dm-ic">CV</div><div><b>Academic CV</b><span>Research, publications and projects (web)</span></div></a>' +
-      '<hr><a href="' + docs.cvPdf + '" download role="menuitem"><div class="dm-ic">&darr;</div><div><b>Download CV</b><span>Academic CV as PDF</span></div></a>' +
-      '</div></div>' +
+      '<a class="btn-nav ghost" href="' + docs.resume + '" target="_blank" rel="noopener" title="Open resume (PDF)">' + svgInline('doc') + '<span>Resume</span></a>' +
+      '<a class="btn-nav" href="' + docs.cv + '" title="Open academic CV">' + svgInline('doc') + '<span>CV</span></a>' +
       '<button class="icon-btn" id="theme" aria-label="Toggle light / dark theme"><svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M6.3 17.7l-1.4 1.4M19.1 4.9l-1.4 1.4"/></svg><svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/></svg></button>' +
       '<button class="icon-btn menu-toggle" id="menu" aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>' +
       '</div></div>';
@@ -57,10 +52,6 @@
     };
     $('#menu').onclick = function () { $('#links').classList.toggle('open'); };
     $('#links').onclick = function (e) { if (e.target.tagName === 'A') $('#links').classList.remove('open'); };
-    var dw = $('#docs');
-    $('#docsBtn').onclick = function (e) { e.stopPropagation(); var o = dw.classList.toggle('open'); this.setAttribute('aria-expanded', o); };
-    document.addEventListener('click', function (e) { if (!dw.contains(e.target)) dw.classList.remove('open'); });
-    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') dw.classList.remove('open'); });
   }
 
   /* ------------------------------------------------- animated thumbnails */
@@ -228,15 +219,16 @@
     var about = '<section id="about"><div class="wrap about-grid"><div class="rv">' +
       D.about.paragraphs.map(function (p) { return '<p>' + p + '</p>'; }).join('') + '</div>' +
       '<div class="term rv"><div class="term-bar"><i></i><i></i><i></i><span>research_status.py</span></div><pre>' +
-      '<span class="c"># where my work is right now</span>\n' +
-      '<span class="k">status</span> = {\n' +
-      '  <span class="s">"thesis"</span>:     <span class="n">"LoRA × video-language models"</span>,\n' +
-      '  <span class="s">"cvpr_2027"</span>:  <span class="n">"communicated"</span>,\n' +
-      '  <span class="s">"ieee_tai"</span>:   <span class="n">"communicated"</span>,\n' +
-      '  <span class="s">"jag"</span>:        <span class="n">"communicated"</span>,\n' +
-      '  <span class="s">"ieee_iot"</span>:   <span class="n">"planning"</span>,\n' +
-      '  <span class="s">"istm_2026"</span>:  <span class="n">"accepted"</span>,\n' +
-      '}\n\n<span class="k">while</span> research:\n    build()\n    <span class="k">ask</span>(<span class="n">"why does it fail?"</span>)</pre></div></div></section>';
+      '<span class="k">from</span> dataclasses <span class="k">import</span> dataclass\n\n' +
+      '@dataclass\n<span class="k">class</span> <span class="s">Paper</span>:\n    venue: str\n    status: str\n    topic: str\n\n' +
+      'papers = [\n' +
+      '    Paper(<span class="n">"ISTM 2026"</span>,  <span class="n">"accepted"</span>,     <span class="n">"Tsetlin clauses"</span>),\n' +
+      '    Paper(<span class="n">"CVPR 2027"</span>,  <span class="n">"communicated"</span>, <span class="n">"LoRA x VLMs (thesis)"</span>),\n' +
+      '    Paper(<span class="n">"IEEE TAI"</span>,   <span class="n">"communicated"</span>, <span class="n">"distributed ML"</span>),\n' +
+      '    Paper(<span class="n">"JAG"</span>,        <span class="n">"communicated"</span>, <span class="n">"edge segmentation"</span>),\n' +
+      '    Paper(<span class="n">"IEEE IoT"</span>,   <span class="n">"planned"</span>,      <span class="n">"humanoid terrain"</span>),\n' +
+      ']\n\n' +
+      '<span class="k">for</span> p <span class="k">in</span> papers:\n    print(<span class="n">f"{p.venue:&lt;10} {p.status}"</span>)</pre></div></div></section>';
 
     var research = '<section id="research"><div class="wrap">' +
       '<div class="sec-head rv"><span class="idx">01</span><div class="eyebrow">research</div></div><h2 class="rv">What I\'m working on</h2><p class="lede rv" style="margin-top:14px">' + r.intro + '</p>' +

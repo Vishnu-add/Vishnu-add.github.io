@@ -29,15 +29,15 @@
  "hero": {
   "eyebrow": "MSc AI & Data Science · University of Agder, Norway",
   "name": "Vishnu Vardhan Addanki Tirumala",
-  "typePrefix": "I build AI systems, then work out why they",
+  "typePrefix": "I build AI that",
   "typeWords": [
-   "fail",
-   "generalize",
-   "break across domains",
-   "stay interpretable",
-   "run on the edge"
+   "sees and understands",
+   "reasons and acts",
+   "explains itself",
+   "runs on the edge",
+   "ships to production"
   ],
-  "sub": "Master's researcher and University Research Assistant working on interpretability and robustness in vision-language models and Tsetlin Machines, plus lightweight edge perception and agentic systems. Before research: two years shipping LLM agents, ML models and RAG pipelines in production.",
+  "sub": "AI researcher and engineer building systems that perceive, reason and act: vision-language models, interpretable learning, edge perception and agents. Backed by two years of shipping LLM agents, ML models and RAG pipelines in production.",
   "stats": [
    {
     "value": 1,
@@ -89,12 +89,12 @@
  },
  "about": {
   "paragraphs": [
-   "I build AI systems, then try to figure out why they fail. Two years in production ML, shipping LLM agents, ML models and RAG pipelines at scale, showed me how often “it works” and “I know why it works” pull apart.",
-   "I'm now a Master's researcher (IIITDM &amp; University of Agder, Grimstad) and a University Research Assistant. My work asks where models stop generalizing, how to keep learned models interpretable when training is distributed, and how small a perception model can get while still working across sensors, with a continued interest in agentic systems."
+   "I build AI that perceives, reasons and acts, and I like taking an idea all the way from a research question to something that runs for real users or on real hardware.",
+   "I'm a Master's researcher (IIITDM &amp; University of Agder, Grimstad) and University Research Assistant. My research spans vision-language models, interpretable and distributed learning, lightweight edge perception for sensors and robots, and agentic systems. Before that, two years in production ML (LLM agents, voice agents, RAG pipelines and classifiers at scale) taught me what it takes to make these systems work outside the lab."
   ]
  },
  "research": {
-  "intro": "Five active threads: from why LoRA falls short on video-language models, to edge perception on humanoid robots. Status badges show where each one is in the publication pipeline.",
+  "intro": "Five active threads across multimodal learning, interpretable ML, edge perception and agentic systems. Badges show where each one is in the publication pipeline.",
   "orcidUrl": "https://orcid.org/0009-0003-4496-0054",
   "items": [
    {
