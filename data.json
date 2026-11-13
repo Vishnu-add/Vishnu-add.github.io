@@ -27,7 +27,7 @@
   }
  },
  "hero": {
-  "eyebrow": "MSc AI & Data Science · University of Agder, Norway",
+  "eyebrow": "Masters in AI & Data Science · Exchange at University of Agder (UiA), Norway",
   "name": "Vishnu Vardhan Addanki Tirumala",
   "typePrefix": "I build AI that",
   "typeWords": [
@@ -90,7 +90,7 @@
  "about": {
   "paragraphs": [
    "I build AI that perceives, reasons and acts, and I like taking an idea all the way from a research question to something that runs for real users or on real hardware.",
-   "I'm a Master's researcher (IIITDM &amp; University of Agder, Grimstad) and University Research Assistant. My research spans vision-language models, interpretable and distributed learning, lightweight edge perception for sensors and robots, and agentic systems. Before that, two years in production ML (LLM agents, voice agents, RAG pipelines and classifiers at scale) taught me what it takes to make these systems work outside the lab."
+   "I'm a Masters student in AI &amp; Data Science (IIITDM) on exchange at the University of Agder (UiA), Grimstad, and a University Research Assistant. My research spans vision-language models, interpretable and distributed learning, lightweight edge perception for sensors and robots, and agentic systems. Before that, two years in production ML (LLM agents, voice agents, RAG pipelines and classifiers at scale) taught me what it takes to make these systems work outside the lab."
   ]
  },
  "research": {
@@ -955,11 +955,11 @@
   "education": [
    {
     "date": "AUG 2025 , PRESENT",
-    "role": "MTech in Artificial Intelligence &amp; Data Science",
-    "org": "IIITDM &amp; University of Agder · Grimstad, Norway",
+    "role": "Masters in Artificial Intelligence &amp; Data Science",
+    "org": "IIITDM · Exchange at University of Agder (UiA), Grimstad, Norway",
     "logo": "IU",
     "bullets": [
-     "Joint programme between the Indian Institute of Information Technology, Design and Manufacturing and the University of Agder."
+     "Joint programme between the Indian Institute of Information Technology, Design and Manufacturing (IIITDM) and the University of Agder; studying at UiA on exchange."
     ]
    },
    {

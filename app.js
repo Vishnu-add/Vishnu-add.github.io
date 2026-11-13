@@ -36,7 +36,7 @@
     var links = SECTIONS.map(function (s) { return '<li><a href="' + base + '#' + s[0] + '" data-s="' + s[0] + '">' + s[1] + '</a></li>'; }).join('');
     $('#nav').innerHTML =
       '<div class="wrap">' +
-      '<a class="brand" href="' + (PAGE === 'home' ? '#top' : 'index.html') + '"><i></i><span>vishnu@latent-space:~$</span></a>' +
+      '<a class="brand" href="' + (PAGE === 'home' ? '#top' : 'index.html') + '"><i></i><span>vishnu@ai:~$</span></a>' +
       '<ul class="links" id="links">' + links + '<li><a href="card.html"' + (PAGE === 'card' ? ' class="active"' : '') + '>Profile</a></li></ul>' +
       '<div class="nav-right">' +
       '<a class="btn-nav ghost" href="' + docs.resume + '" target="_blank" rel="noopener" title="Open resume (PDF)">' + svgInline('doc') + '<span>Resume</span></a>' +
@@ -442,47 +442,21 @@
 
   /* research.py panel: real code about my research, syntax-highlighted and revealed line by line */
   var RESEARCH_PY = [
-    '"""research.py: the questions behind my work.',
-    'Does it generalize? Can I explain it? Does it fit on the edge?"""',
-    'import torch, torch.nn as nn',
-    'from collections import Counter',
+    'class Vishnu:',
+    '    thesis   = "LoRA x video-language"  # CVPR 2027',
+    '    explains = ["Tsetlin clauses", "distributed learners"]',
+    '    runs_on  = ["edge", "humanoid robots"]',
+    '    builds   = ["LLM agents", "RAG"]',
     '',
-    'class LoRA(nn.Module):  # MSc thesis -> CVPR 2027',
-    '    """Frozen W plus a trainable low-rank update B @ A."""',
-    '    def __init__(self, W: nn.Linear, r=8):',
-    '        super().__init__()',
-    '        self.W = W.requires_grad_(False)',
-    '        self.A = nn.Parameter(torch.randn(r, W.in_features) * 0.01)',
-    '        self.B = nn.Parameter(torch.zeros(W.out_features, r))',
-    '',
-    '    def forward(self, x):',
-    '        return self.W(x) + x @ self.A.T @ self.B.T',
-    '',
-    'def where_does_it_move(lora, video, text):',
-    '    """Which modality does the adapter really change?"""',
-    '    shift = lambda t: (lora(t) - lora.W(t)).norm(dim=-1).mean()',
-    '    return {"video": shift(video), "text": shift(text)}',
-    '',
-    'def sanitize(clauses, votes, eps=1e-3):  # ISTM 2026 (accepted)',
-    '    return [c for c, v in zip(clauses, votes) if abs(v) > eps]',
-    '',
-    'def decide(learners, x):  # IEEE TAI',
-    '    ballot = Counter(m.predict(x) for m in learners)',
-    '    return ballot.most_common(1)[0][0]',
-    '',
-    'def segment(net, frame, sensor):  # JAG: RGB | thermal | NIR',
-    '    return net(frame[sensor]).argmax(1)  # background, fire, smoke',
-    '',
-    'def terrain(model, imu):  # IEEE IoT (planned)',
-    '    return ["tile", "gravel", "grass"][model(imu).argmax()]',
-    '',
-    'def build(agent, task, human):  # agentic mechatronics',
-    '    return human.approve(agent.act(agent.plan(task)))'
+    '    def research(self, idea):',
+    '        while not idea.explained():',
+    '            idea = idea.probe().prune()',
+    '        return idea.fit(self.runs_on).ship()'
   ].join('\n');
 
   function researchCode() {
     var esc = RESEARCH_PY.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-    var re = /(#.*$)|("""[\s\S]*?"""|"[^"\n]*")|\b(def|class)(\s+)(\w+)|\b(import|from|return|for|in|if|lambda|self)\b|\b(\d+(?:\.\d+)?(?:e-?\d+)?)\b/gm;
+    var re = /(#.*$)|("""[\s\S]*?"""|"[^"\n]*")|\b(def|class)(\s+)(\w+)|\b(import|from|return|for|in|if|lambda|self|while|not)\b|\b(\d+(?:\.\d+)?(?:e-?\d+)?)\b/gm;
     var out = esc.replace(re, function (m, cm, st, kw0, sp, nm, kw, num) {
       if (cm) return '<span class="c">' + cm + '</span>';
       if (st) return '<span class="n">' + st + '</span>';
@@ -690,7 +664,7 @@
     var work = exp.map(function (e) {
       return row(clean(e.date), '<b>' + e.role + '</b>, ' + e.org + '<ul>' + e.bullets.map(function (b) { return '<li>' + clean(b) + '</li>'; }).join('') + '</ul>');
     }).join('');
-    var edu = D.credentials.education.map(function (e) { return row(clean(e.date), '<b>' + e.role + '</b><div class="cv-sub">' + e.org + '</div>' + (e.role.indexOf('MTech') === 0 ? '<div>Research track: vision-language models, interpretable ML and edge perception.</div>' : '')); }).join('');
+    var edu = D.credentials.education.map(function (e) { return row(clean(e.date), '<b>' + e.role + '</b><div class="cv-sub">' + e.org + '</div>' + (e.role.indexOf('Masters') === 0 ? '<div>Research track: vision-language models, interpretable ML and edge perception.</div>' : '')); }).join('');
     var pick = ['agentic-codesign', 'deep-research-agent', 'ai-video-generator', 'sight-sphere', 'edubot', 'medintelbot', 'face-recognition'];
     var projs = pick.map(function (id) { var p = D.projects.items.filter(function (x) { return x.id === id; })[0]; if (!p) return ''; var t = splitTitle(p.title); return '<li><b>' + t.name + '</b> — ' + clean(p.desc.replace(/^[^\w<]+/u, '')) + '</li>'; }).join('');
     var skills = D.skills.groups.map(function (g) { return '<div><b>' + g.category + ':</b> ' + g.items.join(', ') + '</div>'; }).join('');
@@ -701,7 +675,7 @@
     $('#app').innerHTML =
       '<div class="cv-bar no-print"><a class="back" href="index.html">← Back to site</a><div><a class="btn" href="' + docs.resume + '" target="_blank" rel="noopener">Resume (PDF)</a> <a class="btn" href="' + docs.cvPdf + '" download>Download CV (PDF)</a> <button class="btn primary" onclick="window.print()">Print</button></div></div>' +
       '<article class="cv">' +
-      '<header class="cv-head"><div><h1>Vishnu Vardhan Addanki Tirumala</h1><div class="cv-tag">Curriculum Vitae · MSc Artificial Intelligence &amp; Data Science · University Research Assistant</div></div>' +
+      '<header class="cv-head"><div><h1>Vishnu Vardhan Addanki Tirumala</h1><div class="cv-tag">Curriculum Vitae · Masters in Artificial Intelligence &amp; Data Science (exchange at UiA) · University Research Assistant</div></div>' +
       '<div class="cv-contact"><div>Grimstad, Norway</div><div>' + D.contact.email + '</div><div>' + link('https://vishnu-add.github.io/') + '</div><div>github.com/Vishnu-add</div><div>orcid.org/0009-0003-4496-0054</div><div>linkedin.com/in/a-vishnu-vardhan</div></div></header>' +
       sec('Research interests', '<p>Interpretability and robustness of vision-language models; multimodal learning and parameter-efficient fine-tuning (LoRA); interpretable and distributed learning (Tsetlin Machines); lightweight, sensor-agnostic perception for edge and robotic platforms; agentic AI systems.</p>') +
       sec('Education', edu) +
@@ -729,7 +703,7 @@
     var card = '<div class="bcard tilt"><div class="bc-glow"></div>' +
       '<div class="bc-photo"><img src="assets/vishnu.jpg" alt="Portrait of Vishnu Vardhan Addanki Tirumala" width="640" height="640"></div>' +
       '<div class="bc-main"><div class="bc-id"><div><div class="eyebrow">Profile card</div><h1>Vishnu Vardhan Addanki&nbsp;Tirumala</h1></div></div>' +
-      '<p class="bc-role">AI researcher &amp; engineer<br><span>MSc AI &amp; Data Science · University Research Assistant<br>University of Agder · Grimstad, Norway</span></p>' +
+      '<p class="bc-role">AI researcher &amp; engineer<br><span>Masters in AI &amp; Data Science · University Research Assistant<br>Exchange at University of Agder (UiA) · Grimstad, Norway</span></p>' +
       '<div class="chips bc-chips">' + chips + '</div><div class="bc-rows">' + rows + '</div></div>' +
       '<a class="bc-qr" href="' + LI + '" target="_blank" rel="noopener" aria-label="Open LinkedIn profile"><div class="qr-tile"><img src="assets/linkedin-qr.svg" alt="QR code for linkedin.com/in/a-vishnu-vardhan" width="190" height="190"><i class="c1"></i><i class="c2"></i><i class="c3"></i><i class="c4"></i><b class="qr-scan"></b></div>' +
       '<span>Scan to connect on <strong>LinkedIn</strong></span></a></div>';
