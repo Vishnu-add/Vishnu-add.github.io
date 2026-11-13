@@ -14,6 +14,7 @@
     linkedin: '<path d="M6.94 5a1.94 1.94 0 1 1-3.88 0 1.94 1.94 0 0 1 3.88 0zM3.32 8.5h3.24V21H3.32V8.5zm6.02 0h3.11v1.71h.04c.43-.82 1.5-1.69 3.08-1.69 3.29 0 3.9 2.17 3.9 4.99V21h-3.24v-5.83c0-1.39-.02-3.18-1.94-3.18-1.94 0-2.24 1.51-2.24 3.08V21H9.34V8.5z"/>',
     orcid: '<path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zM7.369 4.378c.525 0 .947.431.947.947 0 .525-.422.947-.947.947a.95.95 0 0 1-.947-.947c0-.516.422-.947.947-.947zm-.722 3.038h1.444v10.041H6.647V7.416zm3.562 0h3.9c3.712 0 5.343 2.653 5.343 5.025 0 2.578-2.016 5.025-5.325 5.025h-3.918V7.416zm1.444 1.303v7.444h2.297c3.272 0 4.022-2.484 4.022-3.722 0-2.016-1.284-3.722-4.097-3.722h-2.222z"/>',
     twitter: '<path d="M22 5.9c-.74.33-1.53.55-2.36.65a4.14 4.14 0 0 0 1.81-2.28 8.24 8.24 0 0 1-2.61 1c-.75-.8-1.82-1.3-3-1.3-2.27 0-4.11 1.84-4.11 4.11 0 .32.04.64.11.94A11.65 11.65 0 0 1 3.4 4.6a4.1 4.1 0 0 0 1.27 5.48c-.67-.02-1.3-.2-1.85-.51v.05c0 1.99 1.42 3.65 3.3 4.03-.35.1-.71.15-1.09.15-.27 0-.52-.03-.78-.07a4.12 4.12 0 0 0 3.84 2.86A8.3 8.3 0 0 1 2 18.58a11.62 11.62 0 0 0 6.29 1.84c7.55 0 11.68-6.26 11.68-11.68 0-.18 0-.35-.01-.53A8.35 8.35 0 0 0 22 5.9z"/>',
+    link: '<path d="M10.6 13.4a1 1 0 0 1 0-1.4l3-3a3 3 0 0 1 4.2 4.2l-1.5 1.5-1.4-1.4 1.5-1.5a1 1 0 0 0-1.4-1.4l-3 3a1 1 0 0 1-1.4 0zM13.4 10.6a1 1 0 0 1 0 1.4l-3 3a3 3 0 0 1-4.2-4.2l1.5-1.5 1.4 1.4-1.5 1.5a1 1 0 0 0 1.4 1.4l3-3a1 1 0 0 1 1.4 0z"/>',
     mail: '<path d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm1.5 2v.5L12 13l7.5-5.5V7h-15z"/>'
   };
   var svgIcon = function (k) { return '<svg viewBox="0 0 24 24" aria-hidden="true">' + (ICON[k] || ICON.mail) + '</svg>'; };
@@ -36,7 +37,7 @@
     $('#nav').innerHTML =
       '<div class="wrap">' +
       '<a class="brand" href="' + (PAGE === 'home' ? '#top' : 'index.html') + '"><i></i><span>vishnu@agder:~$</span></a>' +
-      '<ul class="links" id="links">' + links + '</ul>' +
+      '<ul class="links" id="links">' + links + '<li><a href="card.html"' + (PAGE === 'card' ? ' class="active"' : '') + '>Profile</a></li></ul>' +
       '<div class="nav-right">' +
       '<a class="btn-nav ghost" href="' + docs.resume + '" target="_blank" rel="noopener" title="Open resume (PDF)">' + svgInline('doc') + '<span>Resume</span></a>' +
       '<a class="btn-nav" href="' + docs.cv + '" title="Open academic CV">' + svgInline('doc') + '<span>CV</span></a>' +
@@ -56,115 +57,167 @@
 
   /* ------------------------------------------------- animated thumbnails */
   var A = 'var(--acc)', S = 'var(--sig)', W = 'var(--warn)', P = 'var(--pink)', L = 'var(--line2)', C2 = 'var(--card2)', F = 'var(--faint)';
+  var BG = 'var(--bg2)';
+  var SV = 'viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" aria-hidden="true"';
+  var tx = function (x, y, t, o) { o = o || {}; return '<text x="' + x + '" y="' + y + '" text-anchor="' + (o.a || 'middle') + '" font-family="monospace" font-size="' + (o.s || 7.5) + '" fill="' + (o.f || F) + '"' + (o.x || '') + '>' + t + '</text>'; };
   var THUMBS = {
+    /* Master's thesis: video + text -> VLM with a LoRA adapter (frozen W, trainable low-rank B·A) */
     vlm: function () {
-      var toks = ['the', 'chef', 'pours', 'tea', '?'];
-      var s = '<svg viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><linearGradient id="vg" x1="0" x2="1"><stop offset="0" stop-color="' + S + '"/><stop offset="1" stop-color="' + A + '"/></linearGradient></defs>';
-      // frames
-      [0, 1, 2].forEach(function (i) {
-        var y = 28 + i * 40;
-        s += '<rect x="16" y="' + y + '" width="58" height="32" rx="5" fill="' + C2 + '" stroke="' + L + '"/>' +
-          '<circle cx="' + (30 + i * 9) + '" cy="' + (y + 16) + '" r="6" fill="url(#vg)" opacity=".85"/><rect x="' + (46 + i * 2) + '" y="' + (y + 11) + '" width="20" height="4" rx="2" fill="' + F + '"/><rect x="' + (46 + i * 2) + '" y="' + (y + 19) + '" width="13" height="4" rx="2" fill="' + F + '"/>';
+      var s = '<svg ' + SV + '><defs><linearGradient id="vg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="' + S + '"/><stop offset="1" stop-color="' + A + '"/></linearGradient></defs>';
+      // video deck
+      [2, 1, 0].forEach(function (i) {
+        s += '<rect x="' + (10 + i * 5) + '" y="' + (18 + i * 6) + '" width="50" height="32" rx="4" fill="' + C2 + '" stroke="' + S + '" stroke-width="1.2"/>';
       });
-      // tokens + attention
-      toks.forEach(function (t, j) {
-        var y = 22 + j * 28;
-        s += '<rect x="254" y="' + y + '" width="52" height="18" rx="9" fill="' + C2 + '" stroke="' + L + '"/><text x="280" y="' + (y + 12.5) + '" text-anchor="middle" font-family="monospace" font-size="9" fill="' + F + '">' + t + '</text>';
-      });
-      [[44, 31], [44, 87], [84, 59], [84, 115], [124, 31], [124, 143]].forEach(function (p, k) {
-        var y1 = 44 + (k % 3) * 40, y2 = 31 + [0, 2, 1, 3, 4, 3][k] * 28;
-        s += '<path class="fl" d="M74 ' + y1 + ' C 150 ' + y1 + ' 180 ' + y2 + ' 254 ' + y2 + '" fill="none" stroke="' + (k % 2 ? S : A) + '" stroke-width="1.3" opacity=".6" style="animation-duration:' + (0.9 + k * .17) + 's"/>';
-      });
-      // LoRA blocks
-      s += '<g class="bob"><rect x="116" y="58" width="50" height="50" rx="6" fill="' + C2 + '" stroke="' + L + '"/><text x="141" y="89" text-anchor="middle" font-family="serif" font-style="italic" font-size="22" fill="' + F + '">W</text>' +
-        '<text x="176" y="89" text-anchor="middle" font-family="monospace" font-size="16" fill="' + A + '">+</text>' +
-        '<rect class="blink" x="190" y="58" width="12" height="50" rx="3" fill="' + A + '"/><rect class="blink" x="190" y="112" width="50" height="12" rx="3" fill="' + S + '" style="animation-delay:-.8s"/>' +
-        '<text x="196" y="52" font-family="monospace" font-size="8" fill="' + A + '">B</text><text x="236" y="136" font-family="monospace" font-size="8" fill="' + S + '">A</text></g>' +
-        '<text x="160" y="164" text-anchor="middle" font-family="monospace" font-size="9" fill="' + F + '">ΔW = B·A   (rank r ≪ d)</text></svg>';
+      s += '<circle cx="28" cy="38" r="8" fill="url(#vg1)" opacity=".9"/><path d="M26 34 L33 38 L26 42Z" fill="' + BG + '"/><rect x="40" y="31" width="16" height="3" rx="1.5" fill="' + F + '"/><rect x="40" y="38" width="11" height="3" rx="1.5" fill="' + F + '"/>';
+      s += tx(34, 68, 'video frames', { f: S });
+      // text prompt
+      s += '<rect x="10" y="112" width="58" height="32" rx="7" fill="' + C2 + '" stroke="' + A + '" stroke-width="1.2"/><rect x="17" y="119" width="44" height="3" rx="1.5" fill="' + F + '"/><rect x="17" y="126" width="34" height="3" rx="1.5" fill="' + F + '"/><rect x="17" y="133" width="40" height="3" rx="1.5" fill="' + F + '"/>';
+      s += tx(39, 158, 'text prompt', { f: A });
+      // flows into the model
+      s += '<path class="fl" d="M64 40 C 86 40 90 64 106 68" fill="none" stroke="' + S + '" stroke-width="1.5"/><path class="fl" d="M70 128 C 88 128 90 112 106 108" fill="none" stroke="' + A + '" stroke-width="1.5"/>';
+      s += '<rect width="5" height="5" rx="1" fill="' + S + '"><animateMotion dur="2.1s" repeatCount="indefinite" path="M64 40 C 86 40 90 64 106 68"/></rect><rect width="5" height="5" rx="1" fill="' + S + '"><animateMotion dur="2.1s" begin="-1s" repeatCount="indefinite" path="M64 40 C 86 40 90 64 106 68"/></rect>';
+      s += '<rect width="5" height="5" rx="1" fill="' + A + '"><animateMotion dur="2.1s" begin="-.5s" repeatCount="indefinite" path="M70 128 C 88 128 90 112 106 108"/></rect><rect width="5" height="5" rx="1" fill="' + A + '"><animateMotion dur="2.1s" begin="-1.5s" repeatCount="indefinite" path="M70 128 C 88 128 90 112 106 108"/></rect>';
+      // model box
+      s += '<rect x="104" y="12" width="112" height="156" rx="10" fill="' + C2 + '" stroke="' + L + '"/>' + tx(160, 26, 'VLM  ·  one layer', { f: F, s: 7 });
+      s += '<circle cx="160" cy="40" r="3" fill="' + F + '"/><path d="M160 43 L134 56 M160 43 L186 56" stroke="' + F + '" fill="none"/>';
+      // frozen W
+      s += '<rect x="118" y="56" width="32" height="64" rx="4" fill="' + BG + '" stroke="' + L + '" stroke-width="1.4"/>' +
+        '<rect x="130" y="64" width="8" height="6" rx="1" fill="' + F + '"/><path d="M131.5 64 v-2 a2.5 2.5 0 0 1 5 0 v2" stroke="' + F + '" fill="none"/>' +
+        '<text x="134" y="98" text-anchor="middle" font-family="serif" font-style="italic" font-size="20" fill="' + F + '">W</text>' + tx(134, 112, 'frozen', { s: 6.5 });
+      // LoRA branch
+      s += '<g class="blink"><rect x="170" y="56" width="32" height="16" rx="3" fill="none" stroke="' + A + '" stroke-width="1.6"/><rect x="170" y="104" width="32" height="16" rx="3" fill="none" stroke="' + A + '" stroke-width="1.6"/></g>' +
+        tx(186, 67.5, 'A', { f: A, s: 9 }) + tx(186, 115.5, 'B', { f: A, s: 9 }) +
+        '<rect x="183" y="74" width="6" height="28" rx="3" fill="' + A + '" opacity=".55"/>' + tx(198, 91, 'r', { f: A, s: 8, a: 'start' }) + tx(186, 129, 'trained', { f: A, s: 6.5 });
+      // sum
+      s += '<path d="M134 120 L154 138 M186 120 L166 138" stroke="' + F + '" fill="none"/><circle cx="160" cy="141" r="7" fill="' + BG + '" stroke="' + A + '"/>' + tx(160, 144.5, '+', { f: A, s: 10 }) + tx(160, 160, 'h = Wx + B·A·x', { s: 7 });
+      // output
+      s += '<path class="fl" d="M216 90 H 234" stroke="' + A + '" stroke-width="2"/><rect x="234" y="52" width="76" height="76" rx="8" fill="' + C2 + '" stroke="' + A + '"/>' +
+        tx(272, 74, 'a chef pours', { s: 7.5, f: 'var(--text)' }) + tx(272, 87, 'tea into a cup', { s: 7.5, f: 'var(--text)' }) +
+        '<rect class="blink" x="256" y="96" width="32" height="3" rx="1.5" fill="' + A + '"/>' + tx(272, 142, 'text answer', { f: A }) + '</svg>';
       return s;
     },
+    /* distributed learners vs. one big centralized model trained on the complete data */
     dist: function () {
-      var s = '<svg viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" aria-hidden="true">';
-      var ys = [28, 59, 90, 121, 152];
-      ys.forEach(function (y, i) {
-        s += '<path class="fl" d="M52 ' + y + ' C 110 ' + y + ' 110 90 150 90" fill="none" stroke="' + (i % 2 ? S : A) + '" stroke-width="1.4" opacity=".65" style="animation-duration:' + (.8 + i * .2) + 's"/>' +
-          '<circle cx="38" cy="' + y + '" r="13" fill="' + C2 + '" stroke="' + (i % 2 ? S : A) + '"/>' +
-          '<text x="38" y="' + (y + 3.5) + '" text-anchor="middle" font-family="monospace" font-size="9" fill="' + F + '">θ' + (i + 1) + '</text>';
+      var s = '<svg ' + SV + '>';
+      // centralized row
+      [0, 1, 2].forEach(function (i) { s += '<rect x="12" y="' + (24 + i * 10) + '" width="36" height="8" rx="3" fill="' + C2 + '" stroke="' + F + '"/>'; });
+      s += tx(30, 66, 'complete data', { s: 6.5 }) + '<path class="fl" d="M50 40 H 82" stroke="' + W + '" stroke-width="1.8"/>';
+      s += '<rect x="82" y="16" width="86" height="56" rx="8" fill="' + C2 + '" stroke="' + W + '" stroke-width="1.5"/>';
+      var cols = [98, 125, 152], ys = [[28, 44, 60], [24, 38, 52, 66], [28, 44, 60]];
+      cols.forEach(function (x, ci) { if (ci < 2) ys[ci].forEach(function (y1) { ys[ci + 1].forEach(function (y2) { s += '<path d="M' + x + ' ' + y1 + ' L' + cols[ci + 1] + ' ' + y2 + '" stroke="' + F + '" stroke-width=".5" opacity=".6"/>'; }); }); });
+      cols.forEach(function (x, ci) { ys[ci].forEach(function (y) { s += '<circle class="blink" cx="' + x + '" cy="' + y + '" r="3.2" fill="' + W + '" style="animation-delay:-' + ((x + y) % 7) * .3 + 's"/>'; }); });
+      s += tx(125, 84, 'big centralized model', { f: W, s: 6.5 });
+      // distributed row
+      [[24, A], [44, S], [64, A]].forEach(function (p, i) {
+        var y = 106 + i * 24;
+        s += '<circle cx="24" cy="' + y + '" r="9" fill="' + C2 + '" stroke="' + p[1] + '"/>' + tx(24, y + 3, 'θ' + (i + 1), { s: 7 }) + '<path class="fl" d="M33 ' + y + ' C 56 ' + y + ' 56 130 78 130" fill="none" stroke="' + p[1] + '" stroke-width="1.3" style="animation-duration:' + (.9 + i * .2) + 's"/>';
       });
-      s += '<circle class="spin" cx="170" cy="90" r="27" fill="none" stroke="' + A + '" stroke-width="1.5" stroke-dasharray="4 6"/>' +
-        '<circle cx="170" cy="90" r="19" fill="' + C2 + '" stroke="' + A + '"/><text x="170" y="94" text-anchor="middle" font-family="monospace" font-size="10" fill="' + A + '">⊕</text>' +
-        '<path class="fl" d="M197 90 L 246 90" stroke="' + A + '" stroke-width="2"/>' +
-        '<rect x="246" y="66" width="62" height="48" rx="8" fill="' + C2 + '" stroke="' + A + '"/>' +
-        '<text x="277" y="86" text-anchor="middle" font-family="monospace" font-size="8.5" fill="' + F + '">trustworthy</text><text x="277" y="98" text-anchor="middle" font-family="monospace" font-size="8.5" fill="' + F + '">decision</text>' +
-        '<path class="blink" d="M265 106 l5 5 10-11" fill="none" stroke="' + A + '" stroke-width="2.2"/>' +
-        '<text x="160" y="172" text-anchor="middle" font-family="monospace" font-size="8.5" fill="' + F + '">distributed learners → one explainable model</text></svg>';
+      s += tx(24, 88, 'partitions', { s: 6.5 }) + '<circle class="spin" cx="88" cy="130" r="11" fill="none" stroke="' + A + '" stroke-dasharray="3 4"/><circle cx="88" cy="130" r="7" fill="' + BG + '" stroke="' + A + '"/>' + tx(88, 133.5, '⊕', { f: A, s: 9 });
+      s += '<path class="fl" d="M99 130 H 118" stroke="' + A + '" stroke-width="1.6"/><rect x="118" y="106" width="50" height="48" rx="8" fill="' + C2 + '" stroke="' + A + '" stroke-width="1.5"/>';
+      [0, 1, 2].forEach(function (i) { s += '<rect x="126" y="' + (115 + i * 11) + '" width="' + [30, 22, 26][i] + '" height="5" rx="2.5" fill="' + A + '" opacity=".75"/>'; });
+      s += tx(143, 166, 'combined learners', { f: A, s: 6.5 });
+      // compare
+      s += '<rect x="196" y="20" width="116" height="140" rx="10" fill="' + C2 + '" stroke="' + L + '"/>' + tx(254, 35, 'compare', { s: 7.5, f: 'var(--text)' });
+      s += '<path class="fl" d="M168 44 H 196" stroke="' + W + '" stroke-width="1.6"/><path class="fl" d="M168 130 H 196" stroke="' + A + '" stroke-width="1.6"/>';
+      s += tx(204, 52, 'centralized', { a: 'start', s: 6.5 }) + '<rect x="204" y="56" width="98" height="8" rx="4" fill="' + BG + '"/><rect x="204" y="56" width="90" height="8" rx="4" fill="' + W + '"/>';
+      s += tx(204, 124, 'distributed', { a: 'start', s: 6.5 }) + '<rect x="204" y="128" width="98" height="8" rx="4" fill="' + BG + '"/><rect x="204" y="128" width="88" height="8" rx="4" fill="' + A + '"/>';
+      s += tx(254, 100, '≈', { s: 22, f: 'var(--text)' }) + tx(254, 112, 'same accuracy', { s: 6.5 }) + tx(254, 148, 'same explanations', { s: 6.5, f: A, x: ' class="blink"' }) + '</svg>';
       return s;
     },
+    /* one lightweight net, switching between RGB / thermal / NIR, for wildfire + smoke segmentation */
     seg: function () {
-      var s = '<svg viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs>' +
-        '<linearGradient id="sg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3a7d44"/><stop offset="1" stop-color="#1e4a2a"/></linearGradient>' +
-        '<linearGradient id="sg2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2b1055"/><stop offset=".6" stop-color="#d4406a"/><stop offset="1" stop-color="#ffb454"/></linearGradient>' +
-        '<linearGradient id="sg3" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#555"/><stop offset="1" stop-color="#ddd"/></linearGradient></defs>';
-      [['sg1', 'RGB'], ['sg2', 'THERMAL'], ['sg3', 'NIR']].forEach(function (t, i) {
-        var y = 20 + i * 52;
-        s += '<rect x="16" y="' + y + '" width="64" height="42" rx="5" fill="url(#' + t[0] + ')" stroke="' + L + '"/>' +
-          '<ellipse cx="' + (44 + i * 3) + '" cy="' + (y + 24) + '" rx="12" ry="8" fill="' + (i == 1 ? '#fff2a0' : i == 2 ? '#fff' : '#e0612b') + '" opacity=".85" class="blink" style="animation-delay:-' + i * .7 + 's"/>' +
-          '<text x="22" y="' + (y + 11) + '" font-family="monospace" font-size="7.5" fill="#fff" opacity=".9">' + t[1] + '</text>' +
-          '<path class="fl" d="M80 ' + (y + 21) + ' C 105 ' + (y + 21) + ' 110 90 130 90" fill="none" stroke="' + A + '" stroke-width="1.3" opacity=".7"/>';
+      var s = '<svg ' + SV + '><defs>' +
+        '<linearGradient id="sg1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5b7c91"/><stop offset=".55" stop-color="#2f5a3a"/><stop offset="1" stop-color="#173a24"/></linearGradient>' +
+        '<linearGradient id="sg2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2a0f55"/><stop offset=".6" stop-color="#a1366f"/><stop offset="1" stop-color="#e8873a"/></linearGradient>' +
+        '<linearGradient id="sg3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8e8e8e"/><stop offset="1" stop-color="#3b3b3b"/></linearGradient></defs>';
+      s += tx(160, 13, 'WILDFIRE &amp; SMOKE SEGMENTATION · EDGE', { s: 7, f: A });
+      var tiles = [['sg1', 'RGB'], ['sg2', 'THERMAL'], ['sg3', 'NIR']];
+      tiles.forEach(function (t, i) {
+        var y = 22 + i * 49, d = i * 1.2;
+        s += '<rect x="12" y="' + y + '" width="64" height="42" rx="5" fill="url(#' + t[0] + ')"/>';
+        // scene per modality: fire + smoke
+        if (i === 0) s += '<path d="M30 ' + (y + 38) + ' L36 ' + (y + 22) + ' L40 ' + (y + 30) + ' L45 ' + (y + 16) + ' L52 ' + (y + 38) + 'Z" fill="#ff7a1a"/><ellipse cx="46" cy="' + (y + 12) + '" rx="18" ry="7" fill="#cfd6da" opacity=".65"/>';
+        if (i === 1) s += '<path d="M28 ' + (y + 38) + ' L36 ' + (y + 20) + ' L42 ' + (y + 28) + ' L47 ' + (y + 14) + ' L56 ' + (y + 38) + 'Z" fill="#fff6a8"/><ellipse cx="46" cy="' + (y + 12) + '" rx="16" ry="6" fill="#8a3f8f" opacity=".5"/>';
+        if (i === 2) s += '<ellipse cx="44" cy="' + (y + 28) + '" rx="16" ry="9" fill="#111" opacity=".8"/><ellipse cx="44" cy="' + (y + 12) + '" rx="18" ry="6" fill="#ddd" opacity=".35"/>';
+        s += '<text x="17" y="' + (y + 10) + '" font-family="monospace" font-size="6.5" fill="#fff" opacity=".95">' + t[1] + '</text>';
+        s += '<rect class="cyc" x="12" y="' + y + '" width="64" height="42" rx="5" fill="none" stroke="' + A + '" stroke-width="2.2" style="animation-delay:' + d + 's"/>';
+        s += '<path class="fl cyc2" d="M76 ' + (y + 21) + ' C 100 ' + (y + 21) + ' 106 90 126 90" fill="none" stroke="' + A + '" stroke-width="1.6" style="animation-delay:' + d + 's"/>';
       });
-      s += '<g class="bob"><rect x="130" y="58" width="12" height="64" rx="3" fill="' + C2 + '" stroke="' + S + '"/><rect x="148" y="66" width="12" height="48" rx="3" fill="' + C2 + '" stroke="' + S + '"/><rect x="166" y="74" width="12" height="32" rx="3" fill="' + C2 + '" stroke="' + A + '"/><rect x="184" y="66" width="12" height="48" rx="3" fill="' + C2 + '" stroke="' + S + '"/><rect x="202" y="58" width="12" height="64" rx="3" fill="' + C2 + '" stroke="' + S + '"/></g>' +
-        '<path class="fl" d="M214 90 L 238 90" stroke="' + A + '" stroke-width="2"/>' +
-        '<rect x="238" y="38" width="68" height="104" rx="6" fill="#0b100e" stroke="' + A + '"/>' +
-        '<path d="M250 112 C 252 80 270 70 282 78 C 296 86 290 112 276 122 C 264 128 252 124 250 112Z" fill="' + A + '" opacity=".75"/>' +
-        '<path d="M262 64 C 270 56 282 60 280 68 C 276 74 264 72 262 64Z" fill="' + P + '" opacity=".8"/>' +
-        '<rect class="scan" x="238" y="38" width="2" height="104" fill="' + A + '" style="animation-name:scan2"/>' +
-        '<text x="160" y="164" text-anchor="middle" font-family="monospace" font-size="8.5" fill="' + F + '">one lightweight net · any sensor</text></svg>';
+      // shared lightweight net
+      s += '<rect x="122" y="48" width="80" height="84" rx="8" fill="' + C2 + '" stroke="' + L + '"/>';
+      [0, 1, 2, 3, 4].forEach(function (i) { var h = [52, 38, 24, 38, 52][i]; s += '<rect class="blink" x="' + (130 + i * 14) + '" y="' + (90 - h / 2) + '" width="9" height="' + h + '" rx="2.5" fill="none" stroke="' + S + '" style="animation-delay:-' + i * .35 + 's"/>'; });
+      s += tx(162, 144, 'one shared model', { s: 6.8, f: S }) + '<path class="fl" d="M202 90 H 232" stroke="' + A + '" stroke-width="2"/>';
+      // output mask
+      s += '<rect x="232" y="30" width="78" height="112" rx="6" fill="#0b100e" stroke="' + A + '"/><ellipse cx="271" cy="52" rx="28" ry="12" fill="#9aa5ab" opacity=".55"/><path d="M246 128 L256 92 L264 108 L272 78 L284 106 L292 96 L300 128Z" fill="' + P + '" opacity=".9"/><path d="M256 128 L264 108 L272 118 L280 100 L290 128Z" fill="' + W + '"/>' +
+        '<rect class="scan" x="232" y="30" width="2" height="112" fill="' + A + '" style="animation-name:scan2"/>' + tx(271, 156, 'fire + smoke mask', { s: 6.8, f: A }) + tx(160, 172, 'any sensor in · same weights', { s: 7 }) + '</svg>';
       return s;
     },
+    /* small humanoid walking over tile / gravel / grass while an onboard signal is classified */
     terrain: function () {
-      var s = '<svg viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" aria-hidden="true">';
-      // grid
-      for (var i = 0; i < 6; i++) s += '<path d="M16 ' + (30 + i * 20) + ' H304" stroke="' + L + '" stroke-width=".5" opacity=".6"/>';
-      // IMU trace: smooth / rough / periodic
+      var s = '<svg ' + SV + '><defs><clipPath id="tc"><rect x="16" y="128" width="288" height="26"/></clipPath></defs>';
+      for (var i = 0; i < 3; i++) s += '<path d="M16 ' + (20 + i * 16) + ' H304" stroke="' + L + '" stroke-width=".5" opacity=".6"/>';
       var pts = '', x;
-      for (x = 16; x <= 304; x += 4) {
-        var seg = x < 108 ? 0 : x < 208 ? 1 : 2, y = 70;
-        if (seg === 0) y += Math.sin(x / 9) * 4;
-        if (seg === 1) y += (Math.sin(x * 1.9) + Math.sin(x * .7)) * 15 * Math.sin(x * .13 + 1);
-        if (seg === 2) y += Math.sin(x / 4) * 14;
+      for (x = 16; x <= 304; x += 3) {
+        var seg = x < 112 ? 0 : x < 208 ? 1 : 2, y = 38;
+        if (seg === 0) y += Math.sin(x / 8) * 3;
+        if (seg === 1) y += (Math.sin(x * 1.9) + Math.sin(x * .7)) * 9 * Math.sin(x * .13 + 1);
+        if (seg === 2) y += Math.sin(x / 4) * 9;
         pts += x + ',' + y.toFixed(1) + ' ';
       }
-      s += '<polyline points="' + pts + '" fill="none" stroke="' + S + '" stroke-width="1.7"/>' +
-        '<rect class="scan" x="16" y="30" width="3" height="80" fill="' + A + '" style="animation-name:scan3"/>';
-      [['tile', 16, 108], ['gravel', 108, 208], ['grass', 208, 304]].forEach(function (c, k) {
-        s += '<rect x="' + (c[1] + 3) + '" y="120" width="' + (c[2] - c[1] - 6) + '" height="22" rx="11" fill="' + C2 + '" stroke="' + [A, W, S][k] + '"/>' +
-          '<text x="' + ((c[1] + c[2]) / 2) + '" y="134.5" text-anchor="middle" font-family="monospace" font-size="9.5" fill="' + [A, W, S][k] + '">' + c[0] + '</text>';
-      });
-      s += '<text x="160" y="164" text-anchor="middle" font-family="monospace" font-size="8.5" fill="' + F + '">onboard IMU / force signal → surface class, in real time</text></svg>';
+      s += tx(16, 14, 'onboard IMU / force signal', { a: 'start', s: 6.8 }) + '<polyline points="' + pts + '" fill="none" stroke="' + S + '" stroke-width="1.6"/><rect class="scan" x="16" y="16" width="2.5" height="46" fill="' + A + '" style="animation-name:scan3"/>';
+      // robot
+      s += '<g class="bob" style="animation-duration:1.1s">' +
+        '<path d="M160 62 V55" stroke="' + S + '" stroke-width="1.5"/><circle class="blink" cx="160" cy="53" r="2.4" fill="' + P + '"/>' +
+        '<rect x="151" y="62" width="18" height="13" rx="5" fill="' + C2 + '" stroke="' + S + '" stroke-width="1.4"/><rect class="blink" x="154" y="66" width="12" height="3.5" rx="1.7" fill="' + A + '"/>' +
+        '<rect x="149" y="77" width="22" height="26" rx="6" fill="' + C2 + '" stroke="' + S + '" stroke-width="1.4"/><circle class="blink" cx="160" cy="90" r="3.4" fill="' + A + '"/>' +
+        '<g class="swing" style="transform-origin:148px 80px"><rect x="143" y="79" width="6" height="19" rx="3" fill="' + C2 + '" stroke="' + S + '"/></g>' +
+        '<g class="swing b" style="transform-origin:172px 80px"><rect x="171" y="79" width="6" height="19" rx="3" fill="' + C2 + '" stroke="' + S + '"/></g>' +
+        '<g class="swing" style="transform-origin:155px 102px"><rect x="152" y="102" width="7" height="20" rx="3" fill="' + C2 + '" stroke="' + A + '"/><rect x="149" y="120" width="12" height="5" rx="2" fill="' + A + '"/></g>' +
+        '<g class="swing b" style="transform-origin:165px 102px"><rect x="161" y="102" width="7" height="20" rx="3" fill="' + C2 + '" stroke="' + A + '"/><rect x="159" y="120" width="12" height="5" rx="2" fill="' + A + '"/></g></g>';
+      // scrolling ground
+      s += '<g clip-path="url(#tc)"><g class="walk">';
+      for (var k = 0; k < 6; k++) {
+        var gx = 16 + k * 96, t = k % 3;
+        if (t === 0) { s += '<rect x="' + gx + '" y="128" width="96" height="26" fill="' + C2 + '"/>'; for (var g = 0; g < 8; g++) s += '<path d="M' + (gx + g * 12) + ' 128 V154" stroke="' + A + '" stroke-width=".6" opacity=".6"/>'; s += '<path d="M' + gx + ' 141 H' + (gx + 96) + '" stroke="' + A + '" stroke-width=".6" opacity=".6"/>'; }
+        if (t === 1) { s += '<rect x="' + gx + '" y="128" width="96" height="26" fill="' + C2 + '"/>'; for (var d = 0; d < 26; d++) s += '<circle cx="' + (gx + (d * 37) % 94 + 2) + '" cy="' + (131 + (d * 17) % 21) + '" r="' + (1 + d % 3 * .5) + '" fill="' + W + '" opacity=".8"/>'; }
+        if (t === 2) { s += '<rect x="' + gx + '" y="128" width="96" height="26" fill="' + C2 + '"/>'; for (var b = 0; b < 24; b++) s += '<path d="M' + (gx + b * 4 + 2) + ' 154 l' + ((b % 3) - 1) * 2 + ' -' + (8 + (b % 4) * 3) + '" stroke="' + S + '" stroke-width="1"/>'; }
+      }
+      s += '</g></g><path d="M16 128 H304" stroke="' + L + '"/>';
+      s += '<g font-family="monospace" font-size="7.5" text-anchor="middle">' +
+        '<rect x="30" y="159" width="62" height="14" rx="7" fill="none" stroke="' + A + '"/><text x="61" y="168.5" fill="' + A + '" class="ct">tile</text>' +
+        '<rect x="129" y="159" width="62" height="14" rx="7" fill="none" stroke="' + W + '"/><text x="160" y="168.5" fill="' + W + '" class="cg">gravel</text>' +
+        '<rect x="228" y="159" width="62" height="14" rx="7" fill="none" stroke="' + S + '"/><text x="259" y="168.5" fill="' + S + '" class="cgr">grass</text></g></svg>';
       return s;
     },
+    /* agentic AI loop acting on a mechatronic build (gears + PCB) with a human in the loop */
     agent: function () {
-      var s = '<svg viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" aria-hidden="true">' +
-        '<circle cx="160" cy="88" r="64" fill="none" stroke="' + L + '" stroke-dasharray="2 5"/>' +
-        '<g class="spin" style="transform-origin:160px 88px"><circle cx="160" cy="88" r="25" fill="none" stroke="' + A + '" stroke-width="9" stroke-dasharray="7 6.8" opacity=".9"/></g>' +
-        '<circle cx="160" cy="88" r="17" fill="' + C2 + '" stroke="' + A + '"/><text x="160" y="92" text-anchor="middle" font-family="monospace" font-size="10" fill="' + A + '">LLM</text>';
-      s += '<g class="orbit r" style="transform-origin:160px 88px">';
-      [0, 1, 2, 3].forEach(function (i) {
-        var a = i * Math.PI / 2, x = 160 + Math.cos(a) * 64, y = 88 + Math.sin(a) * 64;
-        s += '<circle cx="' + x.toFixed(1) + '" cy="' + y.toFixed(1) + '" r="8" fill="' + C2 + '" stroke="' + [S, A, W, P][i] + '" stroke-width="2"/>';
+      var s = '<svg ' + SV + '>' + tx(16, 20, 'mechatronics build', { a: 'start', s: 7, f: S }) + tx(240, 12, 'agentic AI loop', { s: 7, f: A });
+      // gears
+      s += '<g class="spin" style="transform-origin:50px 62px"><circle cx="50" cy="62" r="19" fill="none" stroke="' + S + '" stroke-width="8" stroke-dasharray="5.2 4.1"/><circle cx="50" cy="62" r="11" fill="' + C2 + '" stroke="' + L + '"/><circle cx="50" cy="62" r="3" fill="' + S + '"/></g>' +
+        '<g class="spin r" style="transform-origin:90px 80px;animation-duration:5s"><circle cx="90" cy="80" r="12" fill="none" stroke="' + A + '" stroke-width="6" stroke-dasharray="4.5 3.7"/><circle cx="90" cy="80" r="7" fill="' + C2 + '" stroke="' + L + '"/><circle cx="90" cy="80" r="2.2" fill="' + A + '"/></g>';
+      // motor
+      s += '<rect x="108" y="36" width="26" height="18" rx="3" fill="' + C2 + '" stroke="' + L + '"/><rect x="134" y="42" width="8" height="6" fill="' + F + '"/><g class="spin" style="transform-origin:142px 45px;animation-duration:1.4s"><path d="M138 45 H146 M142 41 V49" stroke="' + W + '" stroke-width="1.5"/></g>';
+      // PCB
+      s += '<rect x="14" y="108" width="122" height="52" rx="5" fill="' + C2 + '" stroke="' + L + '"/>' +
+        '<path class="fl" d="M22 120 H46 V134 H70 M22 148 H60 M100 114 V128 H128 M84 150 H128" fill="none" stroke="' + S + '" stroke-width="1" opacity=".8"/>' +
+        '<rect x="46" y="120" width="22" height="14" rx="2" fill="' + BG + '" stroke="' + A + '"/><rect x="76" y="124" width="34" height="20" rx="2" fill="' + BG + '" stroke="' + A + '"/><circle class="blink" cx="124" cy="118" r="3" fill="' + P + '"/><circle cx="26" cy="124" r="2" fill="' + F + '"/><circle cx="118" cy="150" r="2" fill="' + F + '"/>' + tx(75, 170, 'electronics', { s: 6.8, f: S });
+      // agent -> hardware links
+      s += '<path class="fl" d="M183 98 C 166 96 152 88 104 80" fill="none" stroke="' + A + '" stroke-width="1.2" opacity=".8"/><path class="fl" d="M183 104 C 162 118 150 132 138 134" fill="none" stroke="' + A + '" stroke-width="1.2" opacity=".8"/>';
+      // loop
+      s += '<circle cx="240" cy="68" r="46" fill="none" stroke="' + L + '" stroke-dasharray="2 5"/><g class="spin" style="transform-origin:240px 68px;animation-duration:12s"><circle cx="240" cy="68" r="24" fill="none" stroke="' + A + '" stroke-width="1" stroke-dasharray="4 6"/></g>' +
+        '<circle cx="240" cy="68" r="15" fill="' + C2 + '" stroke="' + A + '" stroke-width="1.5"/>' + tx(240, 71, 'LLM', { s: 8, f: A });
+      [[240, 24, 'plan', S], [282, 96, 'act', A], [198, 96, 'observe', W]].forEach(function (n) {
+        s += '<rect x="' + (n[0] - 19) + '" y="' + (n[1] - 9) + '" width="38" height="18" rx="9" fill="' + BG + '" stroke="' + n[3] + '" stroke-width="1.3"/>' + tx(n[0], n[1] + 3, n[2], { s: 7.5, f: n[3] });
       });
-      s += '</g>' +
-        '<g font-family="monospace" font-size="8.5" fill="' + F + '"><text x="20" y="40">CAD</text><text x="20" y="54">simulator</text><text x="262" y="40">firmware</text><text x="262" y="54">test rigs</text>' +
-        '<text x="262" y="132" fill="' + P + '">human</text><text x="262" y="145" fill="' + P + '">review ✓</text></g>' +
-        '<path class="fl" d="M60 62 C 90 70 110 80 134 84 M260 62 C 230 70 210 80 186 84" fill="none" stroke="' + S + '" stroke-width="1.2" opacity=".7"/>' +
-        '<text x="160" y="172" text-anchor="middle" font-family="monospace" font-size="8.5" fill="' + F + '">plan → act in design software → human review</text></svg>';
+      s += '<path class="fl" d="M258 28 C 284 34 288 62 284 85" fill="none" stroke="' + A + '" stroke-width="1.3"/><path class="fl" d="M262 102 Q 240 120 218 102" fill="none" stroke="' + A + '" stroke-width="1.3"/><path class="fl" d="M196 85 C 192 58 208 38 222 29" fill="none" stroke="' + A + '" stroke-width="1.3"/>';
+      s += '<rect x="212" y="130" width="86" height="18" rx="9" fill="none" stroke="' + P + '"/>' + tx(255, 142, 'human review ✓', { s: 7.5, f: P, x: ' class="blink"' }) + tx(255, 163, 'CAD · simulator · firmware', { s: 6.5 }) + '</svg>';
       return s;
     }
   };
   // extra keyframes for thumbs that scan at different widths
   (function () {
     var st = document.createElement('style');
-    st.textContent = '@keyframes scan2{0%,100%{transform:translateX(0)}50%{transform:translateX(66px)}}@keyframes scan3{0%,100%{transform:translateX(0)}50%{transform:translateX(284px)}}';
+    st.textContent = '@keyframes scan2{0%,100%{transform:translateX(0)}50%{transform:translateX(76px)}}@keyframes scan3{0%,100%{transform:translateX(0)}50%{transform:translateX(284px)}}';
     document.head.appendChild(st);
   })();
 
@@ -262,7 +315,7 @@
 
     var c = D.contact;
     var contact = '<section id="contact"><div class="wrap"><div class="contact rv"><div class="eyebrow" style="position:relative">let\'s talk</div><h2>' + c.heading + '</h2><p>' + c.text + '</p>' +
-      '<div class="cta"><a class="btn primary" href="mailto:' + c.email + '?subject=Hello%20Vishnu">Email me →</a><a class="btn" href="' + docs.resume + '" target="_blank" rel="noopener">Resume</a><a class="btn" href="' + docs.cv + '">CV</a></div>' +
+      '<div class="cta"><a class="btn primary" href="mailto:' + c.email + '?subject=Hello%20Vishnu">Email me →</a><a class="btn" href="' + docs.resume + '" target="_blank" rel="noopener">Resume</a><a class="btn" href="' + docs.cv + '">CV</a><a class="btn" href="card.html">Profile card</a></div>' +
       '<div class="soc">' + c.links.filter(function (l) { return l.label !== 'Email'; }).map(function (l) {
         return '<a href="' + l.href + '" target="_blank" rel="noopener">' + svgIcon(l.label.toLowerCase()) + l.label + '</a>';
       }).join('') + '</div></div></div></section>';
@@ -409,6 +462,54 @@
       '</article>';
   }
 
+
+  /* ------------------------------------------------- profile / business card */
+  function renderCard() {
+    var LI = 'https://www.linkedin.com/in/a-vishnu-vardhan', docs = D.site.docs, r = D.research;
+    document.title = 'Profile card — Vishnu Vardhan Addanki Tirumala';
+    var chips = ['Vision-language models', 'Interpretable ML', 'Edge AI', 'Agentic systems'].map(function (c) { return '<span class="chip">' + c + '</span>'; }).join('');
+    var rows = [['mail', D.contact.email], ['link', 'vishnu-add.github.io'], ['github', 'github.com/Vishnu-add'], ['linkedin', 'linkedin.com/in/a-vishnu-vardhan']].map(function (x) {
+      return '<div class="bc-row">' + svgIcon(x[0]).replace('<svg', '<svg fill="currentColor"') + '<span>' + x[1] + '</span></div>';
+    }).join('');
+    var card = '<div class="bcard tilt"><div class="bc-glow"></div>' +
+      '<div class="bc-main"><div class="bc-id"><img src="assets/vishnu.jpg" alt="" width="84" height="84"><div><div class="eyebrow">Profile card</div><h1>Vishnu Vardhan Addanki&nbsp;Tirumala</h1></div></div>' +
+      '<p class="bc-role">AI researcher &amp; engineer<br><span>MSc AI &amp; Data Science · University Research Assistant<br>University of Agder · Grimstad, Norway</span></p>' +
+      '<div class="chips bc-chips">' + chips + '</div><div class="bc-rows">' + rows + '</div></div>' +
+      '<a class="bc-qr" href="' + LI + '" target="_blank" rel="noopener" aria-label="Open LinkedIn profile"><div class="qr-tile"><img src="assets/linkedin-qr.svg" alt="QR code for linkedin.com/in/a-vishnu-vardhan" width="190" height="190"><i class="c1"></i><i class="c2"></i><i class="c3"></i><i class="c4"></i><b class="qr-scan"></b></div>' +
+      '<span>Scan to connect on <strong>LinkedIn</strong></span></a></div>';
+    var actions = '<div class="cta bc-actions"><a class="btn primary" href="' + LI + '" target="_blank" rel="noopener">' + svgIcon('linkedin').replace('<svg', '<svg fill="currentColor"') + 'Open LinkedIn</a>' +
+      '<button class="btn" id="vcf" type="button">Save contact (.vcf)</button><button class="btn" id="copyli" type="button">Copy LinkedIn link</button>' +
+      '<a class="btn" href="' + docs.resume + '" target="_blank" rel="noopener">Resume</a><a class="btn" href="' + docs.cv + '">CV</a></div>';
+    var research = r.items.map(function (i) {
+      return '<div class="mini"><span class="badge ' + i.status + '"><i></i>' + i.statusLabel + '</span><b style="margin-top:8px">' + i.title + '</b><p>' + i.kind + '</p></div>';
+    }).join('');
+    var slim = function (it) { return { date: it.date, role: it.role, org: it.org, logo: it.logo, bullets: [] }; };
+    var skills = D.skills.groups.map(function (g) { return '<div class="sk"><h4>' + g.category + '</h4><div class="chips">' + g.items.map(function (i) { return '<span class="chip">' + i + '</span>'; }).join('') + '</div></div>'; }).join('');
+    var links = D.contact.links.map(function (l) { return '<a class="chip" href="' + l.href + '" target="_blank" rel="noopener">' + l.label + '</a>'; }).join('');
+    $('#app').innerHTML = '<div class="wrap page-pad card-page">' +
+      '<a class="back" href="index.html">← Back to site</a><div class="card-stage rv">' + card + actions + '</div>' +
+      '<div class="two" style="margin-top:80px"><div class="rv"><div class="sub-h">Summary</div><div class="prose">' + D.about.paragraphs.map(function (p) { return '<div>' + p + '</div>'; }).join('') + '</div>' +
+      '<div class="sub-h" style="margin-top:40px">Research</div><div class="cards">' + research + '</div></div>' +
+      '<div class="rv"><div class="sub-h">Experience</div><div class="tl">' + D.experience.items.map(function (e) { return tlItem(slim(e)); }).join('') + '</div>' +
+      '<div class="sub-h" style="margin-top:30px">Education</div><div class="tl">' + D.credentials.education.map(function (e) { return tlItem(slim(e)); }).join('') + '</div></div></div>' +
+      '<div class="sub-h rv" style="margin-top:50px">Skills</div><div class="sk-grid rv">' + skills + '</div>' +
+      '<div class="sub-h rv" style="margin-top:50px">Find me online</div><div class="chips rv">' + links + '</div></div>';
+
+    $('#vcf').onclick = function () {
+      var v = ['BEGIN:VCARD', 'VERSION:3.0', 'N:Addanki Tirumala;Vishnu Vardhan;;;', 'FN:Vishnu Vardhan Addanki Tirumala', 'ORG:University of Agder', 'TITLE:University Research Assistant',
+        'EMAIL;TYPE=INTERNET:' + D.contact.email, 'URL:https://vishnu-add.github.io/', 'URL:' + LI, 'URL:https://github.com/Vishnu-add',
+        'NOTE:AI researcher and engineer. Vision-language models\\, interpretable ML\\, edge AI and agentic systems.', 'END:VCARD'].join('\r\n');
+      var a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([v], { type: 'text/vcard' })); a.download = 'Vishnu_Vardhan_Addanki_Tirumala.vcf';
+      document.body.appendChild(a); a.click(); a.remove();
+    };
+    $('#copyli').onclick = function () {
+      var b = this, done = function () { b.textContent = 'Copied ✓'; setTimeout(function () { b.textContent = 'Copy LinkedIn link'; }, 1600); };
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(LI).then(done, function () { fallback(); });
+      else fallback();
+      function fallback() { var t = document.createElement('textarea'); t.value = LI; document.body.appendChild(t); t.select(); try { document.execCommand('copy'); done(); } catch (e) { b.textContent = LI; } t.remove(); }
+    };
+  }
+
   /* ------------------------------------------------------------ effects */
   function initFX() {
     // scroll progress
@@ -531,7 +632,7 @@
   fetch('data.json').then(function (r) { return r.json(); }).then(function (d) {
     D = d;
     renderNav();
-    if (PAGE === 'home') renderHome(); else if (PAGE === 'project') renderProject(); else if (PAGE === 'cv') renderCV();
+    if (PAGE === 'home') renderHome(); else if (PAGE === 'project') renderProject(); else if (PAGE === 'cv') renderCV(); else if (PAGE === 'card') renderCard();
     footer(); initFX();
     if (location.hash && PAGE === 'home') { var t = document.getElementById(location.hash.slice(1)); if (t) setTimeout(function () { t.scrollIntoView(); }, 50); }
   }).catch(function (e) {

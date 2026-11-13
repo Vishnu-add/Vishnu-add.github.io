@@ -122,7 +122,7 @@
     "venue": "IEEE Transactions on Artificial Intelligence",
     "kind": "Research project",
     "title": "Interpretable machine learning for distributed systems",
-    "desc": "Proves when distributed training preserves the accuracy and explainability of a centralized model, and introduces new ways to combine logically distinct learners into one trustworthy decision-maker.",
+    "desc": "Proves when distributed training preserves the accuracy and explainability of a centralized model trained on the complete data, and introduces new ways to combine logically distinct learners into one trustworthy decision-maker.",
     "tags": [
      "Interpretability",
      "Distributed learning",
@@ -137,13 +137,13 @@
     "statusLabel": "Communicated · JAG",
     "venue": "Int. Journal of Applied Earth Observation and Geoinformation",
     "kind": "Research project",
-    "title": "A lightweight, sensing-agnostic segmentation network for the edge",
-    "desc": "A small, edge-deployable segmentation network that works across different sensing modalities (RGB, thermal and NIR imagery) without a separate model per sensor.",
+    "title": "Lightweight, sensing-agnostic wildfire segmentation for the edge",
+    "desc": "A lightweight, edge-deployable segmentation network for wildfire and smoke that works across sensing modalities (RGB, thermal and NIR imagery) with one shared model instead of one per sensor.",
     "tags": [
-     "Segmentation",
+     "Wildfire segmentation",
+     "Smoke",
      "Edge AI",
-     "RGB · Thermal · NIR",
-     "Remote sensing"
+     "RGB · Thermal · NIR"
     ]
    },
    {

@@ -323,3 +323,52 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 :root[data-theme="light"] body::before{opacity:.5}
 :root[data-theme="light"] .term pre{color:#dfe7f5}
 :root[data-theme="light"] .term .k{color:#8fb0ff}:root[data-theme="light"] .term .s{color:#5fe0d2}:root[data-theme="light"] .term .n{color:#ffc680}
+
+/* thumbnail animation helpers */
+@keyframes cyc{0%,30%{opacity:1}36%,100%{opacity:0}}
+@keyframes cyc2{0%,30%{opacity:1}36%,100%{opacity:.18}}
+.cyc{animation:cyc 3.6s infinite}
+.fl.cyc2{animation:dash 1.1s linear infinite,cyc2 3.6s infinite}
+@keyframes swing{0%,100%{transform:rotate(-24deg)}50%{transform:rotate(24deg)}}
+.swing{animation:swing 1.1s ease-in-out infinite}.swing.b{animation-delay:-.55s}
+@keyframes walk{to{transform:translateX(-288px)}}
+.walk{animation:walk 4s linear infinite}
+@keyframes cg{0%,16%{opacity:1}20%,80%{opacity:.25}84%,100%{opacity:1}}
+@keyframes cgr{0%,16%{opacity:.25}20%,48%{opacity:1}52%,100%{opacity:.25}}
+@keyframes ct{0%,48%{opacity:.25}52%,80%{opacity:1}84%,100%{opacity:.25}}
+.cg{animation:cg 4s linear infinite}.cgr{animation:cgr 4s linear infinite}.ct{animation:ct 4s linear infinite}
+
+.spin[style*="transform-origin"]{transform-box:view-box}
+
+/* ---------- profile / business card ---------- */
+.card-stage{margin-top:34px;display:flex;flex-direction:column;align-items:center;gap:30px}
+.bcard{position:relative;width:min(900px,100%);display:grid;grid-template-columns:1fr auto;gap:36px;align-items:center;padding:clamp(24px,4vw,46px);border-radius:24px;background:linear-gradient(135deg,var(--card),var(--bg2));border:1px solid var(--line2);overflow:hidden;box-shadow:0 40px 80px -40px #000,var(--glow)}
+.bcard::before{content:"";position:absolute;inset:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:34px 34px;opacity:.35;-webkit-mask-image:radial-gradient(ellipse at 100% 0,#000,transparent 70%);mask-image:radial-gradient(ellipse at 100% 0,#000,transparent 70%)}
+.bc-glow{position:absolute;width:380px;height:380px;left:-140px;bottom:-200px;border-radius:50%;background:radial-gradient(circle,color-mix(in srgb,var(--acc) 26%,transparent),transparent 70%);animation:float 9s ease-in-out infinite}
+.bc-main,.bc-qr{position:relative}
+.bc-id{display:flex;gap:18px;align-items:center;margin-bottom:18px}
+.bc-id img{width:84px;height:84px;border-radius:50%;object-fit:cover;border:2px solid var(--acc)}
+.bc-id h1{font-size:clamp(30px,4.2vw,46px);margin-top:4px}
+.bc-role{font-size:19px;font-weight:500;line-height:1.4;margin-bottom:14px}
+.bc-role span{display:block;margin-top:4px;color:var(--dim);font-size:14.5px;font-weight:400}
+.bc-chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+.bc-rows{display:grid;gap:7px;font-family:var(--mono);font-size:12.5px;color:var(--dim)}
+.bc-row{display:flex;gap:10px;align-items:center}
+.bc-row svg{width:15px;height:15px;color:var(--acc);flex:none}
+.bc-qr{display:flex;flex-direction:column;align-items:center;gap:12px;font-family:var(--mono);font-size:11.5px;color:var(--dim);text-align:center}
+.bc-qr strong{color:var(--acc);font-weight:600}
+.qr-tile{position:relative;background:#fff;padding:14px;border-radius:16px;box-shadow:0 18px 40px -18px #000;transition:transform .3s}
+.bc-qr:hover .qr-tile{transform:scale(1.04) rotate(-1.5deg)}
+.qr-tile img{width:190px;height:190px;display:block}
+.qr-tile i{position:absolute;width:22px;height:22px;border:3px solid var(--acc)}
+.qr-tile .c1{top:-6px;left:-6px;border-right:0;border-bottom:0;border-radius:10px 0 0 0}
+.qr-tile .c2{top:-6px;right:-6px;border-left:0;border-bottom:0;border-radius:0 10px 0 0}
+.qr-tile .c3{bottom:-6px;left:-6px;border-right:0;border-top:0;border-radius:0 0 0 10px}
+.qr-tile .c4{bottom:-6px;right:-6px;border-left:0;border-top:0;border-radius:0 0 10px 0}
+.qr-scan{position:absolute;left:10px;right:10px;top:14px;height:2px;background:var(--acc);box-shadow:0 0 14px var(--acc);animation:qrscan 2.6s ease-in-out infinite}
+@keyframes qrscan{0%,100%{transform:translateY(0)}50%{transform:translateY(186px)}}
+.bc-actions{justify-content:center}
+.card-page .mini .badge{margin-bottom:2px}
+@media (max-width:760px){.bcard{grid-template-columns:1fr;gap:26px}.bc-qr{order:-1}.qr-tile img{width:170px;height:170px}.bc-id{flex-direction:column;align-items:flex-start}}
+
+.card-page .chips{display:flex;flex-wrap:wrap;gap:8px}
