@@ -5,7 +5,7 @@
   var $ = function (s, r) { return (r || document).querySelector(s); };
   var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
   var clean = function (s) { return String(s == null ? '' : s).replace(/ , /g, ' — '); };
-  var enc = encodeURI;
+  var enc = function (u) { return encodeURI(String(u).trim()); };   /* a stray space in data.json must never 404 an image */
   var PAGE = document.body.getAttribute('data-page');
   var D = null;
 
@@ -33,14 +33,15 @@
   function renderNav() {
     var base = PAGE === 'home' ? '' : 'index.html';
     var docs = D.site.docs;
-    var links = SECTIONS.map(function (s) { return '<li><a href="' + base + '#' + s[0] + '" data-s="' + s[0] + '">' + s[1] + '</a></li>'; }).join('');
+    /* Contact is the one action, so it is a button rather than a sixth link */
+    var links = SECTIONS.filter(function (s) { return s[0] !== 'contact'; }).map(function (s) { return '<li><a href="' + base + '#' + s[0] + '" data-s="' + s[0] + '">' + s[1] + '</a></li>'; }).join('');
     $('#nav').innerHTML =
       '<div class="wrap">' +
-      '<a class="brand" href="' + (PAGE === 'home' ? '#top' : 'index.html') + '"><i></i><span>vishnu@ai:~$</span></a>' +
-      '<ul class="links" id="links">' + links + '<li><a href="card.html"' + (PAGE === 'card' ? ' class="active"' : '') + '>Profile</a></li></ul>' +
+      '<a class="brand" href="' + (PAGE === 'home' ? '#top' : 'index.html') + '" aria-label="Vishnu Vardhan Addanki Tirumala, home"><i></i><span>vishnu@ai:~$</span></a>' +
+      '<ul class="links" id="links">' + links + '</ul>' +
       '<div class="nav-right">' +
-      '<a class="btn-nav ghost" href="' + docs.resume + '" target="_blank" rel="noopener" title="Open resume (PDF)">' + svgInline('doc') + '<span>Resume</span></a>' +
-      '<a class="btn-nav" href="' + docs.cv + '" title="Open academic CV">' + svgInline('doc') + '<span>CV</span></a>' +
+      '<a class="btn-nav ghost" href="' + docs.cv + '" title="Open academic CV">' + svgInline('doc') + '<span>CV</span></a>' +
+      '<a class="btn-nav" href="' + base + '#contact">Contact</a>' +
       '<button class="icon-btn" id="theme" aria-label="Toggle light / dark theme"><svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M6.3 17.7l-1.4 1.4M19.1 4.9l-1.4 1.4"/></svg><svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/></svg></button>' +
       '<button class="icon-btn menu-toggle" id="menu" aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>' +
       '</div></div>';
@@ -433,50 +434,8 @@
   })();
 
   /* ------------------------------------------------------------- home */
-  function marquee() {
-    var words = ['Vision-language models', 'LoRA', 'Interpretable ML', 'Tsetlin Machines', 'Edge AI', 'Multimodal learning', 'Agentic systems', 'RAG', 'Segmentation', 'Humanoid robotics', 'Distributed learning', 'Production ML'];
-    var line = words.map(function (w) { return '<span>' + w + '</span>'; }).join('');
-    return '<div class="marquee" aria-hidden="true"><div class="track">' + line + line + '</div></div>';
-  }
-
-
-  /* research.py panel: real code about my research, syntax-highlighted and revealed line by line */
-  var RESEARCH_PY = [
-    'class Vishnu:',
-    '    thesis   = "LoRA x video-language"  # CVPR 2027',
-    '    explains = ["Tsetlin clauses", "distributed learners"]',
-    '    runs_on  = ["edge", "humanoid robots"]',
-    '    builds   = ["LLM agents", "RAG"]',
-    '',
-    '    def research(self, idea):',
-    '        while not idea.explained():',
-    '            idea = idea.probe().prune()',
-    '        return idea.fit(self.runs_on).ship()'
-  ].join('\n');
-
-  function researchCode() {
-    var esc = RESEARCH_PY.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-    var re = /(#.*$)|("""[\s\S]*?"""|"[^"\n]*")|\b(def|class)(\s+)(\w+)|\b(import|from|return|for|in|if|lambda|self|while|not)\b|\b(\d+(?:\.\d+)?(?:e-?\d+)?)\b/gm;
-    var out = esc.replace(re, function (m, cm, st, kw0, sp, nm, kw, num) {
-      if (cm) return '<span class="c">' + cm + '</span>';
-      if (st) return '<span class="n">' + st + '</span>';
-      if (kw0) return '<span class="k">' + kw0 + '</span>' + sp + '<span class="s">' + nm + '</span>';
-      if (kw) return '<span class="k">' + kw + '</span>';
-      if (num) return '<span class="n">' + num + '</span>';
-      return m;
-    });
-    // docstring that spans two lines: keep colour per line
-    out = out.replace(/<span class="n">("""[\s\S]*?""")<\/span>/g, function (m, body) {
-      return body.split('\n').map(function (l) { return '<span class="n">' + l + '</span>'; }).join('\n');
-    });
-    return out.split('\n').map(function (l, i) { return '<span class="ln" style="--i:' + i + '">' + (l || ' ') + '</span>'; }).join('\n') + '<span class="cur"></span>';
-  }
-
   function renderHome() {
     var h = D.hero, docs = D.site.docs;
-    var stats = h.stats.map(function (s) {
-      return '<div class="stat"><b data-count="' + s.value + '">0</b><span>' + s.label + '</span><small>' + s.note + '</small></div>';
-    }).join('');
     var hero =
       '<header class="hero" id="top"><canvas id="net" aria-hidden="true"></canvas><div class="wrap"><div>' +
       '<div class="eyebrow">' + h.eyebrow + '</div>' +
@@ -485,14 +444,11 @@
       '<p class="sub">' + h.sub + '</p>' +
       '<div class="cta">' +
       '<a class="btn primary" href="#research">See my research ↓</a>' +
-      '<a class="btn" href="' + docs.resume + '" target="_blank" rel="noopener">' + svgInline('doc') + 'Resume</a>' +
-      '<a class="btn" href="' + docs.cv + '">' + svgInline('doc') + 'CV</a>' +
-      '<a class="btn" href="#contact">Get in touch</a></div></div>' +
+      '<a class="btn" href="' + docs.cv + '">' + svgInline('doc') + 'CV</a></div></div>' +
       '<div class="portrait"><div class="ring2"></div><div class="ring"></div>' +
       '<img src="assets/vishnu.jpg" alt="Portrait of Vishnu Vardhan Addanki Tirumala" width="320" height="320">' +
       '<span class="tag t1">VLMs · <b>LoRA</b></span><span class="tag t2">Tsetlin · <b>interpretable</b></span><span class="tag t3">edge · <b>agents</b></span></div>' +
-      '</div></header>' +
-      '<div class="wrap"><div class="stats rv">' + stats + '</div></div>';
+      '</div></header>';
 
     var r = D.research;
     var counts = { accepted: 1, review: 0, planned: 0, ongoing: 0 };
@@ -509,13 +465,12 @@
     }).join('');
     var pipe = '<div class="pipe rv">' +
       pipeCell('Accepted', 1, 'Clause sanitization for Tsetlin Machines, ISTM 2026') +
-      pipeCell('Communicated', counts.review, 'CVPR 2027 · IEEE TAI · JAG') +
+      pipeCell('Under review', counts.review, 'CVPR 2027 · IEEE TAI · JAG') +
       pipeCell('Planned', counts.planned, 'IEEE Internet of Things Journal') +
       pipeCell('Ongoing', counts.ongoing, 'Agentic AI for mechatronics (coursework)') + '</div>';
 
     var about = '<section id="about"><div class="wrap about-grid"><div class="rv">' +
-      D.about.paragraphs.map(function (p) { return '<p>' + p + '</p>'; }).join('') + '</div>' +
-      '<div class="term rv"><div class="term-bar"><i></i><i></i><i></i><span>research.py</span></div><pre>' + researchCode() + '</pre></div></div></section>';
+      D.about.paragraphs.map(function (p) { return '<p>' + p + '</p>'; }).join('') + '</div></div></section>';
 
     var research = '<section id="research"><div class="wrap">' +
       '<div class="sec-head rv"><span class="idx">01</span><div class="eyebrow">research</div></div><h2 class="rv">What I\'m working on</h2><p class="lede rv" style="margin-top:14px">' + r.intro + '</p>' +
@@ -525,37 +480,45 @@
     var exp = '<section id="experience"><div class="wrap"><div class="sec-head rv"><span class="idx">02</span><div class="eyebrow">experience</div></div><h2 class="rv">Where I\'ve worked</h2><p class="lede rv" style="margin-top:14px">Research now, two years of production ML before it. Each role shaped how I ask research questions.</p><div class="tl">' +
       D.experience.items.map(tlItem).join('') + '</div></div></section>';
 
-    var filters = D.projects.filters.map(function (f, i) { return '<button class="' + (i ? '' : 'on') + '" data-f="' + f.key + '">' + f.label + '</button>'; }).join('');
-    var projects = '<section id="projects"><div class="wrap"><div class="sec-head rv"><span class="idx">03</span><div class="eyebrow">projects</div></div><h2 class="rv">Things I\'ve built</h2><p class="lede rv" style="margin-top:14px">Agents, RAG systems, assistive hardware and vision projects. Click a card for the full write-up.</p>' +
-      '<div class="filters rv" id="filters">' + filters + '</div><div class="p-grid" id="pgrid">' + D.projects.items.map(projectCard).join('') + '</div></div></section>';
+    /* four flagships get full cards; the rest stay one click away as compact rows */
+    var flag = D.projects.flagshipIds, byId = {};
+    D.projects.items.forEach(function (p) { byId[p.id] = p; });
+    var flagItems = flag.map(function (id) { return byId[id]; }).filter(Boolean);
+    var restItems = D.projects.items.filter(function (p) { return flag.indexOf(p.id) < 0; });
+    var projects = '<section id="projects"><div class="wrap"><div class="sec-head rv"><span class="idx">03</span><div class="eyebrow">projects</div></div><h2 class="rv">Things I\'ve built</h2><p class="lede rv" style="margin-top:14px">Agents, RAG systems and assistive hardware. Click a card for the full write-up.</p>' +
+      '<div class="p-grid" id="pgrid">' + flagItems.map(projectCard).join('') + '</div>' +
+      '<details class="more-p rv"><summary>' + restItems.length + ' more projects</summary><div class="p-rows">' + restItems.map(projectRow).join('') + '</div></details></div></section>';
 
     var skills = '<section id="skills"><div class="wrap"><div class="sec-head rv"><span class="idx">04</span><div class="eyebrow">skills</div></div><h2 class="rv">Toolbox</h2><div class="sk-grid" style="margin-top:34px">' +
-      D.skills.groups.map(function (g) { return '<div class="sk rv"><h4>' + g.category + '</h4><div class="chips">' + g.items.map(function (i) { return '<span class="chip">' + i + '</span>'; }).join('') + '</div></div>'; }).join('') + '</div></div></section>';
+      D.skills.groups.map(function (g) { return '<div class="sk rv"><h3>' + g.category + '</h3><div class="chips">' + g.items.map(function (i) { return '<span class="chip">' + i + '</span>'; }).join('') + '</div></div>'; }).join('') + '</div></div></section>';
 
     var cr = D.credentials;
+    var nCerts = cr.certifications.reduce(function (n, c) { return n + c.items.length; }, 0);
     var cred = '<section id="credentials"><div class="wrap"><div class="sec-head rv"><span class="idx">05</span><div class="eyebrow">education &amp; credentials</div></div><h2 class="rv">The paper trail</h2>' +
       '<div class="two" style="margin-top:40px"><div class="rv"><div class="sub-h">Education</div><div class="tl">' + cr.education.map(tlItem).join('') + '</div></div>' +
-      '<div class="rv"><div class="sub-h">Honours &amp; awards</div><div class="cards">' + cr.awards.map(function (a) { return '<div class="mini"><b>' + clean(a.title) + '</b><p>' + a.desc + '</p></div>'; }).join('') + '</div>' +
-      '<div class="sub-h" style="margin-top:34px">Events &amp; hackathons</div><div class="cards">' + cr.events.map(function (a) { return '<div class="mini"><b>' + clean(a.title) + '</b><small>' + a.meta + '</small><p>' + a.desc + '</p></div>'; }).join('') + '</div>' +
-      '<div class="sub-h" style="margin-top:34px">Volunteering</div><div class="cards">' + cr.volunteering.map(function (a) { return '<div class="mini"><b>' + a.role + '</b><small>' + a.date + '</small><p>' + a.org + ' — ' + a.bullets[0] + '</p></div>'; }).join('') + '</div>' +
+      '<div class="rv"><div class="sub-h">Honours &amp; awards</div><div class="cards">' + cr.awards.map(function (a) { return '<div class="mini"><b>' + clean(a.title) + '</b><p>' + a.desc + '</p></div>'; }).join('') + '</div></div></div>' +
+      /* secondary credentials stay on the page but fold away so Contact comes sooner */
+      '<details class="beyond rv"><summary>Events, volunteering, languages &amp; ' + nCerts + ' certificates</summary><div class="beyond-body">' +
+      '<div class="two"><div><div class="sub-h">Events &amp; hackathons</div><div class="cards">' + cr.events.map(function (a) { return '<div class="mini"><b>' + clean(a.title) + '</b><small>' + clean(a.meta) + '</small><p>' + a.desc + '</p></div>'; }).join('') + '</div></div>' +
+      '<div><div class="sub-h">Volunteering</div><div class="cards">' + cr.volunteering.map(function (a) { return '<div class="mini"><b>' + clean(a.role) + '</b><small>' + clean(a.date) + '</small><p>' + clean(a.org) + ' — ' + clean(a.bullets[0]) + '</p></div>'; }).join('') + '</div>' +
       '<div class="sub-h" style="margin-top:34px">Languages</div>' +
       '<div class="lang"><small>Mother tongue</small>' + D.languages.mother.map(function (l) { return '<span class="chip">' + l + '</span>'; }).join('') + '</div>' +
       '<div class="lang"><small>Other</small>' + D.languages.other.map(function (l) { return '<span class="chip">' + l + '</span>'; }).join('') + '</div></div></div>' +
-      '<div class="sub-h rv" style="margin-top:56px">Certifications</div><div class="rv">' +
+      '<div class="sub-h" style="margin-top:44px">Certifications</div>' +
       cr.certifications.map(function (c) {
         return '<details class="cert">' + '<summary>' + logo(c.logo) + c.issuer + ' <em>' + c.items.length + '</em></summary><ul>' +
           c.items.map(function (i) { return '<li>' + clean(i.title) + '<span>' + i.meta + '</span></li>'; }).join('') + '</ul></details>';
-      }).join('') + '</div></div></section>';
+      }).join('') + '</div></details></div></section>';
 
     var c = D.contact;
     var contact = '<section id="contact"><div class="wrap"><div class="contact rv"><div class="eyebrow" style="position:relative">let\'s talk</div><h2>' + c.heading + '</h2><p>' + c.text + '</p>' +
-      '<div class="cta"><a class="btn primary" href="mailto:' + c.email + '?subject=Hello%20Vishnu">Email me →</a><a class="btn" href="' + docs.resume + '" target="_blank" rel="noopener">Resume</a><a class="btn" href="' + docs.cv + '">CV</a><a class="btn" href="card.html">Profile card</a></div>' +
+      '<div class="cta"><a class="btn primary" href="mailto:' + c.email + '?subject=Hello%20Vishnu">Email me →</a><a class="btn" href="' + docs.cv + '">CV</a><a class="btn" href="' + docs.resume + '" target="_blank" rel="noopener">Resume (PDF)</a></div>' +
       '<div class="soc">' + c.links.filter(function (l) { return l.label !== 'Email'; }).map(function (l) {
         return '<a href="' + l.href + '" target="_blank" rel="noopener">' + svgIcon(l.label.toLowerCase()) + l.label + '</a>';
       }).join('') + '</div></div></div></section>';
 
-    $('#app').innerHTML = hero + marquee() + about + research + exp + projects + skills + cred + contact;
-    wireFilters();
+    $('#app').innerHTML = hero + research + about + exp + projects + skills + cred + contact;
+    wireHoverVideo();
   }
 
   function pipeCell(t, n, d) { return '<div><small>' + t + '</small><b data-count="' + n + '">0</b><p>' + d + '</p></div>'; }
@@ -580,18 +543,13 @@
       '<div class="p-body"><span class="p-tag">' + p.tagLabel + '</span><h3>' + t.name + '</h3><p>' + clean(p.desc.replace(/^[^\w<]+/u, '')) + '</p><span class="p-more">Read more</span></div></a>';
   }
 
-  function wireFilters() {
-    var bar = $('#filters'); if (!bar) return;
-    bar.addEventListener('click', function (e) {
-      var b = e.target.closest('button'); if (!b) return;
-      $$('button', bar).forEach(function (x) { x.classList.remove('on'); }); b.classList.add('on');
-      var f = b.getAttribute('data-f');
-      $$('.p-card').forEach(function (c) {
-        var tag = c.getAttribute('data-tag');
-        var ok = f === 'all' || tag === f || (f === 'vision' && (tag === 'python'));
-        c.classList.toggle('hide', !ok);
-      });
-    });
+  /* compact row for the non-flagship projects */
+  function projectRow(p) {
+    var t = splitTitle(p.title);
+    return '<a class="p-row" href="project.html?id=' + encodeURIComponent(p.id) + '"><span class="p-tag">' + p.tagLabel + '</span><b>' + t.name + '</b><span class="p-row-d">' + clean(p.desc.replace(/^[^\w<]+/u, '')) + '</span></a>';
+  }
+
+  function wireHoverVideo() {
     // hover-play video thumbs
     $$('.p-card').forEach(function (c) {
       var v = $('video', c); if (!v) return;
@@ -605,11 +563,11 @@
     var root = $('#app');
     var id = new URLSearchParams(location.search).get('id');
     var p = D.projects.items.filter(function (x) { return x.id === id; })[0];
-    if (!p) { root.innerHTML = '<div class="wrap page-pad"><a class="back" href="index.html#projects">← All projects</a><h1 style="margin-top:20px">Project not found</h1></div>'; return; }
+    if (!p) { root.innerHTML = '<div class="wrap page-pad"><a class="back" href="index.html#projects">← All projects</a><h1 style="margin-top:20px">That project isn\'t here</h1><p class="lede" style="margin-top:14px">The link may be old or mistyped. Every project is listed on the home page.</p><div class="cta" style="margin-top:24px"><a class="btn primary" href="index.html#projects">See all projects</a><a class="btn" href="index.html">Home</a></div></div>'; return; }
     var t = splitTitle(p.title);
     document.title = t.name + ' — Vishnu Vardhan Addanki Tirumala';
-    var images = (p.images || []).map(function (it, i) { return typeof it === 'string' ? { id: 'i' + i, src: it, caption: '' } : { id: it.id || 'i' + i, src: it.src, caption: it.caption || '' }; });
-    var videos = (p.videos || []).map(function (it, i) { return typeof it === 'string' ? { id: 'v' + i, src: it, caption: '' } : { id: it.id || 'v' + i, src: it.src, caption: it.caption || '' }; });
+    var images = (p.images || []).map(function (it, i) { return typeof it === 'string' ? { id: 'i' + i, src: it, caption: '' } : { id: it.id || 'i' + i, src: it.src, caption: clean(it.caption || '') }; });
+    var videos = (p.videos || []).map(function (it, i) { return typeof it === 'string' ? { id: 'v' + i, src: it, caption: '' } : { id: it.id || 'v' + i, src: it.src, caption: clean(it.caption || '') }; });
     var usedI = {}, usedV = {};
     var body = (p.detail && p.detail.length ? p.detail : [p.desc]).map(function (para) {
       var s = clean(para).replace(/\{\{img:([\w-]+)\}\}/g, function (m, k) {
@@ -621,15 +579,21 @@
         usedV[k] = 1;
         return '<figure class="fig" style="cursor:default"><video src="' + enc(v.src) + '" controls preload="metadata"></video>' + (v.caption ? '<figcaption>' + v.caption + '</figcaption>' : '') + '</figure>';
       });
+      /* decorative emoji that lead each paragraph label ("💡 Motivation:") add noise, not meaning */
+      s = s.replace(/(<strong>)\s*(?:\p{Extended_Pictographic}[️‍\p{Extended_Pictographic}]*)\s*/gu, '$1');
       return '<div>' + s + '</div>';
     }).join('');
     var restI = images.filter(function (x) { return !usedI[x.id]; });
     var restV = videos.filter(function (x) { return !usedV[x.id]; });
     var links = !p.link ? [] : (Array.isArray(p.link) ? p.link : [p.link]);
+    var art = PT[p.id];
     root.innerHTML = '<div class="wrap page-pad proj"><a class="back" href="index.html#projects">← All projects</a>' +
-      '<div style="margin-top:28px"><span class="p-tag" style="position:static;display:inline-block">' + p.tagLabel + '</span></div>' +
-      '<h1>' + (t.emoji ? '<span style="font-size:.7em">' + t.emoji + '</span> ' : '') + t.name + '</h1>' +
-      (links.length ? '<div class="cta" style="margin-bottom:30px">' + links.map(function (l, i) { return '<a class="btn' + (i ? '' : ' primary') + '" href="' + l.href + '" target="_blank" rel="noopener">' + l.label + '</a>'; }).join('') + '</div>' : '') +
+      '<div class="proj-head' + (art ? ' has-art' : '') + '"><div class="proj-title">' +
+      '<span class="p-tag" style="position:static;display:inline-block">' + p.tagLabel + '</span>' +
+      '<h1>' + t.name + '</h1>' +
+      '<p class="lede proj-lede">' + clean(p.desc.replace(/^[^\w<]+/u, '')) + '</p>' +
+      (links.length ? '<div class="cta">' + links.map(function (l, i) { return '<a class="btn' + (i ? '' : ' primary') + '" href="' + l.href + '" target="_blank" rel="noopener">' + l.label + '</a>'; }).join('') + '</div>' : '') +
+      '</div>' + (art ? '<div class="proj-art" role="img" aria-label="Animated diagram of how ' + t.name.replace(/"/g, '') + ' works">' + art() + '</div>' : '') + '</div>' +
       '<div class="prose">' + body + '</div>' +
       (restV.length ? '<div class="sub-h" style="margin-top:40px">Videos</div><div class="prose" style="max-width:900px">' + restV.map(function (v) { return '<figure class="fig" style="cursor:default"><video src="' + enc(v.src) + '" controls preload="metadata"></video>' + (v.caption ? '<figcaption>' + v.caption + '</figcaption>' : '') + '</figure>'; }).join('') + '</div>' : '') +
       (restI.length ? '<div class="sub-h" style="margin-top:40px">Screenshots</div><div class="thumbs">' + restI.map(function (im) { return '<button data-lb="' + images.indexOf(im) + '"><img src="' + enc(im.src) + '" alt="" loading="lazy"><span>' + (im.caption || '') + '</span></button>'; }).join('') + '</div>' : '') +
@@ -659,17 +623,17 @@
       return row(p.year, '<b>' + p.title + '</b><div class="cv-sub">' + p.venue + ' (' + p.status + ')</div>');
     }).join('');
     var subRows = r.items.filter(function (i) { return i.status === 'review' || i.status === 'planned'; }).map(function (i) {
-      return row(i.status === 'review' ? 'Communicated' : 'In preparation', '<b>' + i.title + '</b><div class="cv-sub">' + i.venue + '</div>');
+      return row(i.status === 'review' ? 'Under review' : 'In preparation', '<b>' + i.title + '</b><div class="cv-sub">' + i.venue + '</div>');
     }).join('');
     var work = exp.map(function (e) {
-      return row(clean(e.date), '<b>' + e.role + '</b>, ' + e.org + '<ul>' + e.bullets.map(function (b) { return '<li>' + clean(b) + '</li>'; }).join('') + '</ul>');
+      return row(clean(e.date), '<b>' + clean(e.role) + '</b>, ' + clean(e.org) + '<ul>' + e.bullets.map(function (b) { return '<li>' + clean(b) + '</li>'; }).join('') + '</ul>');
     }).join('');
-    var edu = D.credentials.education.map(function (e) { return row(clean(e.date), '<b>' + e.role + '</b><div class="cv-sub">' + e.org + '</div>' + (e.role.indexOf('Masters') === 0 ? '<div>Research track: vision-language models, interpretable ML and edge perception.</div>' : '')); }).join('');
+    var edu = D.credentials.education.map(function (e) { return row(clean(e.date), '<b>' + clean(e.role) + '</b><div class="cv-sub">' + clean(e.org) + '</div>' + (e.role.indexOf('Masters') === 0 ? '<div>Research track: vision-language models, interpretable ML and edge perception.</div>' : '')); }).join('');
     var pick = ['agentic-codesign', 'deep-research-agent', 'ai-video-generator', 'sight-sphere', 'edubot', 'medintelbot', 'face-recognition'];
     var projs = pick.map(function (id) { var p = D.projects.items.filter(function (x) { return x.id === id; })[0]; if (!p) return ''; var t = splitTitle(p.title); return '<li><b>' + t.name + '</b> — ' + clean(p.desc.replace(/^[^\w<]+/u, '')) + '</li>'; }).join('');
     var skills = D.skills.groups.map(function (g) { return '<div><b>' + g.category + ':</b> ' + g.items.join(', ') + '</div>'; }).join('');
     var awards = D.credentials.awards.map(function (a) { return '<li><b>' + clean(a.title) + '</b> — ' + a.desc + '</li>'; }).join('');
-    var vol = D.credentials.volunteering.map(function (a) { return '<li><b>' + a.role + '</b>, ' + a.org + ' (' + clean(a.date) + ')</li>'; }).join('');
+    var vol = D.credentials.volunteering.map(function (a) { return '<li><b>' + clean(a.role) + '</b>, ' + clean(a.org) + ' (' + clean(a.date) + ')</li>'; }).join('');
 
     document.title = 'Curriculum Vitae — Vishnu Vardhan Addanki Tirumala';
     $('#app').innerHTML =
@@ -714,7 +678,7 @@
       return '<div class="mini"><span class="badge ' + i.status + '"><i></i>' + i.statusLabel + '</span><b style="margin-top:8px">' + i.title + '</b><p>' + i.kind + '</p></div>';
     }).join('');
     var slim = function (it) { return { date: it.date, role: it.role, org: it.org, logo: it.logo, bullets: [] }; };
-    var skills = D.skills.groups.map(function (g) { return '<div class="sk"><h4>' + g.category + '</h4><div class="chips">' + g.items.map(function (i) { return '<span class="chip">' + i + '</span>'; }).join('') + '</div></div>'; }).join('');
+    var skills = D.skills.groups.map(function (g) { return '<div class="sk"><h2>' + g.category + '</h2><div class="chips">' + g.items.map(function (i) { return '<span class="chip">' + i + '</span>'; }).join('') + '</div></div>'; }).join('');
     var links = D.contact.links.map(function (l) { return '<a class="chip" href="' + l.href + '" target="_blank" rel="noopener">' + l.label + '</a>'; }).join('');
     $('#app').innerHTML = '<div class="wrap page-pad card-page">' +
       '<a class="back" href="index.html">← Back to site</a><div class="card-stage rv">' + card + actions + '</div>' +
@@ -749,11 +713,9 @@
     }, { passive: true });
 
     // reveal
-    var rv = $$('.rv');
-    if ('IntersectionObserver' in window) {
-      var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }); }, { threshold: .08, rootMargin: '0px 0px -40px 0px' });
-      rv.forEach(function (el, i) { el.style.transitionDelay = (i % 3) * 70 + 'ms'; io.observe(el); });
-    } else rv.forEach(function (el) { el.classList.add('in'); });
+    /* No hide-until-scrolled reveal: every section is on the page from first paint, so anchor jumps,
+       print, screenshots and find-in-page all see the real content. */
+    $$('.rv').forEach(function (el) { el.classList.add('in'); });
 
     // counters
     var cio = new IntersectionObserver(function (es) {
@@ -856,7 +818,7 @@
   /* -------------------------------------------------------------- boot */
   function footer() {
     var f = $('#footer'); if (!f) return;
-    f.innerHTML = '<div class="wrap"><span>© ' + new Date().getFullYear() + ' ' + D.site.name + '</span><span>Grimstad, Norway · ' + D.site.footerText + '</span></div>';
+    f.innerHTML = '<div class="wrap"><span>© ' + new Date().getFullYear() + ' ' + D.site.name + '</span><span><a href="card.html">Profile card</a> · Grimstad, Norway · ' + D.site.footerText + '</span></div>';
   }
 
   fetch('data.json').then(function (r) { return r.json(); }).then(function (d) {

@@ -37,29 +37,7 @@
    "runs on the edge",
    "ships to production"
   ],
-  "sub": "AI researcher and engineer building systems that perceive, reason and act: vision-language models, interpretable learning, edge perception and agents. Backed by two years of shipping LLM agents, ML models and RAG pipelines in production.",
-  "stats": [
-   {
-    "value": 1,
-    "label": "paper accepted",
-    "note": "ISTM 2026"
-   },
-   {
-    "value": 3,
-    "label": "papers under review",
-    "note": "CVPR · IEEE TAI · JAG"
-   },
-   {
-    "value": 1,
-    "label": "planned submission",
-    "note": "IEEE IoT"
-   },
-   {
-    "value": 2,
-    "label": "years in production ML",
-    "note": "Phenom · Wadhwani"
-   }
-  ]
+  "sub": "AI researcher and engineer building systems that perceive, reason and act: vision-language models, interpretable learning, edge perception and agents. Backed by two years of shipping LLM agents, ML models and RAG pipelines in production."
  },
  "capabilities": {
   "sectionNum": "02",
@@ -89,7 +67,6 @@
  },
  "about": {
   "paragraphs": [
-   "I build AI that perceives, reasons and acts, and I like taking an idea all the way from a research question to something that runs for real users or on real hardware.",
    "I'm a Masters student in AI &amp; Data Science (IIITDM) on exchange at the University of Agder (UiA), Grimstad, and a University Research Assistant. My research spans vision-language models, interpretable and distributed learning, lightweight edge perception for sensors and robots, and agentic systems. Before that, two years in production ML (LLM agents, voice agents, RAG pipelines and classifiers at scale) taught me what it takes to make these systems work outside the lab."
   ]
  },
@@ -101,7 +78,7 @@
     "id": "vlm-lora",
     "thumb": "vlm",
     "status": "review",
-    "statusLabel": "Communicated · CVPR 2027",
+    "statusLabel": "Under review · CVPR 2027",
     "venue": "CVPR 2027",
     "kind": "Master's thesis",
     "title": "Where does LoRA fall short in multimodal learning?",
@@ -118,7 +95,7 @@
     "id": "distributed-interp",
     "thumb": "dist",
     "status": "review",
-    "statusLabel": "Communicated · IEEE TAI",
+    "statusLabel": "Under review · IEEE TAI",
     "venue": "IEEE Transactions on Artificial Intelligence",
     "kind": "Research project",
     "title": "Interpretable machine learning for distributed systems",
@@ -134,7 +111,7 @@
     "id": "sensing-agnostic-seg",
     "thumb": "seg",
     "status": "review",
-    "statusLabel": "Communicated · JAG",
+    "statusLabel": "Under review · JAG",
     "venue": "Int. Journal of Applied Earth Observation and Geoinformation",
     "kind": "Research project",
     "title": "Lightweight, sensing-agnostic wildfire segmentation for the edge",
@@ -200,7 +177,7 @@
     "bullets": [
      "Research on interpretability and robustness: vision-language models (LoRA, multimodal diagnostics), Tsetlin Machines, distributed interpretable learning and lightweight edge perception.",
      "Authored two papers submitted to the International Symposium on the Tsetlin Machine (ISTM) 2026 and co-authored a third; “Clause Sanitization for Compact and Interpretable Tsetlin Machines” was accepted for publication.",
-     "Communicated manuscripts to CVPR 2027, IEEE TAI and the Int. Journal of Applied Earth Observation and Geoinformation; preparing an IEEE IoT submission."
+     "Submitted manuscripts to CVPR 2027, IEEE TAI and the Int. Journal of Applied Earth Observation and Geoinformation; preparing an IEEE IoT submission."
     ]
    },
    {
@@ -342,32 +319,6 @@
   "pageSub": "",
   "previewIntro": "",
   "previewIds": [],
-  "filters": [
-   {
-    "key": "all",
-    "label": "All"
-   },
-   {
-    "key": "genai",
-    "label": "GenAI & agents"
-   },
-   {
-    "key": "rag",
-    "label": "RAG"
-   },
-   {
-    "key": "nlp",
-    "label": "NLP"
-   },
-   {
-    "key": "vision",
-    "label": "Vision"
-   },
-   {
-    "key": "hardware",
-    "label": "Assistive tech"
-   }
-  ],
   "items": [
    {
     "id": "agentic-codesign",
@@ -531,7 +482,7 @@
      },
      {
       "id": "wiring",
-      "src": "media/images/SightSphere/IMG-20240601-WA0004.jpg ",
+      "src": "media/images/SightSphere/IMG-20240601-WA0004.jpg",
       "caption": "Sensor wiring and integration"
      },
      {
@@ -947,6 +898,12 @@
      }
     ]
    }
+  ],
+  "flagshipIds": [
+   "deep-research-agent",
+   "sight-sphere",
+   "edubot",
+   "ai-video-generator"
   ]
  },
  "credentials": {
