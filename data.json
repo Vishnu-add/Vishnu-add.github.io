@@ -27,16 +27,8 @@
   }
  },
  "hero": {
-  "eyebrow": "Masters in AI & Data Science · Exchange at University of Agder (UiA), Norway",
+  "eyebrow": "M.Tech in AI & Data Science, IIITDM Kurnool · Research exchange at the University of Agder (UiA), Norway",
   "name": "Vishnu Vardhan Addanki Tirumala",
-  "typePrefix": "I build AI that",
-  "typeWords": [
-   "sees and understands",
-   "reasons and acts",
-   "explains itself",
-   "runs on the edge",
-   "ships to production"
-  ],
   "sub": "AI researcher and engineer building systems that perceive, reason and act: vision-language models, interpretable learning, edge perception and agents. Backed by two years of shipping LLM agents, ML models and RAG pipelines in production."
  },
  "capabilities": {
@@ -67,7 +59,7 @@
  },
  "about": {
   "paragraphs": [
-   "I'm a Masters student in AI &amp; Data Science (IIITDM) on exchange at the University of Agder (UiA), Grimstad, and a University Research Assistant. My research spans vision-language models, interpretable and distributed learning, lightweight edge perception for sensors and robots, and agentic systems. Before that, two years in production ML (LLM agents, voice agents, RAG pipelines and classifiers at scale) taught me what it takes to make these systems work outside the lab."
+   "I'm an M.Tech student in AI &amp; Data Science at IIITDM Kurnool, on research exchange at the University of Agder (UiA), Grimstad, and a University Research Assistant in UiA's ACPS Lab. My research spans vision-language models, interpretable and distributed learning, lightweight edge perception for sensors and robots, and agentic systems. Before that, two years in production ML (LLM agents, voice agents, RAG pipelines and classifiers at scale) taught me what it takes to make these systems work outside the lab."
   ]
  },
  "research": {
@@ -80,15 +72,14 @@
     "status": "review",
     "statusLabel": "Under review · CVPR 2027",
     "venue": "CVPR 2027",
-    "kind": "Master's thesis",
-    "title": "Where does LoRA fall short in multimodal learning?",
-    "desc": "Studied how LoRA fine-tuning affects video-language models (Qwen, SmolVLM), ran controlled diagnostics to find where it falls short, and implemented methods to test whether the problem can be fixed.",
+    "kind": "Master's thesis, phase 1",
+    "title": "Text Predictability and Visual Support for Reliable VideoLLM Fine-Tuning under Distribution Shift in Video Question Answering",
+    "desc": "Scores how much each training question actually needs its video, and uses those scores in LoRA fine-tuning so video-LLMs rely on the video rather than the question wording, losing less accuracy on out-of-distribution data.",
     "tags": [
-     "Video-language models",
+     "Video-LLMs",
      "LoRA",
-     "Qwen",
-     "SmolVLM",
-     "Diagnostics"
+     "Video QA",
+     "Distribution shift"
     ]
    },
    {
@@ -98,7 +89,7 @@
     "statusLabel": "Under review · IEEE TAI",
     "venue": "IEEE Transactions on Artificial Intelligence",
     "kind": "Research project",
-    "title": "Interpretable machine learning for distributed systems",
+    "title": "FP-CoTM: Feature-Partitioned Composite Tsetlin Machines for Distributed Interpretable Learning",
     "desc": "Proves when distributed training preserves the accuracy and explainability of a centralized model trained on the complete data, and introduces new ways to combine logically distinct learners into one trustworthy decision-maker.",
     "tags": [
      "Interpretability",
@@ -111,10 +102,10 @@
     "id": "sensing-agnostic-seg",
     "thumb": "seg",
     "status": "review",
-    "statusLabel": "Under review · JAG",
-    "venue": "Int. Journal of Applied Earth Observation and Geoinformation",
+    "statusLabel": "Under review · Applied Intelligence",
+    "venue": "Applied Intelligence (Springer)",
     "kind": "Research project",
-    "title": "Lightweight, sensing-agnostic wildfire segmentation for the edge",
+    "title": "Edge-WildSeg-Net: A Lightweight Edge-based Wildfire Segmentation Network for RGB, Thermal, and Near-Infrared Imagery",
     "desc": "A lightweight, edge-deployable segmentation network for wildfire and smoke that works across sensing modalities (RGB, thermal and NIR imagery) with one shared model instead of one per sensor.",
     "tags": [
      "Wildfire segmentation",
@@ -126,15 +117,15 @@
    {
     "id": "humanoid-terrain",
     "thumb": "terrain",
-    "status": "planned",
-    "statusLabel": "Planned · IEEE IoT",
+    "status": "review",
+    "statusLabel": "Under review · IEEE IoT",
     "venue": "IEEE Internet of Things Journal",
     "kind": "Research project",
-    "title": "Real-time terrain classification for humanoid robots",
-    "desc": "Lightweight deep learning models that classify the terrain or surface under a humanoid robot in real time from onboard sensors, optimized to run on resource-constrained edge hardware.",
+    "title": "Terrain Identification for Humanoid Robots using IMU and Torque Sensors Data on Edge Computing Devices",
+    "desc": "Lightweight models that identify the terrain under a humanoid robot from IMU and torque-sensor data, built to run in real time on edge computing devices.",
     "tags": [
      "Humanoid robots",
-     "Onboard sensing",
+     "IMU · torque sensors",
      "Edge deployment",
      "Time series"
     ]
@@ -143,11 +134,11 @@
     "id": "agentic-mechatronics",
     "thumb": "agent",
     "status": "ongoing",
-    "statusLabel": "Ongoing · coursework",
-    "venue": "University of Agder",
-    "kind": "Course research project",
-    "title": "Agentic AI in a mechatronics building pipeline",
-    "desc": "Integrating LLM agents into a hardware-software co-design pipeline, using existing design software as the agents' environment with human-in-the-loop review built into the workflow.",
+    "statusLabel": "Ongoing · UiA, SFI CELECT",
+    "venue": "University of Agder · SFI CELECT",
+    "kind": "Research project",
+    "title": "Agentic AI for the Mechatronics Lifecycle",
+    "desc": "A multi-agent LLM system that turns design requirements into build-ready engineering deliverables, with role-specific agents, cross-role validation and human approval gates.",
     "tags": [
      "LLM agents",
      "Co-design",
@@ -172,12 +163,13 @@
    {
     "date": "JAN 2026 , PRESENT",
     "role": "University Research Assistant",
-    "org": "University of Agder, Norway",
+    "org": "ACPS Lab, University of Agder (UiA), Norway",
     "logo": "UiA",
     "bullets": [
-     "Research on interpretability and robustness: vision-language models (LoRA, multimodal diagnostics), Tsetlin Machines, distributed interpretable learning and lightweight edge perception.",
-     "Authored two papers submitted to the International Symposium on the Tsetlin Machine (ISTM) 2026 and co-authored a third; “Clause Sanitization for Compact and Interpretable Tsetlin Machines” was accepted for publication.",
-     "Submitted manuscripts to CVPR 2027, IEEE TAI and the Int. Journal of Applied Earth Observation and Geoinformation; preparing an IEEE IoT submission."
+     "Research on interpretable and distributed learning with Tsetlin Machines, and lightweight perception for edge and robotic platforms.",
+     "Authored two papers for the International Symposium on the Tsetlin Machine (ISTM) 2026 and co-authored a third; the first-authored “Clause Sanitization for Compact and Interpretable Tsetlin Machines” was accepted.",
+     "Submitted manuscripts to CVPR 2027, IEEE TAI, Applied Intelligence and the IEEE Internet of Things Journal.",
+     "Supervisor: Prof. Linga Reddy Cenkeramaddi."
     ]
    },
    {
@@ -912,11 +904,12 @@
   "education": [
    {
     "date": "AUG 2025 , PRESENT",
-    "role": "Masters in Artificial Intelligence &amp; Data Science",
-    "org": "IIITDM · Exchange at University of Agder (UiA), Grimstad, Norway",
+    "role": "M.Tech in Artificial Intelligence &amp; Data Science",
+    "org": "IIITDM Kurnool, India · Research exchange at University of Agder (UiA), Norway",
     "logo": "IU",
     "bullets": [
-     "Joint programme between the Indian Institute of Information Technology, Design and Manufacturing (IIITDM) and the University of Agder; studying at UiA on exchange."
+     "CGPA 8.7/10. One of two students from the batch selected for the UiA research exchange.",
+     "Thesis, phase 1: Text Predictability and Visual Support for Reliable VideoLLM Fine-Tuning under Distribution Shift in Video Question Answering (submitted to CVPR 2027)."
     ]
    },
    {
@@ -925,7 +918,8 @@
     "org": "Neil Gogte Institute of Technology · Hyderabad, India",
     "logo": "NG",
     "bullets": [
-     "EQF level 6."
+     "CGPA 8.4/10. EQF level 6.",
+     "Thesis: Sight-Sphere Communicator, an AI wearable for visually impaired navigation (team lead)."
     ]
    },
    {
@@ -934,7 +928,7 @@
     "org": "Government Institute of Electronics · Hyderabad, India",
     "logo": "GE",
     "bullets": [
-     "EQF level 5."
+     "CGPA 8.5/10. EQF level 5."
     ]
    },
    {
@@ -949,13 +943,13 @@
   ],
   "events": [
    {
-    "title": "NMAI Hackathon , Norwegian AI Hackathon",
-    "meta": "Norway",
-    "desc": "Participated in the Norwegian AI hackathon."
+    "title": "Norwegian AI Championship",
+    "meta": "Norway · 2026",
+    "desc": "Competed as a solo participant."
    },
    {
-    "title": "Sweden Hackathon",
-    "meta": "Sweden",
+    "title": "International Hackathon, Campus Varberg",
+    "meta": "Sweden · 2026",
     "desc": "Participated in an international hackathon in Sweden, prototyping applied AI systems for sustainability under time constraints with a cross-disciplinary international team."
    },
    {
@@ -1249,6 +1243,193 @@
   ],
   "other": [
    "English"
+  ]
+ },
+ "map": {
+  "_note": "Research map on the home page. Lines are themes, stations are papers or projects. A station on two lines is an interchange: only list a second line when the work truly belongs to both. x/y are positions in a 760 x 420 drawing.",
+  "lines": [
+   {
+    "key": "M",
+    "name": "Multimodal learning",
+    "points": [
+     [
+      40,
+      70
+     ],
+     [
+      330,
+      70
+     ]
+    ]
+   },
+   {
+    "key": "I",
+    "name": "Interpretable learning",
+    "points": [
+     [
+      40,
+      170
+     ],
+     [
+      380,
+      170
+     ]
+    ]
+   },
+   {
+    "key": "E",
+    "name": "Edge perception",
+    "points": [
+     [
+      40,
+      270
+     ],
+     [
+      330,
+      270
+     ],
+     [
+      400,
+      340
+     ],
+     [
+      580,
+      340
+     ]
+    ]
+   },
+   {
+    "key": "A",
+    "name": "Agentic systems",
+    "points": [
+     [
+      400,
+      110
+     ],
+     [
+      580,
+      110
+     ]
+    ]
+   },
+   {
+    "key": "S",
+    "name": "Shipped projects",
+    "points": [
+     [
+      580,
+      56
+     ],
+     [
+      580,
+      372
+     ]
+    ]
+   }
+  ],
+  "stations": [
+   {
+    "ref": "research:vlm-lora",
+    "label": "Video-LLM fine-tuning",
+    "lines": [
+     "M"
+    ],
+    "x": 190,
+    "y": 70,
+    "place": "above"
+   },
+   {
+    "ref": "published:0",
+    "label": "Clause sanitization",
+    "lines": [
+     "I"
+    ],
+    "x": 150,
+    "y": 170,
+    "place": "above"
+   },
+   {
+    "ref": "research:distributed-interp",
+    "label": "FP-CoTM, distributed TMs",
+    "lines": [
+     "I"
+    ],
+    "x": 300,
+    "y": 170,
+    "place": "below"
+   },
+   {
+    "ref": "research:sensing-agnostic-seg",
+    "label": "Edge-WildSeg-Net",
+    "lines": [
+     "E"
+    ],
+    "x": 150,
+    "y": 270,
+    "place": "above"
+   },
+   {
+    "ref": "research:humanoid-terrain",
+    "label": "Humanoid terrain",
+    "lines": [
+     "E"
+    ],
+    "x": 285,
+    "y": 270,
+    "place": "above"
+   },
+   {
+    "ref": "research:agentic-mechatronics",
+    "label": "Agentic mechatronics",
+    "lines": [
+     "A"
+    ],
+    "x": 475,
+    "y": 110,
+    "place": "above"
+   },
+   {
+    "ref": "project:deep-research-agent",
+    "label": "Deep Research Agent",
+    "lines": [
+     "A",
+     "S"
+    ],
+    "x": 580,
+    "y": 110,
+    "place": "right"
+   },
+   {
+    "ref": "project:edubot",
+    "label": "EduBot",
+    "lines": [
+     "S"
+    ],
+    "x": 580,
+    "y": 190,
+    "place": "right"
+   },
+   {
+    "ref": "project:ai-video-generator",
+    "label": "AI video generator",
+    "lines": [
+     "S"
+    ],
+    "x": 580,
+    "y": 265,
+    "place": "right"
+   },
+   {
+    "ref": "project:sight-sphere",
+    "label": "Sight-Sphere",
+    "lines": [
+     "E",
+     "S"
+    ],
+    "x": 580,
+    "y": 340,
+    "place": "right"
+   }
   ]
  }
 }

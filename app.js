@@ -4,7 +4,7 @@
   'use strict';
   var $ = function (s, r) { return (r || document).querySelector(s); };
   var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
-  var clean = function (s) { return String(s == null ? '' : s).replace(/ , /g, ' — '); };
+  var clean = function (s) { return String(s == null ? '' : s).replace(/ , /g, ' – '); };
   var enc = function (u) { return encodeURI(String(u).trim()); };   /* a stray space in data.json must never 404 an image */
   var PAGE = document.body.getAttribute('data-page');
   var D = null;
@@ -21,14 +21,12 @@
 
   function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;'); }
   function hue(s) { var h = 0; for (var i = 0; i < s.length; i++) h = s.charCodeAt(i) + ((h << 5) - h); return Math.abs(h) % 360; }
-  function logo(l) {
-    if (!l) return '';
-    var h = hue(l);
-    return '<span class="logo" style="background:linear-gradient(150deg,hsl(' + h + ',55%,42%),hsl(' + ((h + 40) % 360) + ',55%,28%))">' + l + '</span>';
-  }
+  function logo(l) { return l ? '<span class="logo">' + l + '</span>' : ''; }
 
   /* ------------------------------------------------------------ nav */
   var SECTIONS = [['research', 'Research'], ['experience', 'Experience'], ['projects', 'Projects'], ['skills', 'Skills'], ['credentials', 'Education'], ['contact', 'Contact']];
+
+  var BRAND = '<svg viewBox="0 0 28 28" aria-hidden="true"><path d="M3 9h10l6 6h6" stroke="var(--l-m)"/><path d="M3 19h22" stroke="var(--l-i)"/><path d="M14 3v22" stroke="var(--l-e)"/><rect x="10" y="15" width="8" height="8" rx="2.5" class="bm"/></svg>';
 
   function renderNav() {
     var base = PAGE === 'home' ? '' : 'index.html';
@@ -37,7 +35,7 @@
     var links = SECTIONS.filter(function (s) { return s[0] !== 'contact'; }).map(function (s) { return '<li><a href="' + base + '#' + s[0] + '" data-s="' + s[0] + '">' + s[1] + '</a></li>'; }).join('');
     $('#nav').innerHTML =
       '<div class="wrap">' +
-      '<a class="brand" href="' + (PAGE === 'home' ? '#top' : 'index.html') + '" aria-label="Vishnu Vardhan Addanki Tirumala, home"><i></i><span>vishnu@ai:~$</span></a>' +
+      '<a class="brand" href="' + (PAGE === 'home' ? '#top' : 'index.html') + '" aria-label="Vishnu Vardhan Addanki Tirumala, home">' + BRAND + '<span>Vishnu Vardhan</span></a>' +
       '<ul class="links" id="links">' + links + '</ul>' +
       '<div class="nav-right">' +
       '<a class="btn-nav ghost" href="' + docs.cv + '" title="Open academic CV">' + svgInline('doc') + '<span>CV</span></a>' +
@@ -433,51 +431,148 @@
     document.head.appendChild(st);
   })();
 
+  /* ------------------------------------------------------- research map
+     The research drawn as a transit network (data.json → map): themes are lines,
+     papers and projects are stations, and the station marker is the publication status. */
+  var STATUS_TEXT = { accepted: 'Accepted', review: 'Under review', planned: 'Planned', ongoing: 'Ongoing', project: 'Project' };
+  function lineVar(k) { return 'var(--l-' + k.toLowerCase() + ')'; }
+  function bulletHTML(k, cls) { return '<i class="' + (cls || 'lb') + ' k-' + k.toLowerCase() + '" style="--lc:' + lineVar(k) + '">' + k + '</i>'; }
+
+  /* turn a station's ref ("research:id", "published:0", "project:id") into what the page shows */
+  function resolveStation(st) {
+    var kind = st.ref.split(':')[0], key = st.ref.slice(kind.length + 1), o;
+    if (kind === 'research') {
+      var it = D.research.items.filter(function (x) { return x.id === key; })[0]; if (!it) return null;
+      o = { status: it.status, statusText: it.statusLabel, title: it.title, desc: it.desc, href: '#r-' + it.id, go: 'See the research', art: THUMBS[it.thumb] };
+    } else if (kind === 'published') {
+      var p = D.research.published[+key]; if (!p) return null;
+      o = { status: 'accepted', statusText: 'Accepted · ' + (p.venue.match(/\(([^)]+)\)/) || [0, p.venue])[1] + ' ' + p.year, title: p.title, desc: p.venue + ', ' + p.year + '.', href: '#pub-' + key, go: 'See the paper', art: null, badge: (p.venue.match(/\(([^)]+)\)/) || [0, 'Paper'])[1] + ' ' + p.year };
+    } else {
+      var pr = D.projects.items.filter(function (x) { return x.id === key; })[0]; if (!pr) return null;
+      o = { status: 'project', statusText: 'Project · ' + pr.tagLabel, title: splitTitle(pr.title).name, desc: clean(pr.desc.replace(/^[^\w<]+/u, '')), href: 'project.html?id=' + encodeURIComponent(pr.id), go: 'Read the write-up', art: PT[pr.id] };
+    }
+    o.lines = st.lines; o.ref = st.ref; o.label = st.label;
+    return o;
+  }
+
+  function markerSVG(x, y, status, interchange) {
+    if (status === 'project') {
+      var s = interchange ? 24 : 19;
+      return '<rect class="mk" x="' + (x - s / 2) + '" y="' + (y - s / 2) + '" width="' + s + '" height="' + s + '" rx="' + (interchange ? 7 : 5) + '"/>';
+    }
+    return '<circle class="mk ' + status + '" cx="' + x + '" cy="' + y + '" r="10"/>' + (status === 'ongoing' ? '<circle class="mk-in" cx="' + x + '" cy="' + y + '" r="3.6"/>' : '');
+  }
+
+  function mapSVG(M, info) {
+    var s = '<svg class="tmap" viewBox="0 26 760 362" role="group" aria-label="Research map. Lines are research themes; stations are papers and projects.">';
+    M.lines.forEach(function (l, i) {
+      s += '<polyline class="route" pathLength="1" style="--d:' + i + '" stroke="' + lineVar(l.key) + '" points="' + l.points.map(function (p) { return p.join(','); }).join(' ') + '"/>';
+    });
+    M.lines.forEach(function (l) {
+      var p = l.points[0];
+      s += '<g class="bullet k-' + l.key.toLowerCase() + '" aria-hidden="true"><circle cx="' + p[0] + '" cy="' + p[1] + '" r="14" fill="' + lineVar(l.key) + '"/><text x="' + p[0] + '" y="' + (p[1] + 5) + '" text-anchor="middle">' + l.key + '</text></g>';
+    });
+    M.stations.forEach(function (st, i) {
+      var o = info[i]; if (!o) return;
+      var x = st.x, y = st.y, lx = x, ly = y, anchor = 'middle';
+      if (st.place === 'above') ly = y - 22; else if (st.place === 'below') ly = y + 32; else { lx = x + 22; ly = y + 5; anchor = 'start'; }
+      s += '<a class="st" href="' + o.href + '" data-i="' + i + '" aria-label="' + esc(o.title).replace(/"/g, '&quot;') + ', ' + STATUS_TEXT[o.status] + '">' +
+        '<circle class="hit" cx="' + x + '" cy="' + y + '" r="20"/>' + markerSVG(x, y, o.status, st.lines.length > 1) +
+        '<text class="st-l" x="' + lx + '" y="' + ly + '" text-anchor="' + anchor + '">' + esc(st.label) + '</text></a>';
+    });
+    return s + '</svg>';
+  }
+
+  /* phone: the same network as a vertical list per line */
+  function mapList(M, info) {
+    return '<div class="map-list">' + M.lines.map(function (l) {
+      var rows = M.stations.map(function (st, i) { return st.lines.indexOf(l.key) >= 0 && info[i] ? { st: st, o: info[i] } : null; }).filter(Boolean);
+      return '<div class="ml-line" style="--lc:' + lineVar(l.key) + '"><h2>' + bulletHTML(l.key) + l.name + '</h2><ol>' + rows.map(function (r) {
+        return '<li><a href="' + r.o.href + '"><span class="mks ' + r.o.status + (r.st.lines.length > 1 ? ' xchg' : '') + '"></span><span class="ml-t">' + esc(r.st.label) + '<small>' + r.o.statusText + (r.st.lines.length > 1 ? ' · also on ' + r.st.lines.filter(function (k) { return k !== l.key; }).map(function (k) { return M.lines.filter(function (x) { return x.key === k; })[0].name; }).join(', ') : '') + '</small></span></a></li>';
+      }).join('') + '</ol></div>';
+    }).join('') + '</div>';
+  }
+
+  function mapLegend(M, info) {
+    var n = {}; info.forEach(function (o) { if (o) n[o.status] = (n[o.status] || 0) + 1; });
+    var mk = function (st) { return '<svg viewBox="0 0 24 24" aria-hidden="true">' + markerSVG(12, 12, st, false) + '</svg>'; };
+    return '<ul class="legend" aria-label="Map key">' +
+      M.lines.map(function (l) { return '<li>' + bulletHTML(l.key, 'lg-b') + l.name + '</li>'; }).join('') +
+      '<li class="lg-break" aria-hidden="true"></li>' +
+      ['accepted', 'review', 'planned', 'ongoing', 'project'].filter(function (k) { return n[k]; }).map(function (k) {
+        return '<li>' + mk(k) + STATUS_TEXT[k] + (k === 'project' ? 's' : '') + ' <b>' + n[k] + '</b></li>';
+      }).join('') + '</ul>';
+  }
+
+  function panelHTML(o) {
+    var art = o.art ? '<div class="mp-art">' + o.art() + '</div>' : '<div class="mp-art txt"><span>' + esc(o.badge || '') + '</span></div>';
+    return art + '<div class="mp-body"><div class="mp-status">' + o.lines.map(function (k) { return bulletHTML(k); }).join('') + '<span>' + o.statusText + '</span></div>' +
+      '<b>' + o.title + '</b><a class="mp-go" href="' + o.href + '">' + o.go + ' →</a></div>';
+  }
+
+  function wireMap(info, start) {
+    var panel = $('#map-panel'); if (!panel) return;
+    var cur = -1;
+    function show(i) {
+      if (i === cur || !info[i]) return; cur = i;
+      panel.innerHTML = panelHTML(info[i]);
+      $$('.tmap .st').forEach(function (a) { a.classList.toggle('on', +a.getAttribute('data-i') === i); });
+    }
+    $$('.tmap .st').forEach(function (a) {
+      var i = +a.getAttribute('data-i');
+      a.addEventListener('mouseenter', function () { show(i); });
+      a.addEventListener('focus', function () { show(i); });
+    });
+    show(start);
+  }
+
+  function band(title, keys) {
+    return '<div class="band rv"><h2>' + title + '</h2>' + (keys ? '<span class="bullets" aria-hidden="true">' + keys.map(function (k) { return bulletHTML(k, 'bb'); }).join('') + '</span>' : '') + '</div>';
+  }
+
   /* ------------------------------------------------------------- home */
   function renderHome() {
-    var h = D.hero, docs = D.site.docs;
+    var h = D.hero, docs = D.site.docs, M = D.map, r = D.research;
+    var info = M.stations.map(resolveStation);
+    var start = Math.max(0, M.stations.map(function (s) { return s.ref; }).indexOf('research:vlm-lora'));
+    var acc = r.published[0];
     var hero =
-      '<header class="hero" id="top"><canvas id="net" aria-hidden="true"></canvas><div class="wrap"><div>' +
-      '<div class="eyebrow">' + h.eyebrow + '</div>' +
-      '<h1>Vishnu Vardhan <em>Addanki&nbsp;Tirumala</em></h1>' +
-      '<div class="typed">&gt; ' + h.typePrefix + ' <span class="w" id="typed"></span></div>' +
+      '<header class="hero" id="top"><div class="wrap hero-grid">' +
+      '<div class="hero-copy">' +
+      '<img class="avatar" src="assets/vishnu.jpg" alt="Portrait of Vishnu Vardhan Addanki Tirumala" width="80" height="80">' +
+      '<h1>Vishnu Vardhan<br>Addanki Tirumala</h1>' +
+      '<p class="affil">' + h.eyebrow + '</p>' +
       '<p class="sub">' + h.sub + '</p>' +
-      '<div class="cta">' +
-      '<a class="btn primary" href="#research">See my research ↓</a>' +
+      (acc ? '<a class="acc-row" href="#pub-0"><i class="mk-dot" aria-hidden="true"></i><span><b>' + acc.status + ' · ISTM ' + acc.year + '</b>' + acc.title + '</span></a>' : '') +
+      '<div class="cta"><a class="btn primary" href="mailto:' + D.contact.email + '?subject=Hello%20Vishnu">Email me</a>' +
       '<a class="btn" href="' + docs.cv + '">' + svgInline('doc') + 'CV</a></div></div>' +
-      '<div class="portrait"><div class="ring2"></div><div class="ring"></div>' +
-      '<img src="assets/vishnu.jpg" alt="Portrait of Vishnu Vardhan Addanki Tirumala" width="320" height="320">' +
-      '<span class="tag t1">VLMs · <b>LoRA</b></span><span class="tag t2">Tsetlin · <b>interpretable</b></span><span class="tag t3">edge · <b>agents</b></span></div>' +
+      '<div class="hero-map">' + mapSVG(M, info) + mapList(M, info) +
+      '<div class="map-panel" id="map-panel" aria-live="polite"></div>' + mapLegend(M, info) + '</div>' +
       '</div></header>';
 
-    var r = D.research;
-    var counts = { accepted: 1, review: 0, planned: 0, ongoing: 0 };
-    r.items.forEach(function (i) { counts[i.status]++; });
+    /* line each research thread runs on, for its card bullet */
+    var lineOf = {};
+    M.stations.forEach(function (s) { if (s.ref.indexOf('research:') === 0) lineOf[s.ref.slice(9)] = s.lines[0]; });
     var cards = r.items.map(function (it) {
-      return '<article class="r-card tilt rv" id="r-' + it.id + '">' +
+      return '<article class="r-card rv" id="r-' + it.id + '">' +
         '<div class="r-thumb">' + THUMBS[it.thumb]() + '</div>' +
-        '<div class="r-body"><div class="r-top"><span class="badge ' + it.status + '"><i></i>' + it.statusLabel + '</span><span class="r-kind">' + it.kind + '</span></div><h3>' + it.title + '</h3>' +
-        '<p>' + it.desc + '</p><div class="r-venue">' + it.venue + '</div>' +
+        '<div class="r-body"><div class="r-top">' + (lineOf[it.id] ? bulletHTML(lineOf[it.id]) : '') + '<span class="badge ' + it.status + '"><i></i>' + it.statusLabel + '</span></div><span class="r-kind">' + it.kind + '</span><h3>' + it.title + '</h3>' +
+        '<p>' + it.desc + '</p>' + (it.statusLabel.indexOf(it.venue) < 0 ? '<div class="r-venue">' + it.venue + '</div>' : '') +
         '<div class="tags">' + it.tags.map(function (t) { return '<span>' + t + '</span>'; }).join('') + '</div></div></article>';
     }).join('');
-    var pubs = r.published.map(function (p) {
-      return '<div class="pub rv"><span class="ok">● ' + p.status.toUpperCase() + '</span><b>' + p.title + '</b><span>' + p.venue + ' · ' + p.year + '</span></div>';
+    var pubs = r.published.map(function (p, i) {
+      return '<div class="pub rv" id="pub-' + i + '"><span class="ok"><i class="mk-dot" aria-hidden="true"></i>' + p.status + '</span><b>' + p.title + '</b><span>' + p.venue + ' · ' + p.year + '</span></div>';
     }).join('');
-    var pipe = '<div class="pipe rv">' +
-      pipeCell('Accepted', 1, 'Clause sanitization for Tsetlin Machines, ISTM 2026') +
-      pipeCell('Under review', counts.review, 'CVPR 2027 · IEEE TAI · JAG') +
-      pipeCell('Planned', counts.planned, 'IEEE Internet of Things Journal') +
-      pipeCell('Ongoing', counts.ongoing, 'Agentic AI for mechatronics (coursework)') + '</div>';
 
     var about = '<section id="about"><div class="wrap about-grid"><div class="rv">' +
       D.about.paragraphs.map(function (p) { return '<p>' + p + '</p>'; }).join('') + '</div></div></section>';
 
     var research = '<section id="research"><div class="wrap">' +
-      '<div class="sec-head rv"><span class="idx">01</span><div class="eyebrow">research</div></div><h2 class="rv">What I\'m working on</h2><p class="lede rv" style="margin-top:14px">' + r.intro + '</p>' +
-      '<div class="r-grid">' + cards + '</div>' + pubs + pipe +
+      band('What I\'m working on', ['M', 'I', 'E', 'A']) + '<p class="lede rv">' + r.intro + '</p>' +
+      pubs + '<div class="r-grid">' + cards + '</div>' +
       '<p class="rv" style="margin-top:22px"><a class="btn" href="' + r.orcidUrl + '" target="_blank" rel="noopener">' + svgIcon('orcid').replace('<svg', '<svg fill="currentColor"') + 'ORCID profile</a></p></div></section>';
 
-    var exp = '<section id="experience"><div class="wrap"><div class="sec-head rv"><span class="idx">02</span><div class="eyebrow">experience</div></div><h2 class="rv">Where I\'ve worked</h2><p class="lede rv" style="margin-top:14px">Research now, two years of production ML before it. Each role shaped how I ask research questions.</p><div class="tl">' +
+    var exp = '<section id="experience"><div class="wrap">' + band('Where I\'ve worked', null) + '<p class="lede rv">Research now, two years of production ML before it. Each role shaped how I ask research questions.</p><div class="tl">' +
       D.experience.items.map(tlItem).join('') + '</div></div></section>';
 
     /* four flagships get full cards; the rest stay one click away as compact rows */
@@ -485,16 +580,16 @@
     D.projects.items.forEach(function (p) { byId[p.id] = p; });
     var flagItems = flag.map(function (id) { return byId[id]; }).filter(Boolean);
     var restItems = D.projects.items.filter(function (p) { return flag.indexOf(p.id) < 0; });
-    var projects = '<section id="projects"><div class="wrap"><div class="sec-head rv"><span class="idx">03</span><div class="eyebrow">projects</div></div><h2 class="rv">Things I\'ve built</h2><p class="lede rv" style="margin-top:14px">Agents, RAG systems and assistive hardware. Click a card for the full write-up.</p>' +
+    var projects = '<section id="projects"><div class="wrap">' + band('Things I\'ve built', ['S']) + '<p class="lede rv">Agents, RAG systems and assistive hardware. Click a card for the full write-up.</p>' +
       '<div class="p-grid" id="pgrid">' + flagItems.map(projectCard).join('') + '</div>' +
       '<details class="more-p rv"><summary>' + restItems.length + ' more projects</summary><div class="p-rows">' + restItems.map(projectRow).join('') + '</div></details></div></section>';
 
-    var skills = '<section id="skills"><div class="wrap"><div class="sec-head rv"><span class="idx">04</span><div class="eyebrow">skills</div></div><h2 class="rv">Toolbox</h2><div class="sk-grid" style="margin-top:34px">' +
+    var skills = '<section id="skills"><div class="wrap">' + band('Toolbox', null) + '<div class="sk-grid" style="margin-top:34px">' +
       D.skills.groups.map(function (g) { return '<div class="sk rv"><h3>' + g.category + '</h3><div class="chips">' + g.items.map(function (i) { return '<span class="chip">' + i + '</span>'; }).join('') + '</div></div>'; }).join('') + '</div></div></section>';
 
     var cr = D.credentials;
     var nCerts = cr.certifications.reduce(function (n, c) { return n + c.items.length; }, 0);
-    var cred = '<section id="credentials"><div class="wrap"><div class="sec-head rv"><span class="idx">05</span><div class="eyebrow">education &amp; credentials</div></div><h2 class="rv">The paper trail</h2>' +
+    var cred = '<section id="credentials"><div class="wrap">' + band('The paper trail', null) + '' +
       '<div class="two" style="margin-top:40px"><div class="rv"><div class="sub-h">Education</div><div class="tl">' + cr.education.map(tlItem).join('') + '</div></div>' +
       '<div class="rv"><div class="sub-h">Honours &amp; awards</div><div class="cards">' + cr.awards.map(function (a) { return '<div class="mini"><b>' + clean(a.title) + '</b><p>' + a.desc + '</p></div>'; }).join('') + '</div></div></div>' +
       /* secondary credentials stay on the page but fold away so Contact comes sooner */
@@ -511,7 +606,7 @@
       }).join('') + '</div></details></div></section>';
 
     var c = D.contact;
-    var contact = '<section id="contact"><div class="wrap"><div class="contact rv"><div class="eyebrow" style="position:relative">let\'s talk</div><h2>' + c.heading + '</h2><p>' + c.text + '</p>' +
+    var contact = '<section id="contact"><div class="wrap"><div class="contact rv"><span class="routes" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span><h2>' + c.heading + '</h2><p>' + c.text + '</p>' +
       '<div class="cta"><a class="btn primary" href="mailto:' + c.email + '?subject=Hello%20Vishnu">Email me →</a><a class="btn" href="' + docs.cv + '">CV</a><a class="btn" href="' + docs.resume + '" target="_blank" rel="noopener">Resume (PDF)</a></div>' +
       '<div class="soc">' + c.links.filter(function (l) { return l.label !== 'Email'; }).map(function (l) {
         return '<a href="' + l.href + '" target="_blank" rel="noopener">' + svgIcon(l.label.toLowerCase()) + l.label + '</a>';
@@ -519,9 +614,9 @@
 
     $('#app').innerHTML = hero + research + about + exp + projects + skills + cred + contact;
     wireHoverVideo();
+    wireMap(info, start);
   }
 
-  function pipeCell(t, n, d) { return '<div><small>' + t + '</small><b data-count="' + n + '">0</b><p>' + d + '</p></div>'; }
   function svgInline(k) { return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/></svg>'; }
 
   function tlItem(it) {
@@ -539,7 +634,7 @@
       var h = hue(p.id);
       thumb = '<div class="p-thumb gen" style="--g:linear-gradient(135deg,hsl(' + h + ',55%,32%),hsl(' + ((h + 60) % 360) + ',60%,18%))"><span class="em">' + (t.emoji || '✦') + '</span></div>';
     }
-    return '<a class="p-card tilt rv" data-tag="' + p.tag + '" href="project.html?id=' + encodeURIComponent(p.id) + '">' + thumb +
+    return '<a class="p-card rv" data-tag="' + p.tag + '" href="project.html?id=' + encodeURIComponent(p.id) + '">' + thumb +
       '<div class="p-body"><span class="p-tag">' + p.tagLabel + '</span><h3>' + t.name + '</h3><p>' + clean(p.desc.replace(/^[^\w<]+/u, '')) + '</p><span class="p-more">Read more</span></div></a>';
   }
 
@@ -639,7 +734,7 @@
     $('#app').innerHTML =
       '<div class="cv-bar no-print"><a class="back" href="index.html">← Back to site</a><div><a class="btn" href="' + docs.resume + '" target="_blank" rel="noopener">Resume (PDF)</a> <a class="btn" href="' + docs.cvPdf + '" download>Download CV (PDF)</a> <button class="btn primary" onclick="window.print()">Print</button></div></div>' +
       '<article class="cv">' +
-      '<header class="cv-head"><div><h1>Vishnu Vardhan Addanki Tirumala</h1><div class="cv-tag">Curriculum Vitae · Masters in Artificial Intelligence &amp; Data Science (exchange at UiA) · University Research Assistant</div></div>' +
+      '<header class="cv-head"><div><h1>Vishnu Vardhan Addanki Tirumala</h1><div class="cv-tag">Curriculum Vitae · M.Tech in AI &amp; Data Science, IIITDM Kurnool (research exchange at UiA) · University Research Assistant, ACPS Lab</div></div>' +
       '<div class="cv-contact"><div>Grimstad, Norway</div><div>' + D.contact.email + '</div><div>' + link('https://vishnu-add.github.io/') + '</div><div>github.com/Vishnu-add</div><div>orcid.org/0009-0003-4496-0054</div><div>linkedin.com/in/a-vishnu-vardhan</div></div></header>' +
       sec('Research interests', '<p>Interpretability and robustness of vision-language models; multimodal learning and parameter-efficient fine-tuning (LoRA); interpretable and distributed learning (Tsetlin Machines); lightweight, sensor-agnostic perception for edge and robotic platforms; agentic AI systems.</p>') +
       sec('Education', edu) +
@@ -664,12 +759,12 @@
     var rows = [['mail', D.contact.email], ['link', 'vishnu-add.github.io'], ['github', 'github.com/Vishnu-add'], ['linkedin', 'linkedin.com/in/a-vishnu-vardhan']].map(function (x) {
       return '<div class="bc-row">' + svgIcon(x[0]).replace('<svg', '<svg fill="currentColor"') + '<span>' + x[1] + '</span></div>';
     }).join('');
-    var card = '<div class="bcard tilt"><div class="bc-glow"></div>' +
+    var card = '<div class="bcard">' +
       '<div class="bc-photo"><img src="assets/vishnu.jpg" alt="Portrait of Vishnu Vardhan Addanki Tirumala" width="640" height="640"></div>' +
-      '<div class="bc-main"><div class="bc-id"><div><div class="eyebrow">Profile card</div><h1>Vishnu Vardhan Addanki&nbsp;Tirumala</h1></div></div>' +
+      '<div class="bc-main"><span class="routes" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span><div class="bc-id"><div><h1>Vishnu Vardhan Addanki&nbsp;Tirumala</h1></div></div>' +
       '<p class="bc-role">AI researcher &amp; engineer<br><span>Masters in AI &amp; Data Science · University Research Assistant<br>Exchange at University of Agder (UiA) · Grimstad, Norway</span></p>' +
       '<div class="chips bc-chips">' + chips + '</div><div class="bc-rows">' + rows + '</div></div>' +
-      '<a class="bc-qr" href="' + LI + '" target="_blank" rel="noopener" aria-label="Open LinkedIn profile"><div class="qr-tile"><img src="assets/linkedin-qr.svg" alt="QR code for linkedin.com/in/a-vishnu-vardhan" width="190" height="190"><i class="c1"></i><i class="c2"></i><i class="c3"></i><i class="c4"></i><b class="qr-scan"></b></div>' +
+      '<a class="bc-qr" href="' + LI + '" target="_blank" rel="noopener" aria-label="Open LinkedIn profile"><div class="qr-tile"><img src="assets/linkedin-qr.svg" alt="QR code for linkedin.com/in/a-vishnu-vardhan" width="190" height="190"><i class="c1"></i><i class="c2"></i><i class="c3"></i><i class="c4"></i></div>' +
       '<span>Scan to connect on <strong>LinkedIn</strong></span></a></div>';
     var actions = '<div class="cta bc-actions"><a class="btn primary" href="' + LI + '" target="_blank" rel="noopener">' + svgIcon('linkedin').replace('<svg', '<svg fill="currentColor"') + 'Open LinkedIn</a>' +
       '<button class="btn" id="vcf" type="button">Save contact (.vcf)</button><button class="btn" id="copyli" type="button">Copy LinkedIn link</button>' +
@@ -707,7 +802,7 @@
   /* ------------------------------------------------------------ effects */
   function initFX() {
     // scroll progress
-    var bar = document.createElement('div'); bar.id = 'progress'; document.body.appendChild(bar);
+    var bar = document.createElement('div'); bar.id = 'progress'; bar.setAttribute('aria-hidden', 'true'); document.body.appendChild(bar);
     window.addEventListener('scroll', function () {
       var h = document.documentElement; bar.style.width = (h.scrollTop / Math.max(1, h.scrollHeight - h.clientHeight) * 100) + '%';
     }, { passive: true });
@@ -716,40 +811,6 @@
     /* No hide-until-scrolled reveal: every section is on the page from first paint, so anchor jumps,
        print, screenshots and find-in-page all see the real content. */
     $$('.rv').forEach(function (el) { el.classList.add('in'); });
-
-    // counters
-    var cio = new IntersectionObserver(function (es) {
-      es.forEach(function (e) {
-        if (!e.isIntersecting) return; cio.unobserve(e.target);
-        var el = e.target, to = +el.getAttribute('data-count'), t0 = null;
-        (function step(ts) { if (!t0) t0 = ts; var p = Math.min(1, (ts - t0) / 1100); el.textContent = Math.round(to * (1 - Math.pow(1 - p, 3))); if (p < 1) requestAnimationFrame(step); })(performance.now());
-      });
-    }, { threshold: .4 });
-    $$('[data-count]').forEach(function (el) { cio.observe(el); });
-
-    // tilt
-    if (matchMedia('(hover:hover) and (pointer:fine)').matches && !matchMedia('(prefers-reduced-motion:reduce)').matches) {
-      $$('.tilt').forEach(function (el) {
-        el.addEventListener('mousemove', function (e) {
-          var r = el.getBoundingClientRect(), x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
-          el.style.transform = 'perspective(900px) rotateX(' + (-y * 5).toFixed(2) + 'deg) rotateY(' + (x * 6).toFixed(2) + 'deg) translateY(-4px)';
-        });
-        el.addEventListener('mouseleave', function () { el.style.transform = ''; });
-      });
-    }
-
-    // typed text
-    var te = $('#typed');
-    if (te) {
-      var words = D.hero.typeWords, wi = 0, ci = 0, del = false;
-      (function tick() {
-        var w = words[wi];
-        if (!del) { ci++; if (ci >= w.length) { del = true; te.textContent = w; return void setTimeout(tick, 1500); } }
-        else { ci--; if (ci <= 0) { del = false; wi = (wi + 1) % words.length; } }
-        te.textContent = w.slice(0, ci);
-        setTimeout(tick, del ? 32 : 70);
-      })();
-    }
 
     // scroll-spy
     if (PAGE === 'home') {
@@ -762,57 +823,6 @@
       }, { rootMargin: '-45% 0px -50% 0px' });
       SECTIONS.forEach(function (s) { var el = document.getElementById(s[0]); if (el) spy.observe(el); });
     }
-    initNet();
-  }
-
-  /* hero: neural-network field that reacts to the pointer */
-  function initNet() {
-    var cv = $('#net'); if (!cv) return;
-    var reduce = matchMedia('(prefers-reduced-motion:reduce)').matches;
-    var ctx = cv.getContext('2d'), W, H, nodes = [], pulses = [], mouse = { x: -999, y: -999 }, dpr = Math.min(2, devicePixelRatio || 1);
-    var col = function (n) { return getComputedStyle(document.documentElement).getPropertyValue(n).trim(); };
-    var cA, cS, cL;
-    function colors() { cA = col('--acc'); cS = col('--sig'); cL = col('--faint'); }
-    function size() {
-      var r = cv.parentNode.getBoundingClientRect(); W = r.width; H = r.height;
-      cv.width = W * dpr; cv.height = H * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      var n = Math.round(Math.min(110, Math.max(36, W * H / 14000)));
-      nodes = []; for (var i = 0; i < n; i++) nodes.push({ x: Math.random() * W, y: Math.random() * H, vx: (Math.random() - .5) * .25, vy: (Math.random() - .5) * .25, r: Math.random() * 1.6 + .8, c: Math.random() < .25 });
-    }
-    function frame() {
-      ctx.clearRect(0, 0, W, H);
-      var i, j, a, b, d, link = 130;
-      for (i = 0; i < nodes.length; i++) {
-        a = nodes[i];
-        if (!reduce) { a.x += a.vx; a.y += a.vy; if (a.x < 0 || a.x > W) a.vx *= -1; if (a.y < 0 || a.y > H) a.vy *= -1; }
-        var dx = a.x - mouse.x, dy = a.y - mouse.y, dm = Math.sqrt(dx * dx + dy * dy);
-        if (dm < 120 && dm > 0) { a.x += dx / dm * 1.2; a.y += dy / dm * 1.2; }
-      }
-      ctx.lineWidth = .8;
-      for (i = 0; i < nodes.length; i++) for (j = i + 1; j < nodes.length; j++) {
-        a = nodes[i]; b = nodes[j]; d = Math.hypot(a.x - b.x, a.y - b.y);
-        if (d < link) { ctx.globalAlpha = (1 - d / link) * .35; ctx.strokeStyle = cL; ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke(); }
-      }
-      if (!reduce && Math.random() < .06 && nodes.length > 2) {
-        a = nodes[Math.floor(Math.random() * nodes.length)];
-        var best = null, bd = link; nodes.forEach(function (n) { var dd = Math.hypot(a.x - n.x, a.y - n.y); if (n !== a && dd < bd) { bd = dd; best = n; } });
-        if (best) pulses.push({ a: a, b: best, t: 0 });
-      }
-      pulses = pulses.filter(function (p) {
-        p.t += .03; if (p.t >= 1) return false;
-        var x = p.a.x + (p.b.x - p.a.x) * p.t, y = p.a.y + (p.b.y - p.a.y) * p.t;
-        ctx.globalAlpha = 1 - p.t * .4; ctx.fillStyle = cA; ctx.shadowColor = cA; ctx.shadowBlur = 10; ctx.beginPath(); ctx.arc(x, y, 2.2, 0, 6.3); ctx.fill(); ctx.shadowBlur = 0; return true;
-      });
-      nodes.forEach(function (n) { ctx.globalAlpha = .75; ctx.fillStyle = n.c ? cS : cA; ctx.beginPath(); ctx.arc(n.x, n.y, n.r, 0, 6.3); ctx.fill(); });
-      ctx.globalAlpha = 1;
-      if (!reduce) requestAnimationFrame(frame);
-    }
-    colors(); size(); frame();
-    if (reduce) window.addEventListener('resize', function () { size(); frame(); });
-    else window.addEventListener('resize', size);
-    window.addEventListener('themechange', colors);
-    cv.parentNode.addEventListener('pointermove', function (e) { var r = cv.getBoundingClientRect(); mouse.x = e.clientX - r.left; mouse.y = e.clientY - r.top; });
-    cv.parentNode.addEventListener('pointerleave', function () { mouse.x = mouse.y = -999; });
   }
 
   /* -------------------------------------------------------------- boot */
