@@ -150,7 +150,7 @@ section{padding:96px 0;position:relative}
 .pub .ok{color:var(--acc)}
 
 /* pipeline */
-.pipe{display:grid;grid-template-columns:repeat(4,1fr);margin-top:34px;border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.pipe{display:grid;grid-template-columns:repeat(3,1fr);margin-top:34px;border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
 .pipe div{padding:16px 20px;border-right:1px solid var(--line);background:var(--card);position:relative}
 .pipe div:last-child{border:0}
 .pipe small{font-family:var(--mono);font-size:11px;color:var(--faint);text-transform:uppercase;letter-spacing:.1em}
@@ -296,7 +296,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
   .about-grid,.two{grid-template-columns:1fr;gap:34px}
   .r-grid{grid-template-columns:1fr 1fr}.r-card,.r-card:nth-child(1),.r-card:nth-child(2){grid-column:span 1}
   .r-card:nth-child(5){grid-column:span 2}
-  .pipe{grid-template-columns:1fr 1fr}.pipe div:nth-child(2){border-right:0}.pipe div:nth-child(-n+2){border-bottom:1px solid var(--line)}
+  .pipe{grid-template-columns:1fr}.pipe div{border-right:0;border-bottom:1px solid var(--line)}.pipe div:last-child{border-bottom:0}
 }
 @media (max-width:640px){
   body{font-size:16px}

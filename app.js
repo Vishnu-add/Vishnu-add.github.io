@@ -493,7 +493,7 @@
       '<div class="wrap"><div class="stats rv">' + stats + '</div></div>';
 
     var r = D.research;
-    var counts = { accepted: 1, review: 0, planned: 0, ongoing: 0 };
+    var counts = { accepted: 1, review: 0, ongoing: 0 };
     r.items.forEach(function (i) { counts[i.status]++; });
     var cards = r.items.map(function (it) {
       return '<article class="r-card tilt rv" id="r-' + it.id + '">' +
@@ -507,8 +507,7 @@
     }).join('');
     var pipe = '<div class="pipe rv">' +
       pipeCell('Accepted', 1, 'Clause sanitization for Tsetlin Machines, ISTM 2026') +
-      pipeCell('Communicated', counts.review, 'CVPR 2027 · IEEE TAI · JAG') +
-      pipeCell('Planned', counts.planned, 'IEEE Internet of Things Journal') +
+      pipeCell('Communicated', counts.review, 'CVPR 2027 · IEEE TAI · Applied Intelligence · IEEE IoT') +
       pipeCell('Ongoing', counts.ongoing, 'Agentic AI for mechatronics (coursework)') + '</div>';
 
     var about = '<section id="about"><div class="wrap about-grid"><div class="rv">' +
