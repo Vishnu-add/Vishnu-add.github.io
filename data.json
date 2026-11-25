@@ -102,7 +102,7 @@
     "statusLabel": "Communicated · CVPR 2027",
     "venue": "CVPR 2027",
     "kind": "Master's thesis",
-    "title": "Where does LoRA fall short in multimodal learning?",
+    "title": "Text Predictability and Visual Support for Reliable VideoLLM Fine-Tuning under Distribution Shift in Video Question Answering",
     "desc": "Studied how LoRA fine-tuning affects video-language models (Qwen, SmolVLM), ran controlled diagnostics to find where it falls short, and implemented methods to test whether the problem can be fixed.",
     "tags": [
      "Video-language models",
@@ -119,7 +119,7 @@
     "statusLabel": "Communicated · IEEE TAI",
     "venue": "IEEE Transactions on Artificial Intelligence",
     "kind": "Research project",
-    "title": "Interpretable machine learning for distributed systems",
+    "title": "FP-CoTM: Feature-Partitioned Composite Tsetlin Machines for Distributed Interpretable Learning",
     "desc": "Proves when distributed training preserves the accuracy and explainability of a centralized model trained on the complete data, and introduces new ways to combine logically distinct learners into one trustworthy decision-maker.",
     "tags": [
      "Interpretability",
@@ -135,7 +135,7 @@
     "statusLabel": "Communicated · JAG",
     "venue": "Int. Journal of Applied Earth Observation and Geoinformation",
     "kind": "Research project",
-    "title": "Lightweight, sensing-agnostic wildfire segmentation for the edge",
+    "title": "Edge-WildSeg-Net: A Lightweight Edge-based Wildfire Segmentation Network for RGB, Thermal, and Near-Infrared Imagery",
     "desc": "A lightweight, edge-deployable segmentation network for wildfire and smoke that works across sensing modalities (RGB, thermal and NIR imagery) with one shared model instead of one per sensor.",
     "tags": [
      "Wildfire segmentation",
@@ -151,7 +151,7 @@
     "statusLabel": "Planned · IEEE IoT",
     "venue": "IEEE Internet of Things Journal",
     "kind": "Research project",
-    "title": "Real-time terrain classification for humanoid robots",
+    "title": "Terrain Identification for Humanoid Robots using IMU and Torque Sensors Data on Edge Computing Devices",
     "desc": "Lightweight deep learning models that classify the terrain or surface under a humanoid robot in real time from onboard sensors, optimized to run on resource-constrained edge hardware.",
     "tags": [
      "Humanoid robots",
