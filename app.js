@@ -515,22 +515,22 @@
       '<div class="term rv"><div class="term-bar"><i></i><i></i><i></i><span>research.py</span></div><pre>' + researchCode() + '</pre></div></div></section>';
 
     var research = '<section id="research"><div class="wrap">' +
-      '<div class="sec-head rv"><span class="idx">01</span><div class="eyebrow">research</div></div><h2 class="rv">What I\'m working on</h2><p class="lede rv" style="margin-top:14px">' + r.intro + '</p>' +
+      '<div class="sec-head rv"><span class="idx">01</span></div><h2 class="rv">Research</h2><p class="lede rv" style="margin-top:14px">' + r.intro + '</p>' +
       '<div class="r-grid">' + cards + '</div>' + pubs + pipe +
       '<p class="rv" style="margin-top:22px"><a class="btn" href="' + r.orcidUrl + '" target="_blank" rel="noopener">' + svgIcon('orcid').replace('<svg', '<svg fill="currentColor"') + 'ORCID profile</a></p></div></section>';
 
-    var exp = '<section id="experience"><div class="wrap"><div class="sec-head rv"><span class="idx">02</span><div class="eyebrow">experience</div></div><h2 class="rv">Where I\'ve worked</h2><p class="lede rv" style="margin-top:14px">Research now, two years of production ML before it. Each role shaped how I ask research questions.</p><div class="tl">' +
+    var exp = '<section id="experience"><div class="wrap"><div class="sec-head rv"><span class="idx">02</span></div><h2 class="rv">Experience</h2><p class="lede rv" style="margin-top:14px">Research now, two years of production ML before it. Each role shaped how I ask research questions.</p><div class="tl">' +
       D.experience.items.map(tlItem).join('') + '</div></div></section>';
 
     var filters = D.projects.filters.map(function (f, i) { return '<button class="' + (i ? '' : 'on') + '" data-f="' + f.key + '">' + f.label + '</button>'; }).join('');
-    var projects = '<section id="projects"><div class="wrap"><div class="sec-head rv"><span class="idx">03</span><div class="eyebrow">projects</div></div><h2 class="rv">Things I\'ve built</h2><p class="lede rv" style="margin-top:14px">Agents, RAG systems, assistive hardware and vision projects. Click a card for the full write-up.</p>' +
+    var projects = '<section id="projects"><div class="wrap"><div class="sec-head rv"><span class="idx">03</span></div><h2 class="rv">Projects</h2><p class="lede rv" style="margin-top:14px">Agents, RAG systems, assistive hardware and vision projects. Click a card for the full write-up.</p>' +
       '<div class="filters rv" id="filters">' + filters + '</div><div class="p-grid" id="pgrid">' + D.projects.items.map(projectCard).join('') + '</div></div></section>';
 
-    var skills = '<section id="skills"><div class="wrap"><div class="sec-head rv"><span class="idx">04</span><div class="eyebrow">skills</div></div><h2 class="rv">Toolbox</h2><div class="sk-grid" style="margin-top:34px">' +
+    var skills = '<section id="skills"><div class="wrap"><div class="sec-head rv"><span class="idx">04</span></div><h2 class="rv">Skills</h2><div class="sk-grid" style="margin-top:34px">' +
       D.skills.groups.map(function (g) { return '<div class="sk rv"><h4>' + g.category + '</h4><div class="chips">' + g.items.map(function (i) { return '<span class="chip">' + i + '</span>'; }).join('') + '</div></div>'; }).join('') + '</div></div></section>';
 
     var cr = D.credentials;
-    var cred = '<section id="credentials"><div class="wrap"><div class="sec-head rv"><span class="idx">05</span><div class="eyebrow">education &amp; credentials</div></div><h2 class="rv">The paper trail</h2>' +
+    var cred = '<section id="credentials"><div class="wrap"><div class="sec-head rv"><span class="idx">05</span></div><h2 class="rv">Education &amp; Credentials</h2>' +
       '<div class="two" style="margin-top:40px"><div class="rv"><div class="sub-h">Education</div><div class="tl">' + cr.education.map(tlItem).join('') + '</div></div>' +
       '<div class="rv"><div class="sub-h">Honours &amp; awards</div><div class="cards">' + cr.awards.map(function (a) { return '<div class="mini"><b>' + clean(a.title) + '</b><p>' + a.desc + '</p></div>'; }).join('') + '</div>' +
       '<div class="sub-h" style="margin-top:34px">Events &amp; hackathons</div><div class="cards">' + cr.events.map(function (a) { return '<div class="mini"><b>' + clean(a.title) + '</b><small>' + a.meta + '</small><p>' + a.desc + '</p></div>'; }).join('') + '</div>' +
@@ -545,7 +545,7 @@
       }).join('') + '</div></div></section>';
 
     var c = D.contact;
-    var contact = '<section id="contact"><div class="wrap"><div class="contact rv"><div class="eyebrow" style="position:relative">let\'s talk</div><h2>' + c.heading + '</h2><p>' + c.text + '</p>' +
+    var contact = '<section id="contact"><div class="wrap"><div class="contact rv"><h2>Contact</h2><p><b>' + c.heading + '.</b> ' + c.text + '</p>' +
       '<div class="cta"><a class="btn primary" href="mailto:' + c.email + '?subject=Hello%20Vishnu">Email me →</a><a class="btn" href="' + docs.cv + '" target="_blank" rel="noopener">CV</a><a class="btn" href="card.html">Profile card</a></div>' +
       '<div class="soc">' + c.links.filter(function (l) { return l.label !== 'Email'; }).map(function (l) {
         return '<a href="' + l.href + '" target="_blank" rel="noopener">' + svgIcon(l.label.toLowerCase()) + l.label + '</a>';

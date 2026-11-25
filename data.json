@@ -193,38 +193,37 @@
    {
     "date": "JAN 2026 , PRESENT",
     "role": "University Research Assistant",
-    "org": "University of Agder, Norway",
+    "org": "ACPS Lab, University of Agder (UiA), Grimstad, Norway",
     "logo": "UiA",
     "bullets": [
-     "Research on interpretability and robustness: vision-language models (LoRA, multimodal diagnostics), Tsetlin Machines, distributed interpretable learning and lightweight edge perception.",
-     "Authored two papers submitted to the International Symposium on the Tsetlin Machine (ISTM) 2026 and co-authored a third; “Clause Sanitization for Compact and Interpretable Tsetlin Machines” was accepted for publication.",
-     "Communicated manuscripts to CVPR 2027, IEEE Transactions on Artificial Intelligence, Applied Intelligence and the IEEE Internet of Things Journal."
+     "Research on interpretable and distributed learning with Tsetlin Machines, and lightweight perception for edge and robotic platforms.",
+     "Authored two papers for ISTM 2026 and co-authored a third; first-authored paper “Clause Sanitization for Compact and Interpretable Tsetlin Machines” was accepted.",
+     "Submitted a paper to IEEE Transactions on Artificial Intelligence (TAI).",
+     "Supervisor: Prof. Linga Reddy Cenkeramaddi."
     ]
    },
    {
     "date": "JUN 2024 , JUL 2025",
     "role": "Product Development Engineer, Machine Learning",
-    "org": "Phenom People Pvt Ltd, Hyderabad",
+    "org": "Phenom People Pvt Ltd, Hyderabad, India",
     "logo": "PP",
     "bullets": [
-     "Led development, deployment, and SRE responsibilities for AI scheduling microservices.",
-     "Maintained and optimized a multi-label classification pipeline for multi-agent emails using ML automation and human-in-the-loop review.",
-     "Improved automation accuracy to 95%, lifting candidate email automation from 30% to 48% and recruiter/interviewer automation from 0% to 60%.",
-     "Deployed BERT-based classifiers and built an auditing system to capture intents, sub-intents, and entities, backed by performance dashboards.",
-     "Built core logic for a voice-based screening agent handling 1,000+ calls monthly, with a 99.9%-accurate voicemail detection system.",
-     "Developed a questionnaire-builder agent enabling the product team to generate job-specific questionnaires from job descriptions."
+     "Led development, deployment and SRE for AI scheduling microservices.",
+     "Raised email-automation accuracy to 95%, lifting candidate email automation from 30% to 48% and recruiter/interviewer automation from 0% to 60%, with a multi-label classification pipeline and human-in-the-loop review.",
+     "Deployed BERT-based classifiers and an auditing system capturing intents, sub-intents and entities, backed by performance dashboards.",
+     "Built the core logic of a voice screening agent handling 1,000+ calls/month, with 99.9%-accurate voicemail detection.",
+     "Built a questionnaire-builder agent that lets the product team generate job-specific questionnaires from job descriptions."
     ]
    },
    {
     "date": "JUL 2023 , JUN 2024",
     "role": "Machine Learning Intern",
-    "org": "Wadhwani AI, Delhi",
+    "org": "Wadhwani AI, Delhi, India",
     "logo": "WA",
     "bullets": [
-     "Built clinical NER models to extract medical entities from free-text data for a Clinical Decision Support System.",
-     "Designed UIs for knowledge-base validation, integrating ASR and TTS.",
-     "Co-developed a RAG-based chatbot for 1M+ frontline healthcare workers to answer domain-specific queries.",
-     "Fine-tuned embedding models and linear adapters to reduce hallucinations in low-data settings, and built synthetic data pipelines for evaluation."
+     "Co-developed a RAG chatbot answering domain questions for 1M+ frontline healthcare workers.",
+     "Fine-tuned embedding models and linear adapters to cut hallucinations in low-data settings; built synthetic-data pipelines for evaluation.",
+     "Built clinical NER models extracting medical entities from free text for a Clinical Decision Support System; designed knowledge-base validation UIs with ASR and TTS."
     ]
    },
    {
@@ -233,9 +232,9 @@
     "org": "Omdena AI · Remote",
     "logo": "OM",
     "bullets": [
-     "Selected as one of 90 contributors across two global AI projects.",
-     "Montreal chapter: worked on speech-to-text and text-to-speech modules for an AI-powered dubbing app.",
-     "Toronto chapter: built and tested chatbot flows using the Rasa framework, Flask, and FastAPI."
+     "Selected as one of 90 contributors across two Omdena local-chapter projects.",
+     "Montreal chapter: AI dubbing app that automatically dubs videos into other languages, for accessibility and language learning; built the speech-to-text and text-to-speech modules.",
+     "Toronto chapter (SmartGuide): AI chatbot giving accurate, consistent guidance to applicants for immigration to Canada; built and tested chatbot flows with Rasa, Flask and FastAPI."
     ]
    },
    {
@@ -244,18 +243,16 @@
     "org": "AICTE · Remote",
     "logo": "AI",
     "bullets": [
-     "Developed a mental fitness tracker to monitor a country's mental-disorder trends using 12 regression and ML models.",
-     "Performed data cleaning, preprocessing, and feature engineering to improve model performance."
+     "Mental-fitness tracker modelling a country’s mental-disorder trends with 12 regression and ML models."
     ]
    },
    {
     "date": "NOV 2020 , MAY 2021",
-    "role": "Apprentice , Embedded Systems",
-    "org": "Electronics Corporation of India Ltd (ECIL), Hyderabad",
+    "role": "Apprentice, Embedded Systems",
+    "org": "Electronics Corporation of India Ltd (ECIL), Hyderabad, India",
     "logo": "ECIL",
     "bullets": [
-     "Six-month sandwich apprenticeship under the Apprentices Act with ECIL's Radar &amp; Power Devices division, a Govt. of India (Dept. of Atomic Energy) enterprise.",
-     "Managed assigned projects to schedule and contributed to raising both module production output and module accuracy."
+     "Six-month apprenticeship in the Radar &amp; Power Devices division (Dept. of Atomic Energy); raised module production output and accuracy."
     ]
    }
   ]
