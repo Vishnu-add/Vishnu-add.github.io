@@ -507,7 +507,7 @@
     }).join('');
     var pipe = '<div class="pipe rv">' +
       pipeCell('Accepted', 1, 'Clause sanitization for Tsetlin Machines, ISTM 2026') +
-      pipeCell('Communicated', counts.review, 'CVPR 2027 · IEEE TAI · Applied Intelligence · IEEE IoT') +
+      pipeCell('Communicated', counts.review, 'CVPR 2027 · IEEE TAI · JAIHC · IEEE IoT') +
       pipeCell('Ongoing', counts.ongoing, 'Agentic AI for mechatronics (coursework)') + '</div>';
 
     var about = '<section id="about"><div class="wrap about-grid"><div class="rv">' +

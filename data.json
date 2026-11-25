@@ -45,7 +45,7 @@
    {
     "value": 4,
     "label": "papers communicated",
-    "note": "CVPR · TAI · Appl. Intell. · IoT"
+    "note": "CVPR · TAI · JAIHC · IoT"
    },
    {
     "value": 5,
@@ -132,8 +132,8 @@
     "id": "sensing-agnostic-seg",
     "thumb": "seg",
     "status": "review",
-    "statusLabel": "Communicated · Applied Intelligence",
-    "venue": "Applied Intelligence",
+    "statusLabel": "Communicated · JAIHC",
+    "venue": "Journal of Ambient Intelligence and Humanized Computing",
     "kind": "Research project",
     "title": "Edge-WildSeg-Net: A Lightweight Edge-based Wildfire Segmentation Network for RGB, Thermal, and Near-Infrared Imagery",
     "desc": "One edge-deployable network for wildfire and smoke segmentation across RGB, thermal and NIR imagery, instead of one model per sensor.",
