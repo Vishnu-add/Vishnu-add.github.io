@@ -39,8 +39,7 @@
       '<a class="brand" href="' + (PAGE === 'home' ? '#top' : 'index.html') + '"><i></i><span>vishnu@ai:~$</span></a>' +
       '<ul class="links" id="links">' + links + '<li><a href="card.html"' + (PAGE === 'card' ? ' class="active"' : '') + '>Profile</a></li></ul>' +
       '<div class="nav-right">' +
-      '<a class="btn-nav ghost" href="' + docs.resume + '" target="_blank" rel="noopener" title="Open resume (PDF)">' + svgInline('doc') + '<span>Resume</span></a>' +
-      '<a class="btn-nav" href="' + docs.cv + '" title="Open academic CV">' + svgInline('doc') + '<span>CV</span></a>' +
+      '<a class="btn-nav" href="' + docs.cv + '" target="_blank" rel="noopener" title="Open CV (PDF)">' + svgInline('doc') + '<span>CV</span></a>' +
       '<button class="icon-btn" id="theme" aria-label="Toggle light / dark theme"><svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M6.3 17.7l-1.4 1.4M19.1 4.9l-1.4 1.4"/></svg><svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/></svg></button>' +
       '<button class="icon-btn menu-toggle" id="menu" aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>' +
       '</div></div>';
@@ -485,8 +484,7 @@
       '<p class="sub">' + h.sub + '</p>' +
       '<div class="cta">' +
       '<a class="btn primary" href="#research">See my research ↓</a>' +
-      '<a class="btn" href="' + docs.resume + '" target="_blank" rel="noopener">' + svgInline('doc') + 'Resume</a>' +
-      '<a class="btn" href="' + docs.cv + '">' + svgInline('doc') + 'CV</a>' +
+      '<a class="btn" href="' + docs.cv + '" target="_blank" rel="noopener">' + svgInline('doc') + 'CV</a>' +
       '<a class="btn" href="#contact">Get in touch</a></div></div>' +
       '<div class="portrait"><div class="ring2"></div><div class="ring"></div>' +
       '<img src="assets/vishnu.jpg" alt="Portrait of Vishnu Vardhan Addanki Tirumala" width="320" height="320">' +
@@ -549,7 +547,7 @@
 
     var c = D.contact;
     var contact = '<section id="contact"><div class="wrap"><div class="contact rv"><div class="eyebrow" style="position:relative">let\'s talk</div><h2>' + c.heading + '</h2><p>' + c.text + '</p>' +
-      '<div class="cta"><a class="btn primary" href="mailto:' + c.email + '?subject=Hello%20Vishnu">Email me →</a><a class="btn" href="' + docs.resume + '" target="_blank" rel="noopener">Resume</a><a class="btn" href="' + docs.cv + '">CV</a><a class="btn" href="card.html">Profile card</a></div>' +
+      '<div class="cta"><a class="btn primary" href="mailto:' + c.email + '?subject=Hello%20Vishnu">Email me →</a><a class="btn" href="' + docs.cv + '" target="_blank" rel="noopener">CV</a><a class="btn" href="card.html">Profile card</a></div>' +
       '<div class="soc">' + c.links.filter(function (l) { return l.label !== 'Email'; }).map(function (l) {
         return '<a href="' + l.href + '" target="_blank" rel="noopener">' + svgIcon(l.label.toLowerCase()) + l.label + '</a>';
       }).join('') + '</div></div></div></section>';
@@ -673,7 +671,7 @@
 
     document.title = 'Curriculum Vitae — Vishnu Vardhan Addanki Tirumala';
     $('#app').innerHTML =
-      '<div class="cv-bar no-print"><a class="back" href="index.html">← Back to site</a><div><a class="btn" href="' + docs.resume + '" target="_blank" rel="noopener">Resume (PDF)</a> <a class="btn" href="' + docs.cvPdf + '" download>Download CV (PDF)</a> <button class="btn primary" onclick="window.print()">Print</button></div></div>' +
+      '<div class="cv-bar no-print"><a class="back" href="index.html">← Back to site</a><div><a class="btn" href="' + docs.cvPdf + '" download>Download CV (PDF)</a> <button class="btn primary" onclick="window.print()">Print</button></div></div>' +
       '<article class="cv">' +
       '<header class="cv-head"><div><h1>Vishnu Vardhan Addanki Tirumala</h1><div class="cv-tag">Curriculum Vitae · Masters in Artificial Intelligence &amp; Data Science (exchange at UiA) · University Research Assistant</div></div>' +
       '<div class="cv-contact"><div>Grimstad, Norway</div><div>' + D.contact.email + '</div><div>' + link('https://vishnu-add.github.io/') + '</div><div>github.com/Vishnu-add</div><div>orcid.org/0009-0003-4496-0054</div><div>linkedin.com/in/a-vishnu-vardhan</div></div></header>' +
@@ -709,7 +707,7 @@
       '<span>Scan to connect on <strong>LinkedIn</strong></span></a></div>';
     var actions = '<div class="cta bc-actions"><a class="btn primary" href="' + LI + '" target="_blank" rel="noopener">' + svgIcon('linkedin').replace('<svg', '<svg fill="currentColor"') + 'Open LinkedIn</a>' +
       '<button class="btn" id="vcf" type="button">Save contact (.vcf)</button><button class="btn" id="copyli" type="button">Copy LinkedIn link</button>' +
-      '<a class="btn" href="' + docs.resume + '" target="_blank" rel="noopener">Resume</a><a class="btn" href="' + docs.cv + '">CV</a></div>';
+      '<a class="btn" href="' + docs.cv + '" target="_blank" rel="noopener">CV</a></div>';
     var research = r.items.map(function (i) {
       return '<div class="mini"><span class="badge ' + i.status + '"><i></i>' + i.statusLabel + '</span><b style="margin-top:8px">' + i.title + '</b><p>' + i.kind + '</p></div>';
     }).join('');
