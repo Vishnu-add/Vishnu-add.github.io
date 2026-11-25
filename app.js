@@ -1,5 +1,5 @@
 /* Renders every page from data.json and wires up the interactions.
-   Pages: index.html (home), project.html (?id=…), cv.html. Edit data.json to change content. */
+   Pages: index.html (home), project.html (?id=…), card.html. Edit data.json to change content. */
 (function () {
   'use strict';
   var $ = function (s, r) { return (r || document).querySelector(s); };
@@ -642,54 +642,6 @@
     document.addEventListener('keydown', function (e) { if (!lb.classList.contains('open')) return; if (e.key === 'Escape') lb.classList.remove('open'); if (e.key === 'ArrowLeft') show(idx - 1); if (e.key === 'ArrowRight') show(idx + 1); });
   }
 
-  /* --------------------------------------------------------------- CV */
-  function renderCV() {
-    var r = D.research, docs = D.site.docs;
-    var link = function (u) { return u.replace(/^https?:\/\//, '').replace(/\/$/, ''); };
-    var sec = function (t, body) { return '<section class="cv-sec"><h2>' + t + '</h2>' + body + '</section>'; };
-    var row = function (l, rr) { return '<div class="cv-row"><div class="cv-l">' + l + '</div><div class="cv-r">' + rr + '</div></div>'; };
-    var exp = D.experience.items;
-    var uoa = exp[0];
-    var researchRows = r.items.map(function (i) {
-      return row(i.statusLabel.replace(' · ', '<br>'), '<b>' + i.title + '</b><div class="cv-sub">' + i.kind + ' · ' + i.venue + '</div><div>' + i.desc + '</div>');
-    }).join('');
-    var pubRows = r.published.map(function (p) {
-      return row(p.year, '<b>' + p.title + '</b><div class="cv-sub">' + p.venue + ' (' + p.status + ')</div>');
-    }).join('');
-    var subRows = r.items.filter(function (i) { return i.status === 'review' || i.status === 'planned'; }).map(function (i) {
-      return row(i.status === 'review' ? 'Communicated' : 'In preparation', '<b>' + i.title + '</b><div class="cv-sub">' + i.venue + '</div>');
-    }).join('');
-    var work = exp.map(function (e) {
-      return row(clean(e.date), '<b>' + e.role + '</b>, ' + e.org + '<ul>' + e.bullets.map(function (b) { return '<li>' + clean(b) + '</li>'; }).join('') + '</ul>');
-    }).join('');
-    var edu = D.credentials.education.map(function (e) { return row(clean(e.date), '<b>' + e.role + '</b><div class="cv-sub">' + e.org + '</div>' + (e.role.indexOf('Masters') === 0 ? '<div>Research track: vision-language models, interpretable ML and edge perception.</div>' : '')); }).join('');
-    var pick = ['agentic-codesign', 'deep-research-agent', 'ai-video-generator', 'sight-sphere', 'edubot', 'medintelbot', 'face-recognition'];
-    var projs = pick.map(function (id) { var p = D.projects.items.filter(function (x) { return x.id === id; })[0]; if (!p) return ''; var t = splitTitle(p.title); return '<li><b>' + t.name + '</b> — ' + clean(p.desc.replace(/^[^\w<]+/u, '')) + '</li>'; }).join('');
-    var skills = D.skills.groups.map(function (g) { return '<div><b>' + g.category + ':</b> ' + g.items.join(', ') + '</div>'; }).join('');
-    var awards = D.credentials.awards.map(function (a) { return '<li><b>' + clean(a.title) + '</b> — ' + a.desc + '</li>'; }).join('');
-    var vol = D.credentials.volunteering.map(function (a) { return '<li><b>' + a.role + '</b>, ' + a.org + ' (' + clean(a.date) + ')</li>'; }).join('');
-
-    document.title = 'Curriculum Vitae — Vishnu Vardhan Addanki Tirumala';
-    $('#app').innerHTML =
-      '<div class="cv-bar no-print"><a class="back" href="index.html">← Back to site</a><div><a class="btn" href="' + docs.cvPdf + '" download>Download CV (PDF)</a> <button class="btn primary" onclick="window.print()">Print</button></div></div>' +
-      '<article class="cv">' +
-      '<header class="cv-head"><div><h1>Vishnu Vardhan Addanki Tirumala</h1><div class="cv-tag">Curriculum Vitae · Masters in Artificial Intelligence &amp; Data Science (exchange at UiA) · University Research Assistant</div></div>' +
-      '<div class="cv-contact"><div>Grimstad, Norway</div><div>' + D.contact.email + '</div><div>' + link('https://vishnu-add.github.io/') + '</div><div>github.com/Vishnu-add</div><div>orcid.org/0009-0003-4496-0054</div><div>linkedin.com/in/a-vishnu-vardhan</div></div></header>' +
-      sec('Research interests', '<p>Interpretability and robustness of vision-language models; multimodal learning and parameter-efficient fine-tuning (LoRA); interpretable and distributed learning (Tsetlin Machines); lightweight, sensor-agnostic perception for edge and robotic platforms; agentic AI systems.</p>') +
-      sec('Education', edu) +
-      sec('Publications', pubRows) +
-      sec('Manuscripts under review &amp; in preparation', subRows) +
-      sec('Research projects', researchRows) +
-      sec('Experience', work) +
-      sec('Selected projects', '<ul class="cv-list">' + projs + '</ul>') +
-      sec('Technical skills', '<div class="cv-skills">' + skills + '</div>') +
-      sec('Honours &amp; awards', '<ul class="cv-list">' + awards + '</ul>') +
-      sec('Service &amp; activities', '<ul class="cv-list">' + vol + '</ul>') +
-      sec('Languages', '<p>Telugu and Hindi (native); English (professional).</p>') +
-      '</article>';
-  }
-
-
   /* ------------------------------------------------- profile / business card */
   function renderCard() {
     var LI = 'https://www.linkedin.com/in/a-vishnu-vardhan', docs = D.site.docs, r = D.research;
@@ -860,7 +812,7 @@
   fetch('data.json').then(function (r) { return r.json(); }).then(function (d) {
     D = d;
     renderNav();
-    if (PAGE === 'home') renderHome(); else if (PAGE === 'project') renderProject(); else if (PAGE === 'cv') renderCV(); else if (PAGE === 'card') renderCard();
+    if (PAGE === 'home') renderHome(); else if (PAGE === 'project') renderProject(); else if (PAGE === 'card') renderCard();
     footer(); initFX();
     if (location.hash && PAGE === 'home') { var t = document.getElementById(location.hash.slice(1)); if (t) setTimeout(function () { t.scrollIntoView(); }, 50); }
   }).catch(function (e) {
