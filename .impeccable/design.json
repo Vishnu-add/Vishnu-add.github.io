@@ -1,0 +1,154 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-25T00:00:00Z",
+  "title": "Design System: Vishnu Vardhan Addanki Tirumala",
+  "extensions": {
+    "colorMeta": {
+      "ground": { "role": "neutral", "displayName": "Cool Ground", "canonical": "#f5f6f8", "tonalRamp": ["#1d2026", "#353a42", "#555b65", "#7b818b", "#a3a9b2", "#c9ced5", "#e9ecf0", "#f5f6f8"] },
+      "ground-2": { "role": "neutral", "displayName": "Ground Shade", "canonical": "#e9ecf0", "tonalRamp": ["#1d2026", "#353a42", "#555b65", "#7b818b", "#a3a9b2", "#c9ced5", "#e9ecf0", "#f5f6f8"] },
+      "panel": { "role": "neutral", "displayName": "Panel White", "canonical": "#ffffff", "tonalRamp": ["#1b1f24", "#33383f", "#535962", "#7a808a", "#a3a9b2", "#cdd2d8", "#f2f4f7", "#ffffff"] },
+      "panel-2": { "role": "neutral", "displayName": "Panel Shade", "canonical": "#f2f4f7", "tonalRamp": ["#1b1f24", "#33383f", "#535962", "#7a808a", "#a3a9b2", "#cdd2d8", "#f2f4f7", "#ffffff"] },
+      "rule": { "role": "neutral", "displayName": "Hairline", "canonical": "#d8dde4", "tonalRamp": ["#1c2028", "#323944", "#4f5866", "#727c8b", "#959fae", "#b4bcc8", "#d8dde4", "#eef1f4"] },
+      "rule-2": { "role": "neutral", "displayName": "Rule", "canonical": "#b4bcc8", "tonalRamp": ["#1c2028", "#323944", "#4f5866", "#727c8b", "#959fae", "#b4bcc8", "#d8dde4", "#eef1f4"] },
+      "ink": { "role": "primary", "displayName": "Ink", "canonical": "#0d1117", "tonalRamp": ["#0d1117", "#1f2630", "#3b4452", "#545d6c", "#7a8391", "#a3abb7", "#cdd3db", "#eef2f7"] },
+      "ink-dim": { "role": "neutral", "displayName": "Dim Ink", "canonical": "#3b4452", "tonalRamp": ["#0d1117", "#1f2630", "#3b4452", "#545d6c", "#7a8391", "#a3abb7", "#cdd3db", "#eef2f7"] },
+      "ink-faint": { "role": "neutral", "displayName": "Faint Ink", "canonical": "#545d6c", "tonalRamp": ["#0d1117", "#1f2630", "#3b4452", "#545d6c", "#7a8391", "#a3abb7", "#cdd3db", "#eef2f7"] },
+      "sign": { "role": "primary", "displayName": "Signage Black", "canonical": "#121519", "tonalRamp": ["#121519", "#24282e", "#3a3f46", "#555a62", "#767b83", "#9ca0a7", "#c6c9ce", "#eef0f2"] },
+      "sign-ink": { "role": "neutral", "displayName": "Signage White", "canonical": "#ffffff", "tonalRamp": ["#121519", "#24282e", "#3a3f46", "#555a62", "#767b83", "#9ca0a7", "#c6c9ce", "#ffffff"] },
+      "line-multimodal": { "role": "secondary", "displayName": "Multimodal Blue (line M)", "canonical": "#0062cf", "tonalRamp": ["#001a3d", "#002e69", "#004699", "#0062cf", "#3a86e0", "#7aaeee", "#b6d3f7", "#e6f0fd"] },
+      "line-interpretable": { "role": "secondary", "displayName": "Interpretable Red (line I)", "canonical": "#d42a31", "tonalRamp": ["#3d0a0d", "#6a1317", "#9c1d23", "#d42a31", "#e65a5f", "#f08f92", "#f8c3c5", "#fdecec"] },
+      "line-edge": { "role": "secondary", "displayName": "Edge Green (line E)", "canonical": "#00843d", "tonalRamp": ["#002612", "#00421f", "#00632e", "#00843d", "#2fa865", "#6cc794", "#addfc2", "#e5f5ec"] },
+      "line-agentic": { "role": "secondary", "displayName": "Agentic Amber (line A)", "canonical": "#e8a200", "tonalRamp": ["#3d2a00", "#664700", "#a37100", "#e8a200", "#f5bb33", "#f9d070", "#fce4ad", "#fef6e3"] },
+      "line-shipped": { "role": "secondary", "displayName": "Shipped Purple (line S)", "canonical": "#6f3fb0", "tonalRamp": ["#1e1033", "#351c59", "#522b86", "#6f3fb0", "#8f68c6", "#b296da", "#d6c5ed", "#f2ecfa"] },
+      "night-ground": { "role": "neutral", "displayName": "Night Ground", "canonical": "#0d1117", "tonalRamp": ["#0d1117", "#141a22", "#1b232e", "#2a3441", "#3d4958", "#97a1b0", "#b6bfcc", "#eef2f7"] },
+      "night-panel": { "role": "neutral", "displayName": "Night Panel", "canonical": "#161d26", "tonalRamp": ["#0d1117", "#141a22", "#161d26", "#1b232e", "#2a3441", "#3d4958", "#97a1b0", "#eef2f7"] },
+      "night-ink": { "role": "neutral", "displayName": "Night Ink", "canonical": "#eef2f7", "tonalRamp": ["#0d1117", "#2a3441", "#3d4958", "#6b7685", "#97a1b0", "#b6bfcc", "#d6dce5", "#eef2f7"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "The name in the hero; project-page and contact titles use the same face at their own clamps." },
+      "headline": { "displayName": "Headline", "purpose": "Section titles inside signage bands." },
+      "title": { "displayName": "Title", "purpose": "Research and project card headings, timeline roles." },
+      "body": { "displayName": "Body", "purpose": "Running text; ledes at 18px in dim ink, max 66ch." },
+      "label": { "displayName": "Label", "purpose": "Status, venue, nav, dates; tabular figures for numbers." },
+      "section-label": { "displayName": "Section label", "purpose": "Uppercase sub-headings inside a section, followed by a 2px ink rule." }
+    },
+    "shadows": [
+      { "name": "lift", "value": "0 1px 2px rgba(13,17,23,.06), 0 10px 24px -14px rgba(13,17,23,.22)", "purpose": "Card hover, hero map frame, profile card. Night: 0 1px 2px rgba(0,0,0,.4), 0 12px 28px -14px rgba(0,0,0,.7)." },
+      { "name": "target-ring", "value": "0 0 0 4px #d42a31", "purpose": "Publication row when it is the URL target." }
+    ],
+    "motion": [
+      { "name": "route-draw", "value": "1.1s cubic-bezier(.16,1,.3,1), stagger 140ms per line, 120ms lead", "purpose": "The map's routes draw in once on load; the page's only page-level motion." },
+      { "name": "terminus-in", "value": ".3s ease-out, after the line's draw (+1000ms)", "purpose": "Termini fade in once their route has drawn." },
+      { "name": "state", "value": ".15s", "purpose": "Background, border and colour transitions on buttons, cards, links." },
+      { "name": "disclosure", "value": ".2s rotate(45deg)", "purpose": "The + on details summaries turns to x when open." },
+      { "name": "reduced-motion", "value": "animation:none; transition:none", "purpose": "Under prefers-reduced-motion the finished map is shown and diagrams are still." }
+    ],
+    "breakpoints": [
+      { "name": "hero-stack", "value": "1100px" },
+      { "name": "nav-collapse", "value": "980px" },
+      { "name": "map-to-list", "value": "760px" },
+      { "name": "phone", "value": "640px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The main action (Email me, Contact): signage black with white text.",
+      "html": "<a class=\"ds-btn ds-btn-primary\" href=\"#\">Email me</a>",
+      "css": ".ds-btn{display:inline-flex;align-items:center;gap:8px;font-family:'Archivo',system-ui,sans-serif;font-weight:700;font-size:16px;padding:12px 20px;border-radius:6px;border:1.5px solid #0d1117;color:#0d1117;background:#fff;text-decoration:none;cursor:pointer;transition:background .15s,color .15s,border-color .15s}.ds-btn-primary{background:#121519;color:#fff;border-color:#121519}.ds-btn-primary:hover{background:#3b4452;border-color:#3b4452;color:#f5f6f8}.ds-btn:focus-visible{outline:3px solid #0d1117;outline-offset:3px}"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Outlined ink button (CV); inverts to an ink fill on hover.",
+      "html": "<a class=\"ds-btn2\" href=\"#\"><svg viewBox=\"0 0 16 16\" width=\"16\" height=\"16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\"><path d=\"M4 1.5h5l3 3v10H4z\"/><path d=\"M9 1.5v3h3\"/></svg>CV</a>",
+      "css": ".ds-btn2{display:inline-flex;align-items:center;gap:8px;font-family:'Archivo',system-ui,sans-serif;font-weight:700;font-size:16px;padding:12px 20px;border-radius:6px;border:1.5px solid #0d1117;color:#0d1117;background:#fff;text-decoration:none;transition:background .15s,color .15s}.ds-btn2:hover{background:#0d1117;color:#f5f6f8}.ds-btn2:focus-visible{outline:3px solid #0d1117;outline-offset:3px}"
+    },
+    {
+      "name": "Signage Band",
+      "kind": "custom",
+      "refersTo": "signage-band",
+      "description": "Every section title: a black band with a white headline and the bullets of the lines it covers.",
+      "html": "<div class=\"ds-band\"><h2>What I'm working on</h2><span class=\"ds-bullets\"><i style=\"--lc:#0062cf\">M</i><i style=\"--lc:#d42a31\">I</i><i style=\"--lc:#00843d\">E</i><i class=\"a\" style=\"--lc:#e8a200\">A</i></span></div>",
+      "css": ".ds-band{display:flex;align-items:center;justify-content:space-between;gap:16px;background:#121519;color:#fff;padding:16px 24px;border-radius:6px;font-family:'Archivo',system-ui,sans-serif}.ds-band h2{margin:0;font-size:clamp(26px,3vw,38px);font-weight:800;letter-spacing:-.02em;line-height:1.05}.ds-bullets{display:flex;gap:6px}.ds-bullets i{display:inline-grid;place-items:center;width:32px;height:32px;border-radius:50%;background:var(--lc);color:#fff;font-style:normal;font-weight:800;font-size:16px}.ds-bullets i.a{color:#0d1117}"
+    },
+    {
+      "name": "Line Bullet",
+      "kind": "chip",
+      "refersTo": "line-bullet",
+      "description": "Lettered route disc; the only filled use of a route colour. Amber carries an ink letter.",
+      "html": "<span class=\"ds-lnb\" style=\"--lc:#0062cf\">M</span> <span class=\"ds-lnb\" style=\"--lc:#d42a31\">I</span> <span class=\"ds-lnb\" style=\"--lc:#00843d\">E</span> <span class=\"ds-lnb a\" style=\"--lc:#e8a200\">A</span> <span class=\"ds-lnb\" style=\"--lc:#6f3fb0\">S</span>",
+      "css": ".ds-lnb{display:inline-grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--lc);color:#fff;font-family:'Archivo',system-ui,sans-serif;font-weight:800;font-size:13px;line-height:1}.ds-lnb.a{color:#0d1117}"
+    },
+    {
+      "name": "Research Card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "White card with a hairline-ruled thumbnail well, status badge, title, venue and chips; ink border and lift on hover.",
+      "html": "<article class=\"ds-card\"><div class=\"ds-thumb\"></div><div class=\"ds-body\"><span class=\"ds-badge\"><i></i>Under review</span><h3>Where LoRA falls short in multimodal learning</h3><p>A study of low-rank adaptation under distribution shift.</p><span class=\"ds-venue\">CVPR 2027</span><span class=\"ds-tags\"><span>VLMs</span><span>LoRA</span></span></div></article>",
+      "css": ".ds-card{max-width:380px;background:#fff;border:1px solid #b4bcc8;border-radius:6px;overflow:hidden;font-family:'Archivo',system-ui,sans-serif;color:#0d1117;transition:border-color .15s,box-shadow .15s}.ds-card:hover{border-color:#0d1117;box-shadow:0 1px 2px rgba(13,17,23,.06),0 10px 24px -14px rgba(13,17,23,.22)}.ds-thumb{aspect-ratio:16/9;background:#f2f4f7;border-bottom:1px solid #d8dde4}.ds-body{padding:20px 22px 22px;display:flex;flex-direction:column;gap:10px}.ds-body h3{margin:0;font-size:22px;font-weight:800;line-height:1.2;letter-spacing:-.02em}.ds-body p{margin:0;color:#3b4452;font-size:15.5px;line-height:1.6}.ds-badge{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:700}.ds-badge i{width:14px;height:14px;border-radius:50%;border:3px solid #0d1117;background:#fff}.ds-venue{font-size:14px;font-weight:700}.ds-tags{display:flex;flex-wrap:wrap;gap:6px}.ds-tags span{font-size:13.5px;padding:3px 10px;border:1px solid #b4bcc8;border-radius:4px;color:#3b4452;background:#fff}"
+    },
+    {
+      "name": "Chip",
+      "kind": "chip",
+      "refersTo": "chip",
+      "description": "Skill and topic tags: dim ink, hairline border, 4px corners.",
+      "html": "<a class=\"ds-chip\" href=\"#\">PyTorch</a> <a class=\"ds-chip\" href=\"#\">Vision-language</a>",
+      "css": ".ds-chip{display:inline-block;font-family:'Archivo',system-ui,sans-serif;font-size:13.5px;padding:3px 10px;border:1px solid #b4bcc8;border-radius:4px;color:#3b4452;background:#fff;text-decoration:none}.ds-chip:hover{border-color:#0d1117;color:#0d1117}.ds-chip:focus-visible{outline:3px solid #0d1117;outline-offset:3px}"
+    },
+    {
+      "name": "Top Navigation",
+      "kind": "nav",
+      "refersTo": "nav-link",
+      "description": "Sticky ground-coloured bar with a 2px ink rule; active link carries a 3px ink underline.",
+      "html": "<nav class=\"ds-nav\"><a class=\"ds-brand\" href=\"#\"><svg viewBox=\"0 0 32 32\" width=\"26\" height=\"26\" fill=\"none\" stroke-width=\"4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M5 11h10l6 6h6\" stroke=\"#0062cf\"/><path d=\"M5 23h22\" stroke=\"#d42a31\"/><path d=\"M16 5v22\" stroke=\"#00843d\"/></svg>Vishnu Vardhan</a><span class=\"ds-links\"><a class=\"on\" href=\"#\">Research</a><a href=\"#\">Experience</a><a href=\"#\">Projects</a></span><a class=\"ds-cta\" href=\"#\">Contact</a></nav>",
+      "css": ".ds-nav{display:flex;align-items:center;gap:20px;height:64px;padding:0 20px;background:#f5f6f8;border-bottom:2px solid #0d1117;font-family:'Archivo',system-ui,sans-serif}.ds-brand{display:inline-flex;align-items:center;gap:10px;font-weight:800;font-size:17px;letter-spacing:-.015em;color:#0d1117;text-decoration:none}.ds-links{display:flex;gap:2px;margin-left:auto}.ds-links a{font-weight:600;font-size:15px;color:#3b4452;padding:8px 12px;border-radius:6px;text-decoration:none}.ds-links a:hover{color:#0d1117;background:#e9ecf0}.ds-links a.on{color:#0d1117;text-decoration:underline;text-decoration-thickness:3px;text-underline-offset:9px}.ds-cta{font-weight:700;font-size:15px;padding:9px 15px;border-radius:6px;background:#121519;color:#fff;text-decoration:none}.ds-cta:hover{background:#3b4452}.ds-nav a:focus-visible{outline:3px solid #0d1117;outline-offset:3px}"
+    },
+    {
+      "name": "Station Row",
+      "kind": "custom",
+      "description": "The accepted-paper row: a filled ink station with a red halo, inside an ink-framed panel.",
+      "html": "<a class=\"ds-acc\" href=\"#\"><span class=\"ds-mk\"></span><span><b>Accepted · ISTM 2026</b>Clause Sanitization for Compact and Interpretable Tsetlin Machines</span></a>",
+      "css": ".ds-acc{display:flex;gap:14px;align-items:flex-start;max-width:48ch;padding:14px 18px;border:1.5px solid #0d1117;border-radius:6px;background:#fff;color:#3b4452;font-family:'Archivo',system-ui,sans-serif;font-size:15.5px;line-height:1.45;text-decoration:none;transition:background .15s}.ds-acc:hover{background:#f2f4f7}.ds-acc b{display:block;color:#0d1117;font-size:16px;margin-bottom:2px}.ds-mk{flex:none;width:18px;height:18px;border-radius:50%;background:#0d1117;box-shadow:0 0 0 3px #fff,0 0 0 7px #d42a31;margin:3px 4px 0}.ds-acc:focus-visible{outline:3px solid #0d1117;outline-offset:3px}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Research Transit Map",
+    "overview": "The whole site is signage for a transit network of research. Themes are lines, each with a letter and a saturated route colour; papers and projects are stations along them; publication status is the station marker (filled, open, dotted, dashed). The language is Vignelli and Beck: a cool white ground, white panels with ink borders, black signage bands that carry section titles in white with lettered line bullets, and one grotesk doing every job. Nothing is costume: no terminal, no glow, no grid paper.\n\nDensity is calm and editorial. Sections breathe at 84px, content lives in a 1200px column, and the strongest graphic weight comes from 2px ink rules under the nav and hero, the signage bands, and the 9px route strokes of the map. Colour is functional, not decorative: the five route colours appear only where a line or its bullet appears, and the rest of the page is ink on white.\n\nMotion has one signature: the network draws itself once on load (staggered route draw, then termini fade in). Everything else is static, except the hand-built animated diagrams inside cards and station previews. Reduced motion shows the finished map.",
+    "keyCharacteristics": [
+      "Ink on cool white; black signage bands for section titles.",
+      "Five route colours, used only as lines, bullets and the contact page's route strip.",
+      "Station markers encode status: accepted (filled), under review (open ring), ongoing (dot in ring), planned (dashed ring), project (rounded square), interchange (pill).",
+      "One grotesk, Archivo, at 800 for display and 400 to 700 for text.",
+      "Square-ish 6px corners everywhere; circles only for bullets and markers.",
+      "A light theme by default, and a full night theme that inverts the signage."
+    ],
+    "rules": [
+      { "name": "The Lines-Only Rule", "body": "Route colours appear only as route strokes, line bullets, and the five-part route strip. Never as a background, a heading colour, a button fill or a tint.", "section": "colors" },
+      { "name": "The Ink-Is-The-Accent Rule", "body": "Emphasis is made with ink, weight and the signage band, not with a hue. The primary action is black, not blue.", "section": "colors" },
+      { "name": "The Amber Letter Rule", "body": "Text on an amber bullet is ink (#0d1117); text on the other four light-theme bullets is white; in the night theme all bullet letters are ink.", "section": "colors" },
+      { "name": "The One Grotesk Rule", "body": "Archivo is the only face. There is no serif and no mono voice; the `--serif` and `--mono` variables exist only as aliases that resolve to Archivo.", "section": "typography" },
+      { "name": "The Balanced Heading Rule", "body": "Headings use `text-wrap: balance`; paragraphs and list items use `text-wrap: pretty`.", "section": "typography" },
+      { "name": "The Border-Before-Shadow Rule", "body": "A surface earns an ink border before it earns a shadow. Hover changes the border to ink first; the lift shadow is a secondary cue, never a resting state for ordinary cards.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do keep every section title inside a black signage band with the bullets of the lines it covers.",
+      "Do encode status with the station marker shapes (filled accepted, open under review, dotted ongoing, dashed planned) and spell the status in words beside it.",
+      "Do use 6px corners on panels and 4px on chips; reserve circles for bullets, markers and the avatar.",
+      "Do make hover states with an ink border or an ink fill inversion, not with a hue.",
+      "Do keep the map's draw-in as the only page-level motion, and show the finished map under reduced motion.",
+      "Do keep interactive targets at 44px on touch and phone widths."
+    ],
+    "donts": [
+      "Don't use route colours as backgrounds, heading colours, button fills or tints.",
+      "Don't introduce a second typeface, a serif voice or a monospace label style; inline code is the only monospace.",
+      "Don't return to the dark canvas, neon accent or terminal costume this world replaced.",
+      "Don't add glow, decorative gradients or grid-paper textures (the ongoing marker's dot-in-ring radial fill is a marker, not decoration).",
+      "Don't put white text on the amber bullet.",
+      "Don't give ordinary cards a resting shadow."
+    ]
+  }
+}
