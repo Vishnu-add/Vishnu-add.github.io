@@ -496,7 +496,7 @@
       var xs = M.stations.filter(function (st) { return st.lines.indexOf(l.key) > 0; });
       return '<div class="ml-line" style="--lc:' + lineVar(l.key) + '"><h2>' + bulletHTML(l.key) + l.name + '</h2><ol>' + rows.map(function (r) {
         return '<li><a href="' + r.o.href + '"><span class="mks ' + r.o.status + (r.st.lines.length > 1 ? ' xchg' : '') + '"></span><span class="ml-t">' + esc(r.st.label) + '<small>' + r.o.statusText + (r.st.lines.length > 1 ? ' · also on ' + r.st.lines.filter(function (k) { return k !== l.key; }).map(function (k) { return M.lines.filter(function (x) { return x.key === k; })[0].name; }).join(', ') : '') + '</small></span></a></li>';
-      }).join('') + (xs.length ? '<li class="ml-x"><span class="mks xchg"></span><span>Interchange with ' + xs.map(function (st) { return esc(st.label); }).join(' and ') + '</span></li>' : '') + '</ol></div>';
+      }).join('') + (xs.length ? '<li class="ml-x">Also serves ' + xs.map(function (st) { return esc(st.label); }).join(' and ') + ' (interchanges, listed above)</li>' : '') + '</ol></div>';
     }).join('') + '</div>';
   }
 

@@ -407,17 +407,17 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
     grid-template-areas:"av h1" "af af" "sub sub" "acc acc" "cta cta"}
   .hero-copy .avatar{width:48px;height:48px;margin:2px 0 0}
   .hero h1{font-size:clamp(28px,8vw,36px);margin-bottom:10px;align-self:center}
-  .affil{font-size:14px;margin-bottom:8px}
-  .hero .sub{font-size:16px;line-height:1.5;margin-bottom:12px}
-  .acc-row{padding:10px 14px;gap:12px;font-size:14px;margin-bottom:14px}
-  .acc-row b{font-size:15px}
+  .affil{font-size:14px;line-height:1.4;margin-bottom:8px}
+  .hero .sub{font-size:16px;line-height:1.45;margin-bottom:12px}
+  .acc-row{padding:8px 12px;gap:10px;font-size:14px;line-height:1.4;margin-bottom:14px}
+  .acc-row b{font-size:14.5px;display:inline}
+  .acc-row b::after{content:": "}
   .acc-row .mk-dot{width:14px;height:14px;margin-top:3px}
   .acc-row > span{min-width:0}
-  .acc-row > span{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .ml-x{display:flex;align-items:center;gap:14px;min-height:40px;margin-left:-15px;font-size:14px;font-weight:600;color:var(--dim)}
+  .ml-x{padding:4px 0 6px 14px;font-size:13.5px;font-weight:500;color:var(--dim);line-height:1.4}
   .hero-map{padding:10px 14px 4px}
-  .map-list{display:grid;gap:10px}
-  .ml-line h2{display:flex;align-items:center;gap:10px;font-size:17px;letter-spacing:-.01em;margin-bottom:4px}
+  .map-list{display:grid;gap:6px}
+  .ml-line h2{display:flex;align-items:center;gap:10px;font-size:17px;letter-spacing:-.01em;margin-bottom:2px}
   .ml-line ol{list-style:none;margin-left:11px;border-left:8px solid var(--lc)}
   .ml-line li a{display:flex;align-items:center;gap:14px;min-height:44px;padding:3px 0;margin-left:-15px}
   .mks{flex:none;width:22px;height:22px;border-radius:50%;background:var(--card);border:4px solid var(--text)}
