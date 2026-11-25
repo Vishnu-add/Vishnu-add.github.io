@@ -57,8 +57,8 @@
   /* ------------------------------------------------- animated thumbnails */
   var A = 'var(--acc)', S = 'var(--sig)', W = 'var(--warn)', P = 'var(--pink)', L = 'var(--line2)', C2 = 'var(--card2)', F = 'var(--faint)';
   var BG = 'var(--bg2)';
-  var SV = 'viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" aria-hidden="true"';
-  var tx = function (x, y, t, o) { o = o || {}; return '<text x="' + x + '" y="' + y + '" text-anchor="' + (o.a || 'middle') + '" font-family="monospace" font-size="' + (o.s || 7.5) + '" fill="' + (o.f || F) + '"' + (o.x || '') + '>' + t + '</text>'; };
+  var SV = 'viewBox="0 0 320 180" preserveAspectRatio="xMidYMid meet" aria-hidden="true"';
+  var tx = function (x, y, t, o) { o = o || {}; return '<text x="' + x + '" y="' + y + '" text-anchor="' + (o.a || 'middle') + '" font-family="Archivo, system-ui, sans-serif" font-size="' + (o.s || 7.5) + '" fill="' + (o.f || F) + '"' + (o.x || '') + '>' + t + '</text>'; };
   var THUMBS = {
     /* Master's thesis: video + text -> VLM with a LoRA adapter (frozen W, trainable low-rank B·A) */
     vlm: function () {
@@ -82,7 +82,7 @@
       // frozen W
       s += '<rect x="118" y="56" width="32" height="64" rx="4" fill="' + BG + '" stroke="' + L + '" stroke-width="1.4"/>' +
         '<rect x="130" y="64" width="8" height="6" rx="1" fill="' + F + '"/><path d="M131.5 64 v-2 a2.5 2.5 0 0 1 5 0 v2" stroke="' + F + '" fill="none"/>' +
-        '<text x="134" y="98" text-anchor="middle" font-family="serif" font-style="italic" font-size="20" fill="' + F + '">W</text>' + tx(134, 112, 'frozen', { s: 6.5 });
+        '<text x="134" y="98" text-anchor="middle" font-family="Archivo, system-ui, sans-serif" font-style="italic" font-weight="700" font-size="20" fill="' + F + '">W</text>' + tx(134, 112, 'frozen', { s: 6.5 });
       // LoRA branch
       s += '<g class="blink"><rect x="170" y="56" width="32" height="16" rx="3" fill="none" stroke="' + A + '" stroke-width="1.6"/><rect x="170" y="104" width="32" height="16" rx="3" fill="none" stroke="' + A + '" stroke-width="1.6"/></g>' +
         tx(186, 67.5, 'A', { f: A, s: 9 }) + tx(186, 115.5, 'B', { f: A, s: 9 }) +
@@ -138,7 +138,7 @@
         if (i === 0) s += '<path d="M30 ' + (y + 38) + ' L36 ' + (y + 22) + ' L40 ' + (y + 30) + ' L45 ' + (y + 16) + ' L52 ' + (y + 38) + 'Z" fill="#ff7a1a"/><ellipse cx="46" cy="' + (y + 12) + '" rx="18" ry="7" fill="#cfd6da" opacity=".65"/>';
         if (i === 1) s += '<path d="M28 ' + (y + 38) + ' L36 ' + (y + 20) + ' L42 ' + (y + 28) + ' L47 ' + (y + 14) + ' L56 ' + (y + 38) + 'Z" fill="#fff6a8"/><ellipse cx="46" cy="' + (y + 12) + '" rx="16" ry="6" fill="#8a3f8f" opacity=".5"/>';
         if (i === 2) s += '<ellipse cx="44" cy="' + (y + 28) + '" rx="16" ry="9" fill="#111" opacity=".8"/><ellipse cx="44" cy="' + (y + 12) + '" rx="18" ry="6" fill="#ddd" opacity=".35"/>';
-        s += '<text x="17" y="' + (y + 10) + '" font-family="monospace" font-size="6.5" fill="#fff" opacity=".95">' + t[1] + '</text>';
+        s += '<text x="17" y="' + (y + 10) + '" font-family="Archivo, system-ui, sans-serif" font-size="6.5" fill="#fff" opacity=".95">' + t[1] + '</text>';
         s += '<rect class="cyc" x="12" y="' + y + '" width="64" height="42" rx="5" fill="none" stroke="' + A + '" stroke-width="2.2" style="animation-delay:' + d + 's"/>';
         s += '<path class="fl cyc2" d="M76 ' + (y + 21) + ' C 100 ' + (y + 21) + ' 106 90 126 90" fill="none" stroke="' + A + '" stroke-width="1.6" style="animation-delay:' + d + 's"/>';
       });
@@ -182,7 +182,7 @@
         if (t === 2) { s += '<rect x="' + gx + '" y="128" width="96" height="26" fill="' + C2 + '"/>'; for (var b = 0; b < 24; b++) s += '<path d="M' + (gx + b * 4 + 2) + ' 154 l' + ((b % 3) - 1) * 2 + ' -' + (8 + (b % 4) * 3) + '" stroke="' + S + '" stroke-width="1"/>'; }
       }
       s += '</g></g><path d="M16 128 H304" stroke="' + L + '"/>';
-      s += '<g font-family="monospace" font-size="7.5" text-anchor="middle">' +
+      s += '<g font-family="Archivo, system-ui, sans-serif" font-size="7.5" text-anchor="middle">' +
         '<rect x="30" y="159" width="62" height="14" rx="7" fill="none" stroke="' + A + '"/><text x="61" y="168.5" fill="' + A + '" class="ct">tile</text>' +
         '<rect x="129" y="159" width="62" height="14" rx="7" fill="none" stroke="' + W + '"/><text x="160" y="168.5" fill="' + W + '" class="cg">gravel</text>' +
         '<rect x="228" y="159" width="62" height="14" rx="7" fill="none" stroke="' + S + '"/><text x="259" y="168.5" fill="' + S + '" class="cgr">grass</text></g></svg>';
@@ -214,7 +214,7 @@
     }
   };
   /* ---------- project thumbnails: one small animated illustration per project ---------- */
-  var PV = 'viewBox="0 0 320 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true"';
+  var PV = 'viewBox="0 0 320 200" preserveAspectRatio="xMidYMid meet" aria-hidden="true"';
   var win = function (x, y, w, h, t) {
     return '<rect x="' + x + '" y="' + y + '" width="' + w + '" height="' + h + '" rx="6" fill="' + C2 + '" stroke="' + L + '"/><path d="M' + x + ' ' + (y + 12) + ' H' + (x + w) + '" stroke="' + L + '"/>' +
       '<circle cx="' + (x + 8) + '" cy="' + (y + 6) + '" r="1.8" fill="' + P + '"/><circle cx="' + (x + 15) + '" cy="' + (y + 6) + '" r="1.8" fill="' + W + '"/><circle cx="' + (x + 22) + '" cy="' + (y + 6) + '" r="1.8" fill="' + A + '"/>' +
@@ -356,8 +356,8 @@
     'medextract': function () {
       var W5 = 5.2;
       var s = '<svg ' + PV + '>' + win(10, 26, 300, 112, 'spaCy · custom NER');
-      s += '<text x="22" y="82" font-family="monospace" font-size="8.6" fill="var(--text)" textLength="' + (31 * W5) + '" lengthAdjust="spacing">Patient with type 2 diabetes was</text>';
-      s += '<text x="22" y="112" font-family="monospace" font-size="8.6" fill="var(--text)" textLength="' + (34 * W5) + '" lengthAdjust="spacing">prescribed metformin 500 mg daily.</text>';
+      s += '<text x="22" y="82" font-family="Archivo, system-ui, sans-serif" font-size="8.6" fill="var(--text)" textLength="' + (31 * W5) + '" lengthAdjust="spacing">Patient with type 2 diabetes was</text>';
+      s += '<text x="22" y="112" font-family="Archivo, system-ui, sans-serif" font-size="8.6" fill="var(--text)" textLength="' + (34 * W5) + '" lengthAdjust="spacing">prescribed metformin 500 mg daily.</text>';
       var hl = function (x, y, w, lab, col, d) { return '<rect class="blink" x="' + x + '" y="' + (y - 9) + '" width="' + w + '" height="13" rx="3" fill="' + col + '" opacity=".25" style="animation-delay:-' + d + 's"/><path d="M' + x + ' ' + (y + 5) + ' H' + (x + w) + '" stroke="' + col + '" stroke-width="1.6"/>' + tx(x + w / 2, y - 14, lab, { s: 6.2, f: col }); };
       s += hl(22 + 13 * W5, 82, 15 * W5, 'DISEASE', P, 0) + hl(22 + 11 * W5, 112, 9 * W5, 'DRUG', A, .6) + hl(22 + 21 * W5, 112, 6 * W5, 'DOSE', W, 1.2);
       s += pill(14, 152, 60, 'tokenize', S) + pill(80, 152, 60, 'embed', A) + pill(146, 152, 60, 'tag spans', W) + pill(212, 152, 98, 'train on clinical text', P) + cap('training a medical NER model') + '</svg>';
@@ -436,7 +436,7 @@
      papers and projects are stations, and the station marker is the publication status. */
   var STATUS_TEXT = { accepted: 'Accepted', review: 'Under review', planned: 'Planned', ongoing: 'Ongoing', project: 'Project' };
   function lineVar(k) { return 'var(--l-' + k.toLowerCase() + ')'; }
-  function bulletHTML(k, cls) { return '<i class="' + (cls || 'lb') + ' k-' + k.toLowerCase() + '" style="--lc:' + lineVar(k) + '">' + k + '</i>'; }
+  function bulletHTML(k, cls) { return '<i class="' + (cls || 'lnb') + ' k-' + k.toLowerCase() + '" style="--lc:' + lineVar(k) + '">' + k + '</i>'; }
 
   /* turn a station's ref ("research:id", "published:0", "project:id") into what the page shows */
   function resolveStation(st) {
@@ -456,10 +456,8 @@
   }
 
   function markerSVG(x, y, status, interchange) {
-    if (status === 'project') {
-      var s = interchange ? 24 : 19;
-      return '<rect class="mk" x="' + (x - s / 2) + '" y="' + (y - s / 2) + '" width="' + s + '" height="' + s + '" rx="' + (interchange ? 7 : 5) + '"/>';
-    }
+    if (interchange) return '<rect class="mk xchg" x="' + (x - 17) + '" y="' + (y - 11) + '" width="34" height="22" rx="11"/>';
+    if (status === 'project') return '<rect class="mk" x="' + (x - 9.5) + '" y="' + (y - 9.5) + '" width="19" height="19" rx="5"/>';
     return '<circle class="mk ' + status + '" cx="' + x + '" cy="' + y + '" r="10"/>' + (status === 'ongoing' ? '<circle class="mk-in" cx="' + x + '" cy="' + y + '" r="3.6"/>' : '');
   }
 
@@ -468,6 +466,13 @@
     M.lines.forEach(function (l, i) {
       s += '<polyline class="route" pathLength="1" style="--d:' + i + '" stroke="' + lineVar(l.key) + '" points="' + l.points.map(function (p) { return p.join(','); }).join(' ') + '"/>';
     });
+    M.lines.forEach(function (l, i) {
+      var e = l.points[l.points.length - 1], q = l.points[l.points.length - 2];
+      var atStation = M.stations.some(function (st) { return Math.abs(st.x - e[0]) < 3 && Math.abs(st.y - e[1]) < 3; });
+      if (atStation) return;
+      var horiz = Math.abs(e[1] - q[1]) < Math.abs(e[0] - q[0]);
+      s += '<line class="term" style="--d:' + i + '" stroke="' + lineVar(l.key) + '" x1="' + (horiz ? e[0] : e[0] - 13) + '" y1="' + (horiz ? e[1] - 13 : e[1]) + '" x2="' + (horiz ? e[0] : e[0] + 13) + '" y2="' + (horiz ? e[1] + 13 : e[1]) + '"/>';
+    });
     M.lines.forEach(function (l) {
       var p = l.points[0];
       s += '<g class="bullet k-' + l.key.toLowerCase() + '" aria-hidden="true"><circle cx="' + p[0] + '" cy="' + p[1] + '" r="14" fill="' + lineVar(l.key) + '"/><text x="' + p[0] + '" y="' + (p[1] + 5) + '" text-anchor="middle">' + l.key + '</text></g>';
@@ -475,7 +480,7 @@
     M.stations.forEach(function (st, i) {
       var o = info[i]; if (!o) return;
       var x = st.x, y = st.y, lx = x, ly = y, anchor = 'middle';
-      if (st.place === 'above') ly = y - 22; else if (st.place === 'below') ly = y + 32; else { lx = x + 22; ly = y + 5; anchor = 'start'; }
+      if (st.place === 'above') ly = y - 22; else if (st.place === 'below') ly = y + 32; else { lx = x + (st.lines.length > 1 ? 28 : 22); ly = y + 5; anchor = 'start'; }
       s += '<a class="st" href="' + o.href + '" data-i="' + i + '" aria-label="' + esc(o.title).replace(/"/g, '&quot;') + ', ' + STATUS_TEXT[o.status] + '">' +
         '<circle class="hit" cx="' + x + '" cy="' + y + '" r="20"/>' + markerSVG(x, y, o.status, st.lines.length > 1) +
         '<text class="st-l" x="' + lx + '" y="' + ly + '" text-anchor="' + anchor + '">' + esc(st.label) + '</text></a>';
@@ -486,10 +491,12 @@
   /* phone: the same network as a vertical list per line */
   function mapList(M, info) {
     return '<div class="map-list">' + M.lines.map(function (l) {
-      var rows = M.stations.map(function (st, i) { return st.lines.indexOf(l.key) >= 0 && info[i] ? { st: st, o: info[i] } : null; }).filter(Boolean);
+      /* an interchange is listed in full on its first line; later lines name it in one row */
+      var rows = M.stations.map(function (st, i) { return st.lines[0] === l.key && info[i] ? { st: st, o: info[i] } : null; }).filter(Boolean);
+      var xs = M.stations.filter(function (st) { return st.lines.indexOf(l.key) > 0; });
       return '<div class="ml-line" style="--lc:' + lineVar(l.key) + '"><h2>' + bulletHTML(l.key) + l.name + '</h2><ol>' + rows.map(function (r) {
         return '<li><a href="' + r.o.href + '"><span class="mks ' + r.o.status + (r.st.lines.length > 1 ? ' xchg' : '') + '"></span><span class="ml-t">' + esc(r.st.label) + '<small>' + r.o.statusText + (r.st.lines.length > 1 ? ' · also on ' + r.st.lines.filter(function (k) { return k !== l.key; }).map(function (k) { return M.lines.filter(function (x) { return x.key === k; })[0].name; }).join(', ') : '') + '</small></span></a></li>';
-      }).join('') + '</ol></div>';
+      }).join('') + (xs.length ? '<li class="ml-x"><span class="mks xchg"></span><span>Interchange with ' + xs.map(function (st) { return esc(st.label); }).join(' and ') + '</span></li>' : '') + '</ol></div>';
     }).join('') + '</div>';
   }
 
@@ -501,13 +508,13 @@
       '<li class="lg-break" aria-hidden="true"></li>' +
       ['accepted', 'review', 'planned', 'ongoing', 'project'].filter(function (k) { return n[k]; }).map(function (k) {
         return '<li>' + mk(k) + STATUS_TEXT[k] + (k === 'project' ? 's' : '') + ' <b>' + n[k] + '</b></li>';
-      }).join('') + '</ul>';
+      }).join('') + (M.stations.some(function (s) { return s.lines.length > 1; }) ? '<li><svg viewBox="0 0 36 24" class="lg-x" aria-hidden="true"><rect class="mk xchg" x="1" y="1" width="34" height="22" rx="11"/></svg>Interchange</li>' : '') + '</ul>';
   }
 
   function panelHTML(o) {
     var art = o.art ? '<div class="mp-art">' + o.art() + '</div>' : '<div class="mp-art txt"><span>' + esc(o.badge || '') + '</span></div>';
-    return art + '<div class="mp-body"><div class="mp-status">' + o.lines.map(function (k) { return bulletHTML(k); }).join('') + '<span>' + o.statusText + '</span></div>' +
-      '<b>' + o.title + '</b><a class="mp-go" href="' + o.href + '">' + o.go + ' →</a></div>';
+    return art + '<div class="mp-body"><b>' + o.title + '</b><div class="mp-status">' + o.lines.map(function (k) { return bulletHTML(k); }).join('') + '<span>' + o.statusText + '</span></div>' +
+      '<a class="mp-go" href="' + o.href + '">' + o.go + arr() + '</a></div>';
   }
 
   function wireMap(info, start) {
@@ -556,7 +563,7 @@
     var cards = r.items.map(function (it) {
       return '<article class="r-card rv" id="r-' + it.id + '">' +
         '<div class="r-thumb">' + THUMBS[it.thumb]() + '</div>' +
-        '<div class="r-body"><div class="r-top">' + (lineOf[it.id] ? bulletHTML(lineOf[it.id]) : '') + '<span class="badge ' + it.status + '"><i></i>' + it.statusLabel + '</span></div><span class="r-kind">' + it.kind + '</span><h3>' + it.title + '</h3>' +
+        '<div class="r-body"><h3>' + it.title + '</h3><div class="r-top">' + (lineOf[it.id] ? bulletHTML(lineOf[it.id]) : '') + '<span class="badge ' + it.status + '"><i></i>' + it.statusLabel + '</span><span class="r-kind">' + it.kind + '</span></div>' +
         '<p>' + it.desc + '</p>' + (it.statusLabel.indexOf(it.venue) < 0 ? '<div class="r-venue">' + it.venue + '</div>' : '') +
         '<div class="tags">' + it.tags.map(function (t) { return '<span>' + t + '</span>'; }).join('') + '</div></div></article>';
     }).join('');
@@ -607,7 +614,7 @@
 
     var c = D.contact;
     var contact = '<section id="contact"><div class="wrap"><div class="contact rv"><span class="routes" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span><h2>' + c.heading + '</h2><p>' + c.text + '</p>' +
-      '<div class="cta"><a class="btn primary" href="mailto:' + c.email + '?subject=Hello%20Vishnu">Email me →</a><a class="btn" href="' + docs.cv + '">CV</a><a class="btn" href="' + docs.resume + '" target="_blank" rel="noopener">Resume (PDF)</a></div>' +
+      '<div class="cta"><a class="btn primary" href="mailto:' + c.email + '?subject=Hello%20Vishnu">Email me' + arr() + '</a><a class="btn" href="' + docs.cv + '">CV</a><a class="btn" href="' + docs.resume + '" target="_blank" rel="noopener">Resume (PDF)</a></div>' +
       '<div class="soc">' + c.links.filter(function (l) { return l.label !== 'Email'; }).map(function (l) {
         return '<a href="' + l.href + '" target="_blank" rel="noopener">' + svgIcon(l.label.toLowerCase()) + l.label + '</a>';
       }).join('') + '</div></div></div></section>';
@@ -617,10 +624,12 @@
     wireMap(info, start);
   }
 
+  /* drawn arrow in the same stroke as the doc icon */
+  function arr(d) { return '<svg class="arr" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">' + (d === 'l' ? '<path d="M19 12H5M11 6l-6 6 6 6"/>' : '<path d="M5 12h14M13 6l6 6-6 6"/>') + '</svg>'; }
   function svgInline(k) { return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/></svg>'; }
 
   function tlItem(it) {
-    return '<div class="tl-item"><div class="tl-date">' + clean(it.date) + '</div><div class="tl-role">' + clean(it.role) + '</div><div class="tl-org">' + logo(it.logo) + '<span>' + clean(it.org) + '</span></div>' +
+    return '<div class="tl-item"><div class="tl-role">' + clean(it.role) + '</div><div class="tl-org">' + logo(it.logo) + '<span>' + clean(it.org) + '</span></div><div class="tl-date">' + clean(it.date) + '</div>' +
       (it.bullets && it.bullets.length ? '<ul>' + it.bullets.map(function (b) { return '<li>' + clean(b) + '</li>'; }).join('') + '</ul>' : '') + '</div>';
   }
 
@@ -635,7 +644,7 @@
       thumb = '<div class="p-thumb gen" style="--g:linear-gradient(135deg,hsl(' + h + ',55%,32%),hsl(' + ((h + 60) % 360) + ',60%,18%))"><span class="em">' + (t.emoji || '✦') + '</span></div>';
     }
     return '<a class="p-card rv" data-tag="' + p.tag + '" href="project.html?id=' + encodeURIComponent(p.id) + '">' + thumb +
-      '<div class="p-body"><span class="p-tag">' + p.tagLabel + '</span><h3>' + t.name + '</h3><p>' + clean(p.desc.replace(/^[^\w<]+/u, '')) + '</p><span class="p-more">Read more</span></div></a>';
+      '<div class="p-body"><h3>' + t.name + '</h3><span class="p-tag">' + p.tagLabel + '</span><p>' + clean(p.desc.replace(/^[^\w<]+/u, '')) + '</p><span class="p-more">Read more' + arr() + '</span></div></a>';
   }
 
   /* compact row for the non-flagship projects */
@@ -658,7 +667,7 @@
     var root = $('#app');
     var id = new URLSearchParams(location.search).get('id');
     var p = D.projects.items.filter(function (x) { return x.id === id; })[0];
-    if (!p) { root.innerHTML = '<div class="wrap page-pad"><a class="back" href="index.html#projects">← All projects</a><h1 style="margin-top:20px">That project isn\'t here</h1><p class="lede" style="margin-top:14px">The link may be old or mistyped. Every project is listed on the home page.</p><div class="cta" style="margin-top:24px"><a class="btn primary" href="index.html#projects">See all projects</a><a class="btn" href="index.html">Home</a></div></div>'; return; }
+    if (!p) { root.innerHTML = '<div class="wrap page-pad"><a class="back" href="index.html#projects">' + arr('l') + 'All projects</a><h1 style="margin-top:20px">That project isn\'t here</h1><p class="lede" style="margin-top:14px">The link may be old or mistyped. Every project is listed on the home page.</p><div class="cta" style="margin-top:24px"><a class="btn primary" href="index.html#projects">See all projects</a><a class="btn" href="index.html">Home</a></div></div>'; return; }
     var t = splitTitle(p.title);
     document.title = t.name + ' — Vishnu Vardhan Addanki Tirumala';
     var images = (p.images || []).map(function (it, i) { return typeof it === 'string' ? { id: 'i' + i, src: it, caption: '' } : { id: it.id || 'i' + i, src: it.src, caption: clean(it.caption || '') }; });
@@ -682,10 +691,10 @@
     var restV = videos.filter(function (x) { return !usedV[x.id]; });
     var links = !p.link ? [] : (Array.isArray(p.link) ? p.link : [p.link]);
     var art = PT[p.id];
-    root.innerHTML = '<div class="wrap page-pad proj"><a class="back" href="index.html#projects">← All projects</a>' +
+    root.innerHTML = '<div class="wrap page-pad proj"><a class="back" href="index.html#projects">' + arr('l') + 'All projects</a>' +
       '<div class="proj-head' + (art ? ' has-art' : '') + '"><div class="proj-title">' +
-      '<span class="p-tag" style="position:static;display:inline-block">' + p.tagLabel + '</span>' +
       '<h1>' + t.name + '</h1>' +
+      '<span class="p-tag">' + p.tagLabel + '</span>' +
       '<p class="lede proj-lede">' + clean(p.desc.replace(/^[^\w<]+/u, '')) + '</p>' +
       (links.length ? '<div class="cta">' + links.map(function (l, i) { return '<a class="btn' + (i ? '' : ' primary') + '" href="' + l.href + '" target="_blank" rel="noopener">' + l.label + '</a>'; }).join('') + '</div>' : '') +
       '</div>' + (art ? '<div class="proj-art" role="img" aria-label="Animated diagram of how ' + t.name.replace(/"/g, '') + ' works">' + art() + '</div>' : '') + '</div>' +
@@ -732,7 +741,7 @@
 
     document.title = 'Curriculum Vitae — Vishnu Vardhan Addanki Tirumala';
     $('#app').innerHTML =
-      '<div class="cv-bar no-print"><a class="back" href="index.html">← Back to site</a><div><a class="btn" href="' + docs.resume + '" target="_blank" rel="noopener">Resume (PDF)</a> <a class="btn" href="' + docs.cvPdf + '" download>Download CV (PDF)</a> <button class="btn primary" onclick="window.print()">Print</button></div></div>' +
+      '<div class="cv-bar no-print"><a class="back" href="index.html">' + arr('l') + 'Back to site</a><div><a class="btn" href="' + docs.resume + '" target="_blank" rel="noopener">Resume (PDF)</a> <a class="btn" href="' + docs.cvPdf + '" download>Download CV (PDF)</a> <button class="btn primary" onclick="window.print()">Print</button></div></div>' +
       '<article class="cv">' +
       '<header class="cv-head"><div><h1>Vishnu Vardhan Addanki Tirumala</h1><div class="cv-tag">Curriculum Vitae · M.Tech in AI &amp; Data Science, IIITDM Kurnool (research exchange at UiA) · University Research Assistant, ACPS Lab</div></div>' +
       '<div class="cv-contact"><div>Grimstad, Norway</div><div>' + D.contact.email + '</div><div>' + link('https://vishnu-add.github.io/') + '</div><div>github.com/Vishnu-add</div><div>orcid.org/0009-0003-4496-0054</div><div>linkedin.com/in/a-vishnu-vardhan</div></div></header>' +
@@ -770,13 +779,13 @@
       '<button class="btn" id="vcf" type="button">Save contact (.vcf)</button><button class="btn" id="copyli" type="button">Copy LinkedIn link</button>' +
       '<a class="btn" href="' + docs.resume + '" target="_blank" rel="noopener">Resume</a><a class="btn" href="' + docs.cv + '">CV</a></div>';
     var research = r.items.map(function (i) {
-      return '<div class="mini"><span class="badge ' + i.status + '"><i></i>' + i.statusLabel + '</span><b style="margin-top:8px">' + i.title + '</b><p>' + i.kind + '</p></div>';
+      return '<div class="mini"><b>' + i.title + '</b><span class="badge ' + i.status + '" style="margin:6px 0 2px"><i></i>' + i.statusLabel + '</span><p>' + i.kind + '</p></div>';
     }).join('');
     var slim = function (it) { return { date: it.date, role: it.role, org: it.org, logo: it.logo, bullets: [] }; };
     var skills = D.skills.groups.map(function (g) { return '<div class="sk"><h2>' + g.category + '</h2><div class="chips">' + g.items.map(function (i) { return '<span class="chip">' + i + '</span>'; }).join('') + '</div></div>'; }).join('');
     var links = D.contact.links.map(function (l) { return '<a class="chip" href="' + l.href + '" target="_blank" rel="noopener">' + l.label + '</a>'; }).join('');
     $('#app').innerHTML = '<div class="wrap page-pad card-page">' +
-      '<a class="back" href="index.html">← Back to site</a><div class="card-stage rv">' + card + actions + '</div>' +
+      '<a class="back" href="index.html">' + arr('l') + 'Back to site</a><div class="card-stage rv">' + card + actions + '</div>' +
       '<div class="two" style="margin-top:80px"><div class="rv"><div class="sub-h">Summary</div><div class="prose">' + D.about.paragraphs.map(function (p) { return '<div>' + p + '</div>'; }).join('') + '</div>' +
       '<div class="sub-h" style="margin-top:40px">Research</div><div class="cards">' + research + '</div></div>' +
       '<div class="rv"><div class="sub-h">Experience</div><div class="tl">' + D.experience.items.map(function (e) { return tlItem(slim(e)); }).join('') + '</div>' +
